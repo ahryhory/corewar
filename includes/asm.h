@@ -44,6 +44,6 @@ typedef struct 				s_data
 }							t_data;
 
 t_data						parse(char *file);
-void						write_byte(t_data data);
+void						write_byte(t_data data, char *file);
 
 #endif

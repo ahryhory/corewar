@@ -12,7 +12,12 @@
 
 #include "asm.h"
 
-void	write_byte(t_data data)
+static	char	*change_ex(char file)
 {
 	
+}
+
+void			write_byte(t_data data, char *file)
+{
+	file = change_ex(file);
 }

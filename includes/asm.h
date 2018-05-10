@@ -15,6 +15,7 @@
 
 # include "op.h"
 # include "libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 
 typedef struct				s_optab
@@ -41,5 +42,8 @@ typedef struct 				s_data
 	char					*name;
 	char					*comment;
 }							t_data;
+
+t_data						parse(char *file);
+void						write_byte(t_data data);
 
 #endif

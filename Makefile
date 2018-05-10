@@ -16,7 +16,7 @@ NAME_A = asm
 
 C = gcc
 
-FLAGS += -Wall -Wextra -Werror
+# FLAGS += -Wall -Wextra -Werror
 
 LIBFT = ./libft/
 LIB = ./libft/libft.a
@@ -27,6 +27,8 @@ INC = ./includes
 SRC_A = 
 
 SRC_A += asm.c
+SRC_A += parse.c
+SRC_A += write_byte.c
 
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))

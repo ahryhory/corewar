@@ -12,4 +12,17 @@
 
 #include "asm.h"
 
-t_data
+t_data			parse(char *file)
+{
+	int			fd;
+	char		*line;
+	t_data		data;
+
+	fd = open(file, O_RDONLY);
+	while (ft_get_next_line(fd, &line))
+	{
+		ft_strdel(&line);
+	}
+	close(fd);
+	return (data);
+}

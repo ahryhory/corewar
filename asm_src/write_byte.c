@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   write_byte.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 11:12:51 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 11:12:52 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/05/10 13:17:49 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/05/10 13:17:50 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int			main(int argc, char **argv)
+static	char	*change_ex(char file)
 {
-	t_data	data;
-	// data = parse(argv[1]);
-	write_byte(data, argv[1]);
-	return (0);
+	
+}
+
+void			write_byte(t_data data, char *file)
+{
+	file = change_ex(file);
 }

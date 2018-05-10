@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 11:12:51 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 11:12:52 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/05/10 12:31:56 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/05/10 12:31:57 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int			main(int argc, char **argv)
+t_data			parse(char *file)
 {
-	t_data	data;
-	// data = parse(argv[1]);
-	write_byte(data, argv[1]);
-	return (0);
+	int			fd;
+	char		*line;
+	t_data		data;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)		/* HANDLE */
+		exit(1);	/* THIS */
+	while (ft_get_next_line(fd, &line))
+	{
+		
+		ft_strdel(&line);
+	}
+	close(fd);
+	// system("leaks asm");
+	return (data);
 }

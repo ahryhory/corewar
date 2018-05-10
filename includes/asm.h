@@ -15,6 +15,7 @@
 
 # include "op.h"
 # include "libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 
 typedef struct				s_optab
@@ -26,12 +27,22 @@ typedef struct				s_optab
 	int						lable_size;
 }							t_optab;
 
-typedef struct 				s_data
+typedef struct 				s_commands
 {
 	char					*lable;
 	char					*command;
 	int						begin;
 	int						size;
-};
+	struct s_data			*next;
+}							t_commands;
+
+typedef struct 				s_data
+{
+	t_commands				*command;
+	t_header				head;
+}							t_data;
+
+t_data						parse(char *file);
+void						write_byte(t_data data, char *file);
 
 #endif

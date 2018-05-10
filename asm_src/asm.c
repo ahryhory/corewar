@@ -15,7 +15,12 @@
 int			main(int argc, char **argv)
 {
 	t_data	data;
+<<<<<<< HEAD
 	data = parse(argv[1]);
 	// write_byte(data);
+=======
+	// data = parse(argv[1]);
+	write_byte(data, argv[1]);
+>>>>>>> 5da0e859215e8b2ad54b58a5010c9800f40755be
 	return (0);
 }

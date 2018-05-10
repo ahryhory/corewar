@@ -26,12 +26,20 @@ typedef struct				s_optab
 	int						lable_size;
 }							t_optab;
 
-typedef struct 				s_data
+typedef struct 				s_commands
 {
 	char					*lable;
 	char					*command;
 	int						begin;
 	int						size;
-};
+	struct s_data			*next;
+}							t_commands;
+
+typedef struct 				s_data
+{
+	t_commands				*command;
+	char					*name;
+	char					*comment;
+}							t_data;
 
 #endif

@@ -15,7 +15,7 @@
 int			main(int argc, char **argv)
 {
 	t_data	data;
-	// data = parse(argv[1]);
+	data = parse(argv[1]);
 	write_byte(data);
 	return (0);
 }

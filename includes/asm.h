@@ -39,8 +39,7 @@ typedef struct 				s_commands
 typedef struct 				s_data
 {
 	t_commands				*command;
-	char					*name;
-	char					*comment;
+	t_header				head;
 }							t_data;
 
 t_data						parse(char *file);

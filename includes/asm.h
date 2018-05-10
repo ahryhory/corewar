@@ -29,11 +29,11 @@ typedef struct				s_optab
 
 typedef struct 				s_commands
 {
-	char					*lable;
+	char					*label;
 	char					*command;
 	int						begin;
 	int						size;
-	struct s_data			*next;
+	struct s_commands		*next;
 }							t_commands;
 
 typedef struct 				s_data

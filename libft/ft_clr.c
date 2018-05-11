@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   ft_clr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 11:12:51 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 11:12:52 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/05/02 18:00:43 by ahryhory          #+#    #+#             */
+/*   Updated: 2018/05/02 18:00:45 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-int			main(int argc, char **argv)
+void	ft_clr(char ***str)
 {
-	t_data	data;
-	
-	// data = parse(argv[1]);
-	// write_byte(data, argv[1]);
-	data = parse(argv[1]);
-	write_byte(data, argv[1]);
-	return (0);
+	size_t		i;
+	char		**s;
+
+	s = *str;
+	i = 0;
+	while (s[i])
+	{
+		ft_strdel(&s[i]);
+		i++;
+	}
+	free(*str);
+	*str = NULL;
 }

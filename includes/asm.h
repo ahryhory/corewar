@@ -31,6 +31,9 @@ typedef struct 				s_commands
 {
 	char					*label;
 	char					*command;
+	char					*arg_1;
+	char					*arg_2;
+	char					*arg_3;
 	int						begin;
 	int						size;
 	struct s_commands		*next;

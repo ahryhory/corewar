@@ -17,7 +17,26 @@
 	
 // }
 
+// void			write_byte(t_data data, char *file)
+// {
+// 	// file = change_ex(file);
+// }
+
+static	int		open_cor(char *file)
+{
+	int		fd;
+	char	*tmp;
+
+	file[ft_strlen(file) - 1] = '\0';
+	tmp = ft_strjoin(file, "cor");
+	fd = open(tmp, O_CREAT | O_RDWR | O_TRUNC, S_IREAD | S_IWRITE);
+	free(tmp);
+	return (fd);
+}
+
 void			write_byte(t_data data, char *file)
 {
-	// file = change_ex(file);
+	int		fd;
+	fd = open_cor(file);
+	close(fd);
 }

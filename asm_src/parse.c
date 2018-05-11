@@ -238,7 +238,7 @@ t_data			parse(char *file)
 			printf(" %s", list->arg_2);
 		if (list->arg_3)
 			printf(" %s", list->arg_3);
-		printf("\n%d  (%d)\n", size, list->size);
+		printf("\n%d  (%d)\n", list->begin, list->size);
 		size += list->size;
 		printf("\n");
 		list = list->next;

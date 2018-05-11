@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+#define	C_BUFF				"**** **** **** **** **** **** **** ****\n"
+
 typedef struct				s_optab
 {
 	char					*name;
@@ -49,7 +51,11 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
+char						g_buff[41];
+
 t_data						parse(char *file);
 void						write_byte(t_data data, char *file);
+void						write_header(int fd, t_data data, char g_buff[41]);
+void						init_buff(char g_buff[41]);
 
 #endif

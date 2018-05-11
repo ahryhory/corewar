@@ -21,9 +21,13 @@
 typedef struct				s_optab
 {
 	char					*name;
-	int						opcode;
 	int						args_number;
-	int						args[3];
+	int						args[3][3];
+	int						opcode;
+	int						cycles;
+	char					*description;
+	int						carry;
+	int						cod_octal;
 	int						lable_size;
 }							t_optab;
 

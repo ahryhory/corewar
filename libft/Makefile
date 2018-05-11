@@ -76,6 +76,7 @@ SRC += ft_lstiter.c
 SRC += ft_lstmap.c
 SRC += ft_get_next_line.c
 SRC += ft_itoa_base.c
+SRC += ft_clr.c
 
 HED = libft.h
 

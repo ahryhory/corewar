@@ -25,12 +25,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-<<<<<<< HEAD
-
 void				ft_split_del(char ***str);
-=======
-void				ft_clr(char ***str);
->>>>>>> origin
 int					ft_get_next_line(const int fd, char **line);
 char				*ft_itoa_base(uintmax_t num, int base);
 void				ft_bzero(void *s, size_t n);

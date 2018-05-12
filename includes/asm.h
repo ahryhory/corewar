@@ -22,12 +22,12 @@
 
 typedef struct				s_optab
 {
-	char					*name;
+	char					name[10];
 	int						args_number;
 	int						args[3][3];
 	int						opcode;
 	int						cycles;
-	char					*description;
+	char					description[20];
 	int						carry;
 	int						cod_octal;
 	int						lable_size;

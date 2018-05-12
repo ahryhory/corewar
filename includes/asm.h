@@ -18,20 +18,22 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-#define	C_BUFF				"**** **** **** **** **** **** **** ****\n"
+# define COUNT_OP 16
 
 typedef struct				s_optab
 {
 	char					name[10];
 	int						args_number;
 	int						args[3][3];
-	int						opcode;
+	char					opcode[5];
 	int						cycles;
-	char					description[20];
+	char					description[50];
 	int						carry;
 	int						cod_octal;
 	int						lable_size;
 }							t_optab;
+
+t_optab						g_optab[COUNT_OP];
 
 typedef struct 				s_commands
 {
@@ -51,11 +53,26 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
-char						g_buff[41];
-
 t_data						parse(char *file);
 void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
-void						write_header(int fd, t_data data);
+void						write_header(int fd, t_data data, int *oct, int *line);
+void						cpy_in_4b(t_data data, char w[10]);
+void						check_line(char **line, int number_line);
+void						check_comment(char *line);
+int							check_quotes(char *line);
+void						check_start_line(char **line);
+void						check_other_line(char **line);
+int							check_cmd(char *line);
+void						ft_exit(int error);
+void						init_name(void);
+void						init_args_number(void);
+void						init_args(void);
+void						init_opcode(void);
+void						init_cycles(void);
+void						init_description(void);
+void						init_carry(void);
+void						init_cod_octal(void);
+void						init_lable_size(void);
 
 #endif

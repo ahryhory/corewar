@@ -125,7 +125,7 @@ static void			add_label(t_commands **new, char *line)
 	}
 }
 
-static int			check_line(char **line, t_commands **new)
+static int			check_curr_line(char **line, t_commands **new)
 {
 	char			**split;
 
@@ -177,7 +177,7 @@ void				parse_line(char *line, t_commands **command)
 	char			**split;
 
 	new = init_command();
-	if (!check_line(&line, &new))
+	if (!check_curr_line(&line, &new))
 		return ;
 	add_label(&new, line);
 	cmd = add_command(&new, line);

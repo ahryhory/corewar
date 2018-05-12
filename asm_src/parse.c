@@ -198,12 +198,7 @@ t_data			parse(char *file)
 			if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 			{
 				content = get_content_in_quotation(line);
-				i = 0;
-				while (content[i])
-				{
-					data.head.prog_name[i] = content[i];
-					i++;
-				}
+				ft_strcpy(data.head.prog_name, content);
 				ft_strdel(&content);
 			}
 			else if (ft_strnequ(line, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))

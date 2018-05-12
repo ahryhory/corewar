@@ -30,7 +30,6 @@ SRC_A += asm.c
 SRC_A += parse.c
 SRC_A += write_byte.c
 SRC_A += write_header.c
-SRC_A += buff_funcs.c
 
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))

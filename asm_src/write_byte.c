@@ -27,10 +27,8 @@ static	int		open_cor(char *file)
 void			write_byte(t_data data, char *file)
 {
 	int		fd;
-	char	g_buff[41];
 
 	fd = open_cor(file);
-	init_buff(g_buff);
-	write_header(fd, data, g_buff);
+	write_header(fd, data);
 	close(fd);
 }

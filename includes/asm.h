@@ -54,6 +54,7 @@ typedef struct 				s_data
 char						g_buff[41];
 
 t_data						parse(char *file);
+void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
 void						write_header(int fd, t_data data);
 

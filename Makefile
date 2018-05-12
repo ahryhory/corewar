@@ -28,6 +28,7 @@ SRC_A =
 
 SRC_A += asm.c
 SRC_A += parse.c
+SRC_A += parse_line.c
 SRC_A += write_byte.c
 SRC_A += write_header.c
 

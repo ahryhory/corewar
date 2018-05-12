@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   check_other_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 12:19:41 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/10 12:19:42 by ahryhory         ###   ########.fr       */
+/*   Created: 2018/05/10 16:23:09 by ahryhory          #+#    #+#             */
+/*   Updated: 2018/05/10 16:23:10 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			check_line(char **line, int number_line)
+void		check_other_line(char **line)
 {
-	if (number_line == 0 || number_line == 1)
-		check_start_line(line);
-	else
-		check_other_line(line);
+	
 }

@@ -193,8 +193,8 @@ t_data			parse(char *file)
 	{
 		if (!ft_strequ(line, ""))
 		{
+			check_line(&line, count);
 			count++;
-			// check_line(line, count);
 			if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 			{
 				content = get_content_in_quotation(line);
@@ -215,26 +215,26 @@ t_data			parse(char *file)
 		ft_strdel(&line);
 	}
 	list = data.command;
-	int size = 0;
-	while(list)
-	{
-		list->begin = size;
-		if (list->label)
-			printf("%d  %s:", list->begin, list->label);
-		printf("%15s%s", " ", list->command);
-		if (list->arg_1)
-			printf(" %s", list->arg_1);
-		if (list->arg_2)
-			printf(" %s", list->arg_2);
-		if (list->arg_3)
-			printf(" %s", list->arg_3);
-		printf("\n%d  (%d)\n", list->begin, list->size);
-		size += list->size;
-		printf("\n");
-		list = list->next;
-	}
-	data.head.prog_size = size;
-	printf("%d\n", data.head.prog_size);
+	// int size = 0;
+	// while(list)
+	// {
+	// 	list->begin = size;
+	// 	if (list->label)
+	// 		printf("%d  %s:", list->begin, list->label);
+	// 	printf("%15s%s", " ", list->command);
+	// 	if (list->arg_1)
+	// 		printf(" %s", list->arg_1);
+	// 	if (list->arg_2)
+	// 		printf(" %s", list->arg_2);
+	// 	if (list->arg_3)
+	// 		printf(" %s", list->arg_3);
+	// 	printf("\n%d  (%d)\n", list->begin, list->size);
+	// 	size += list->size;
+	// 	printf("\n");
+	// 	list = list->next;
+	// }
+	// data.head.prog_size = size;
+	// printf("%d\n", data.head.prog_size);
 	close(fd);
 	// system("leaks asm");
 	return (data);

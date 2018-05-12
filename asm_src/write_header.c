@@ -95,6 +95,7 @@ static	void	write_comm(int fd, t_data data, int *oct, int *line)
 
 void			write_header(int fd, t_data data, int *oct, int *line)
 {
+	
 	write(fd, "00ea 83f3", 9);
 	write_name(fd, data, oct, line);
 	write_size(fd, data, oct, line);

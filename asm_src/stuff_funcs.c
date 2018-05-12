@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_byte.c                                       :+:      :+:    :+:   */
+/*   stuff_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 13:17:49 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 13:17:50 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/05/12 15:17:39 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/05/12 15:17:40 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static	int		open_cor(char *file)
+void	cpy_in_4b(t_data data, char w[10])
 {
-	int		fd;
 	char	*tmp;
+	int		end_w;
+	int		end_tmp;
+	int		i;
 
-	file[ft_strlen(file) - 1] = '\0';
-	tmp = ft_strjoin(file, "cor");
-	fd = open(tmp, O_CREAT | O_RDWR | O_TRUNC, S_IREAD | S_IWRITE);
+	i = 0;
+	tmp = ft_itoa_base(data.head.prog_size, 16);
+	end_w = 8;
+	end_tmp = ft_strlen(tmp) - 1;
+	ft_strcpy(w, "0000 0000");
+	while (end_tmp >= 0)
+	{
+		if (w[end_w] == ' ')
+		{
+			end_w--;
+			continue ;
+		}
+		w[end_w] = tmp[end_tmp];
+		end_tmp--;
+		end_w--;
+	}
 	free(tmp);
-	return (fd);
-}
-
-void			write_byte(t_data data, char *file)
-{
-	int		fd;
-	int		oct;
-	int		line;
-
-	oct = 4;
-	line = 1;
-	fd = open_cor(file);
-	write_header(fd, data, &oct, &line);
-	close(fd);
 }

@@ -30,6 +30,7 @@ SRC_A += asm.c
 SRC_A += parse.c
 SRC_A += write_byte.c
 SRC_A += write_header.c
+SRC_A += stuff_funcs.c
 SRC_A += check_line.c
 SRC_A += check_other_line.c
 SRC_A += check_cmd.c

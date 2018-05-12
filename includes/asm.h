@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define C_BUFF				"**** **** **** **** **** **** **** ****\n"
 # define COUNT_OP 16
 
 typedef struct				s_optab
@@ -54,11 +53,10 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
-char						g_buff[41];
-
 t_data						parse(char *file);
 void						write_byte(t_data data, char *file);
-void						write_header(int fd, t_data data);
+void						write_header(int fd, t_data data, int *oct, int *line);
+void						cpy_in_4b(t_data data, char w[10]);
 void						check_line(char **line, int number_line);
 void						check_comment(char *line);
 int							check_quotes(char *line);

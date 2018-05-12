@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   check_comment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 12:19:41 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/10 12:19:42 by ahryhory         ###   ########.fr       */
+/*   Created: 2018/05/11 15:01:26 by ahryhory          #+#    #+#             */
+/*   Updated: 2018/05/11 15:01:27 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			check_line(char **line, int number_line)
+void	check_comment(char *line)
 {
-	if (number_line == 0 || number_line == 1)
-		check_start_line(line);
-	else
-		check_other_line(line);
+	if (line[0] != '\0' && line[0] != COMMENT_CHAR)
+		ft_exit(9);
 }

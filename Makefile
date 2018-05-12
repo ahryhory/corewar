@@ -30,6 +30,22 @@ SRC_A += asm.c
 SRC_A += parse.c
 SRC_A += write_byte.c
 SRC_A += write_header.c
+SRC_A += check_line.c
+SRC_A += check_other_line.c
+SRC_A += check_cmd.c
+SRC_A += check_comment.c
+SRC_A += check_quotes.c
+SRC_A += check_start_line.c
+SRC_A += ft_exit.c
+SRC_A += init_args_number.c
+SRC_A += init_args.c
+SRC_A += init_opcode.c
+SRC_A += init_cycles.c
+SRC_A += init_description.c
+SRC_A += init_carry.c
+SRC_A += init_cod_octal.c
+SRC_A += init_lable_size.c
+SRC_A += init_name.c
 
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))

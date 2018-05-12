@@ -19,18 +19,18 @@ static	void	write_magic(int fd)
 
 static	void	write_name(int fd, t_data data)
 {
-	// int		i;
+	int		i;
 
-	// i = 0;
-	// while (i < PROG_NAME_LENGTH)
-	// {
-	// 	if (data.head.prog_name[i])
-	// 		printf("%s\n", ft_itoa_base(data.head.prog_name[i], 16));
-	// 	else
-	// 		printf("%s\n", "0");
-	// 	// write(fd, ft_itoa_base(data.head.prog_name[i], 16), 3);
-	// 	i++;
-	// }
+	i = 0;
+	while (i < PROG_NAME_LENGTH)
+	{
+		if (data.head.prog_name[i])
+			printf("%s\n", ft_itoa_base(data.head.prog_name[i], 16));
+		else
+			printf("%s\n", "0");
+		// write(fd, ft_itoa_base(data.head.prog_name[i], 16), 3);
+		i++;
+	}
 }
 
 void			write_header(int fd, t_data data)

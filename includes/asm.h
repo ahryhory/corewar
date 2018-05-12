@@ -55,7 +55,6 @@ char						g_buff[41];
 
 t_data						parse(char *file);
 void						write_byte(t_data data, char *file);
-void						write_header(int fd, t_data data, char g_buff[41]);
-void						init_buff(char g_buff[41]);
+void						write_header(int fd, t_data data);
 
 #endif

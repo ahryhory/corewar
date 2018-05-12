@@ -27,8 +27,12 @@ static	int		open_cor(char *file)
 void			write_byte(t_data data, char *file)
 {
 	int		fd;
+	int		oct;
+	int		line;
 
+	oct = 4;
+	line = 1;
 	fd = open_cor(file);
-	write_header(fd, data);
+	write_header(fd, data, &oct, &line);
 	close(fd);
 }

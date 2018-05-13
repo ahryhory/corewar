@@ -12,74 +12,6 @@
 
 #include "asm.h"
 
-static t_commands	*init_command(void)
-{
-	t_commands		*new;
-
-	new = (t_commands*)malloc(sizeof(t_commands));
-	new->label = NULL;
-	new->command = NULL;
-	new->arg_1 = NULL;
-	new->arg_2 = NULL;
-	new->arg_3 = NULL;
-	new->begin = 0;
-	new->size = 1;
-	new->next = NULL;
-	return (new);
-}
-
-static int			get_size(char *command)
-{
-	if (ft_strequ(command, "live"))
-		return (4);
-	if (ft_strequ(command, "ld"))
-		return (4);
-	if (ft_strequ(command, "st"))
-		return (4);
-	if (ft_strequ(command, "add"))
-		return (4);
-	if (ft_strequ(command, "sub"))
-		return (4);
-	if (ft_strequ(command, "and"))
-		return (4);
-	if (ft_strequ(command, "or"))
-		return (4);
-	if (ft_strequ(command, "xor"))
-		return (4);
-	if (ft_strequ(command, "zjmp"))
-		return (2);
-	if (ft_strequ(command, "ldi"))
-		return (2);
-	if (ft_strequ(command, "sti"))
-		return (2);
-	if (ft_strequ(command, "fork"))
-		return (2);
-	if (ft_strequ(command, "lld"))
-		return (4);
-	if (ft_strequ(command, "lldi"))
-		return (2);
-	if (ft_strequ(command, "lfork"))
-		return (2);
-	if (ft_strequ(command, "aff"))
-		return (4);
-	return (0);
-}
-
-static void			add_new(t_commands **command, t_commands *new)
-{
-	t_commands		*lst;
-
-	lst = *command;
-	if (lst)
-	{
-		while (lst->next != NULL)
-			lst = lst->next;
-		lst->next = new;
-	}
-	else
-		*command = new;
-}
-
 static void			add_args(t_commands **new, char **split)
 {
 	int				i;
@@ -90,7 +22,7 @@ static void			add_args(t_commands **new, char **split)
 	{
 		trim = ft_strtrim(split[i]);
 		if (trim[0] == DIRECT_CHAR)
-			(*new)->size += get_size((*new)->command);
+			(*new)->size += get_label_size((*new)->command);
 		else if (trim[0] == 'r')
 			(*new)->size += 1;
 		else
@@ -173,6 +105,7 @@ static char			*add_command(t_commands **new, char *line)
 void				parse_line(char *line, t_commands **command)
 {
 	t_commands		*new;
+	t_commands		*lst;
 	char			*cmd;
 	char			**split;
 
@@ -186,5 +119,13 @@ void				parse_line(char *line, t_commands **command)
 	add_args(&new, split);
 	ft_split_del(&split);
 	ft_strdel(&line);
-	add_new(command, new);
+	lst = *command;
+	if (lst)
+	{
+		while (lst->next != NULL)
+			lst = lst->next;
+		lst->next = new;
+	}
+	else
+		*command = new;
 }

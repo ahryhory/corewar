@@ -19,5 +19,6 @@ void		check_other_line(char **line)
 
 	trim_line = ft_strtrim(*line);
 	command = check_first_patr(&trim_line, line);
+	check_args(&trim_line, command, line);
 	ft_strdel(&trim_line);
 }

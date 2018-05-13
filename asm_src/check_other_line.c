@@ -14,5 +14,9 @@
 
 void		check_other_line(char **line)
 {
-	
+	char	*trim_line;
+	int		command;
+
+	trim_line = ft_strtrim(*line);
+	command = check_first_patr(&trim_line, line);
 }

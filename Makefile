@@ -51,6 +51,7 @@ SRC_A += init_name.c
 SRC_A += check_first_patr.c
 SRC_A += init_command.c
 SRC_A += get_label_size.c
+SRC_A += create_codage.c
 
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))

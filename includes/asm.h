@@ -77,5 +77,6 @@ void						init_cod_octal(void);
 void						init_lable_size(void);
 t_commands					*init_command(void);
 int							get_label_size(char *command);
+char						*create_codage(t_commands *curr);
 
 #endif

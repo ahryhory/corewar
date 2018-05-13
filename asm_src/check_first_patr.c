@@ -40,6 +40,7 @@ static int	check_command_name(char *line, char **p_line, char **p_line_base)
 	if (!check)
 		del_and_exit(&line, p_line, p_line_base, 13);
 	str = ft_strsub(*p_line, ft_strlen(line), ft_strlen(*p_line));
+	ft_strdel(&line);
 	ft_strdel(p_line);
 	*p_line = ft_strtrim(str);
 	ft_strdel(&str);

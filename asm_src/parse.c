@@ -121,6 +121,6 @@ t_data				parse(char *file)
 	printf("%s\n", data.head.prog_name);
 	printf("%s\n", data.head.comment);
 	close(fd);
-	system("leaks asm");
+	// system("leaks asm");
 	return (data);
 }

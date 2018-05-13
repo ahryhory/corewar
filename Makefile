@@ -48,6 +48,7 @@ SRC_A += init_carry.c
 SRC_A += init_cod_octal.c
 SRC_A += init_lable_size.c
 SRC_A += init_name.c
+SRC_A += check_first_patr.c
 SRC_A += init_command.c
 SRC_A += get_label_size.c
 

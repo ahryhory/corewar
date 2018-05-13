@@ -23,6 +23,10 @@
 	8 - no end quote
 	9 - shit after command (no comment)
 	10 - no text (comment or name vars)
+
+	11 - wrong line
+	12 - wrong LABEL_CHARS
+	13 - wrong command name
 */
 
 void	ft_exit(int error)

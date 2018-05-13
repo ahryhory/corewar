@@ -17,9 +17,9 @@ static char	*next_part(char *line, int index)
 	char	*tmp;
 
 	tmp = ft_strsub(line, index, ft_strlen(line));
-	free(line);
+	ft_strdel(&line);
 	line = ft_strtrim(tmp);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (line);
 }
 
@@ -29,11 +29,10 @@ void		check_start_line(char **line)
 	int		index;
 
 	trim_line = ft_strtrim(*line);
-	//ft_strdel(line);
-	index = check_cmd(trim_line);
+	index = check_cmd(trim_line, line);
 	trim_line = next_part(trim_line, index);
-	index = check_quotes(trim_line);
+	index = check_quotes(trim_line, line);
 	trim_line = next_part(trim_line, index);
-	check_comment(trim_line);
+	check_comment(trim_line, line);
 	free(trim_line);
 }

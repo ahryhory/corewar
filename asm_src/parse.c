@@ -68,8 +68,8 @@ t_data				parse(char *file)
 
 	data.command = NULL;
 	fd = open(file, O_RDONLY);
-	if (fd < 0)		/* HANDLE */
-		exit(1);	/* THIS */
+	if (fd < 0)
+		ft_exit(14);
 	count = 0;
 	while (ft_get_next_line(fd, &line))
 	{
@@ -103,8 +103,8 @@ t_data				parse(char *file)
 	{
 		list->begin = size;
 		if (list->label)
-			printf("%d  %s:  ", list->begin, list->label);
-		printf("%15s%s", " ", list->command);
+			printf("%d  |%s|:  ", list->begin, list->label);
+		printf("%15s|%s|", " ", list->command);
 		if (list->arg_1)
 			printf(" %s", list->arg_1);
 		if (list->arg_2)

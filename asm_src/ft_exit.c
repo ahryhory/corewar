@@ -23,6 +23,7 @@
 	8 - no end quote
 	9 - shit after command (no comment)
 	10 - no text (comment or name vars)
+	14 - file not exist
 */
 
 void	ft_exit(int error)

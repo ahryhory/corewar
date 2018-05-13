@@ -97,6 +97,18 @@ static char			*add_command(t_commands **new, char *line)
 	(*new)->command = ft_strdup(split[0]);
 	cmd = ft_strsub(trim, ft_strlen((*new)->command),
 		ft_strlen(trim) - ft_strlen((*new)->command));
+	size = 0;
+	while ((*new)->command[size] && (*new)->command[size] != ':')
+		size++;
+	if (size < ft_strlen((*new)->command))
+	{
+		(*new)->label = ft_strsub((*new)->command, 0, size);
+		ft_strdel(&trim);
+		trim = ft_strsub((*new)->command, size + 1,
+			ft_strlen((*new)->command) - (size + 1));
+		ft_strdel(&(*new)->command);
+		(*new)->command = ft_strdup(trim);
+	}
 	ft_strdel(&trim);
 	ft_split_del(&split);
 	return (cmd);

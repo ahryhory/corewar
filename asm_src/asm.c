@@ -39,6 +39,7 @@ int				main(int argc, char **argv)
 		return (1);
 	}
 	data = parse(argv[1], info);
+	check_commands(data.command);
 	write_byte(data, argv[1]);
 	// system("leaks asm");
 	return (0);

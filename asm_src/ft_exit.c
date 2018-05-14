@@ -32,6 +32,7 @@
 	16 - wrong 1 arg
 	17 - wrong 2 arg
 	18 - wrong 3 arg
+	19 - no this lable
 */
 
 void	ft_exit(int error, t_info info)

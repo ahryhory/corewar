@@ -23,16 +23,16 @@ static char	*next_part(char *line, int index)
 	return (line);
 }
 
-void		check_start_line(char **line)
+void		check_start_line(t_info info)
 {
 	char	*trim_line;
 	int		index;
 
-	trim_line = ft_strtrim(*line);
-	index = check_cmd(trim_line, line);
+	trim_line = ft_strtrim(*(info.line));
+	index = check_cmd(trim_line, info);
 	trim_line = next_part(trim_line, index);
-	index = check_quotes(trim_line, line);
+	index = check_quotes(trim_line, info);
 	trim_line = next_part(trim_line, index);
-	check_comment(trim_line, line);
-	free(trim_line);
+	check_comment(trim_line, info);
+	ft_strdel(&trim_line);
 }

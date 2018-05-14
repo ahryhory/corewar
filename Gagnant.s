@@ -31,7 +31,7 @@ avantdebut:	sti   r1,%:code,%1  # 		#7
 init:		ld   %393216,r4		 	#7	
 		ld   %917504,r12		#7	
 		ld   %1,r11			#7
-		ld   %6,r10			#7
+		ld   %6,r11#r10			#7
 debut:		live %42			#5
 		sti  r4,%:label , %1		#7
 		add  r4,r12,r4			#5	

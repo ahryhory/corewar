@@ -12,11 +12,8 @@
 
 #include "asm.h"
 
-void	check_comment(char *line, char **p_line)
+void	check_comment(char *line, t_info info)
 {
 	if (line[0] != '\0' && line[0] != COMMENT_CHAR)
-	{
-		ft_strdel(p_line);
-		ft_exit(9);
-	}
+		ft_exit(9, info);
 }

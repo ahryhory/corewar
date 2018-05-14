@@ -60,6 +60,8 @@ t_data				parse(char *file)
 {
 	int				fd;
 	int				count;
+	int				real_count;
+	t_info			info;
 	int				size;
 	char			*line;
 	char			*content;
@@ -67,15 +69,21 @@ t_data				parse(char *file)
 	t_commands		*list;
 
 	data.command = NULL;
+	info.line = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_exit(14);
+		ft_exit(14, info);
 	count = 0;
+	real_count = 0;
 	while (ft_get_next_line(fd, &line))
 	{
+		real_count++;
 		if (!ft_strequ(line, "") && check_curr_line(line))
 		{
-			check_line(&line, count);
+			info.line = &line;
+			info.num = count;
+			info.real_num = real_count;
+			check_line(info);
 			count++;
 			if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 			{

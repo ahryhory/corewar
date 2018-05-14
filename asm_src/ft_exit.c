@@ -34,9 +34,13 @@
 	18 - wrong 3 arg
 */
 
-void	ft_exit(int error)
+void	ft_exit(int error, t_info info)
 {
-	printf("ERROR: %d\n", error);
+	if (info.line != NULL)
+	{
+		printf("ERROR: %d\nLINE: %d\n%s\n", error, info.real_num, *(info.line));
+		ft_strdel(info.line);
+	}
 	system("leaks asm");
 	exit(0);
 }

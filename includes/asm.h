@@ -47,6 +47,13 @@ typedef struct 				s_commands
 	struct s_commands		*next;
 }							t_commands;
 
+typedef struct 				s_info
+{
+	char					**line;
+	int						num;
+	int						real_num;
+}							t_info;
+
 typedef struct 				s_data
 {
 	t_commands				*command;
@@ -58,14 +65,14 @@ void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
 void						write_header(int fd, t_data data, int *oct, int *line);
 void						cpy_in_4b(t_data data, char w[10]);
-void						check_line(char **line, int number_line);
-void						check_comment(char *line, char **p_line);
-int							check_quotes(char *line, char **p_line);
-void						check_start_line(char **line);
-void						check_other_line(char **line);
-int							check_cmd(char *line, char **p_line);
-int							check_first_patr(char **line, char **p_line);
-void						ft_exit(int error);
+void						check_line(t_info info);
+void						check_comment(char *line, t_info info);
+int							check_quotes(char *line, t_info info);
+void						check_start_line(t_info info);
+void						check_other_line(t_info info);
+int							check_cmd(char *line, t_info info);
+int							check_first_patr(char **line, t_info info);
+void						ft_exit(int error, t_info info);
 void						init_name(void);
 void						init_args_number(void);
 void						init_args(void);
@@ -78,6 +85,6 @@ void						init_lable_size(void);
 t_commands					*init_command(void);
 int							get_label_size(char *command);
 char						*create_codage(t_commands *curr);
-void						check_args(char **line, int command, char **p_line);
+void						check_args(char **line, int command, t_info info);
 
 #endif

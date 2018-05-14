@@ -24,7 +24,6 @@ static	void	write_name(int fd, t_data data)
 		if (i < ft_strlen(data.head.prog_name))
 		{
 			ch = data.head.prog_name[i];
-			printf("%d\n", ch);
 			write(fd, &ch, 1);
 		}
 		else

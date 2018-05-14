@@ -12,10 +12,10 @@
 
 #include "asm.h"
 
-static char		*get_content_in_quotation(char *line)
+static char			*get_content_in_quotation(char *line)
 {
-	int			begin;
-	int			end;
+	int				begin;
+	int				end;
 
 	begin = 0;
 	while (line[begin])
@@ -56,17 +56,59 @@ static int			check_curr_line(char *line)
 	return (1);
 }
 
-t_data				parse(char *file)
+static int			processing(char **line, int real_count, int count,
+	t_data *data)
+{
+	t_info			info;
+	char			*content;
+
+	info.line = NULL;
+	info.line = line;
+	info.num = count;
+	info.real_num = real_count;
+	check_line(info);
+	count++;
+	if (ft_strnequ(*line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+	{
+		content = get_content_in_quotation(*line);
+		ft_strcpy(data->head.prog_name, content);
+		ft_strdel(&content);
+	}
+	else if (ft_strnequ(*line, COMMENT_CMD_STRING,
+		ft_strlen(COMMENT_CMD_STRING)))
+	{
+		content = get_content_in_quotation(*line);
+		ft_strcpy(data->head.comment, content);
+		ft_strdel(&content);
+	}
+	else
+		parse_line(*line, &(data->command));
+	return (count);
+}
+
+static void			add_size(t_data *data)
+{
+	t_commands		*list;
+	int				size;
+
+	list = data->command;
+	size = 0;
+	while (list)
+	{
+		list->begin = size;
+		size += list->size;
+		list = list->next;
+	}
+	data->head.prog_size = size;
+}
+
+t_data				parse(char *file, t_info info)
 {
 	int				fd;
 	int				count;
 	int				real_count;
-	t_info			info;
-	int				size;
 	char			*line;
-	char			*content;
 	t_data			data;
-	t_commands		*list;
 
 	data.command = NULL;
 	info.line = NULL;
@@ -79,56 +121,10 @@ t_data				parse(char *file)
 	{
 		real_count++;
 		if (!ft_strequ(line, "") && check_curr_line(line))
-		{
-			info.line = &line;
-			info.num = count;
-			info.real_num = real_count;
-			check_line(info);
-			count++;
-			if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-			{
-				content = get_content_in_quotation(line);
-				ft_strcpy(data.head.prog_name, content);
-				ft_strdel(&content);
-			}
-			else if (ft_strnequ(line, COMMENT_CMD_STRING,
-				ft_strlen(COMMENT_CMD_STRING)))
-			{
-				content = get_content_in_quotation(line);
-				ft_strcpy(data.head.comment, content);
-				ft_strdel(&content);
-			}
-			else
-			{
-				parse_line(line, &(data.command));
-			}
-		}
+			count = processing(&line, real_count, count, &data);
 		ft_strdel(&line);
 	}
-	list = data.command;
-	size = 0;
-	while (list)
-	{
-		list->begin = size;
-		//if (list->label)
-			//printf("%d  |%s|:  ", list->begin, list->label);
-		//printf("%15s|%s|", " ", list->command);
-		//if (list->arg_1)
-		//	printf(" %s", list->arg_1);
-		//if (list->arg_2)
-			//printf(" %s", list->arg_2);
-		//if (list->arg_3)
-		//	printf(" %s", list->arg_3);
-		//printf("\n%d  (%d)\n", list->begin, list->size);
-		size += list->size;
-		//printf("\n");
-		list = list->next;
-	}
-	data.head.prog_size = size;
-	// printf("%d\n", data.head.prog_size);
-	// printf("%s\n", data.head.prog_name);
-	// printf("%s\n", data.head.comment);
+	add_size(&data);
 	close(fd);
-	// system("leaks asm");
 	return (data);
 }

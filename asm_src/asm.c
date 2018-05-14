@@ -28,9 +28,17 @@ static void		init_optab(void)
 int				main(int argc, char **argv)
 {
 	t_data	data;
+	t_info	info;
 	
 	init_optab();
-	data = parse(argv[1]);
+	if (ft_strequ(FLAG_A, argv[1]))
+	{
+		data = parse(argv[2], info);
+		flag_a(&data);
+		// system("leaks asm");
+		return (1);
+	}
+	data = parse(argv[1], info);
 	write_byte(data, argv[1]);
 	// system("leaks asm");
 	return (0);

@@ -19,6 +19,7 @@
 # include <stdio.h>
 
 # define COUNT_OP 16
+# define FLAG_A "-a"
 
 typedef struct				s_optab
 {
@@ -60,7 +61,7 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
-t_data						parse(char *file);
+t_data						parse(char *file, t_info info);
 void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
 void						write_header(int fd, t_data data, int *oct, int *line);
@@ -82,6 +83,7 @@ void						init_description(void);
 void						init_carry(void);
 void						init_cod_octal(void);
 void						init_lable_size(void);
+void						flag_a(t_data *data);
 t_commands					*init_command(void);
 int							get_label_size(char *command);
 char						*create_codage(t_commands *curr);

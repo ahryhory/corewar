@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void	cpy_in_4b(int nbr, char w[9])
+void	cpy_in_4b(unsigned int nbr, char w[9])
 {
 	char	*tmp;
 	int		end_w;
@@ -20,7 +20,7 @@ void	cpy_in_4b(int nbr, char w[9])
 	int		i;
 
 	i = 0;
-	nbr = (unsigned short)nbr;
+	nbr = nbr;
 	tmp = ft_itoa_base(nbr, 16);
 	end_w = 7;
 	end_tmp = ft_strlen(tmp) - 1;
@@ -48,7 +48,6 @@ void	cpy_in_2b(int nbr, char w[5])
 
 	i = 0;
 	tmp = ft_itoa_base(nbr, 16);
-	printf("%s\n", tmp);
 	end_w = 3;
 	end_tmp = ft_strlen(tmp) - 1;
 	ft_strcpy(w, "0000");
@@ -74,10 +73,12 @@ void	write_4b(int fd, int *oct, int *line, char w[9])
 	i = 0;
 	while (i < 8)
 	{
-		if (count_al(fd, oct, line))
+		if (count_al(fd, oct, line, 16))
 			continue ;
 		write(fd, &w[i], 1);
 		(*oct) += 1;
+		if (*oct == 4)
+			*line += 1;
 		i += 1;
 	}
 }
@@ -90,10 +91,12 @@ void	write_2b(int fd, int *oct, int *line, char w[5])
 	i = 0;
 	while (i < 4)
 	{
-		if (count_al(fd, oct, line))
+		if (count_al(fd, oct, line, 16))
 			continue ;
 		write(fd, &w[i], 1);
 		(*oct) += 1;
+		if (*oct == 4)
+			*line += 1;
 		i += 1;
 	}
 }
@@ -132,17 +135,19 @@ void	write_1b(int fd, int *oct, int *line, char w[3])
 	i = 0;
 	while (i < 2)
 	{
-		if (count_al(fd, oct, line))
+		if (count_al(fd, oct, line, 16))
 			continue ;
 		write(fd, &w[i], 1);
 		(*oct) += 1;
+		if (*oct == 4)
+			*line += 1;
 		i += 1;
 	}
 }
 
-int		count_al(int fd, int *oct, int *line)
+int		count_al(int fd, int *oct, int *line, int kostil)
 {
-	if (*line == 8)
+	if (*line == kostil)
 	{
 		write(fd, "\n", 1);
 		*line = 0;
@@ -151,10 +156,10 @@ int		count_al(int fd, int *oct, int *line)
 	}
 	if (*line != 8 && *oct == 4)
 	{
-		if (*line != 7)
+		if (*line != kostil - 1)
 			write(fd, " ", 1);
 		*oct = 0;
-		(*line)++;
+		*line += 1;
 		return (1);
 	}
 	return (0);

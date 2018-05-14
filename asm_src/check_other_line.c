@@ -12,13 +12,13 @@
 
 #include "asm.h"
 
-void		check_other_line(char **line)
+void		check_other_line(t_info info)
 {
 	char	*trim_line;
 	int		command;
 
-	trim_line = ft_strtrim(*line);
-	command = check_first_patr(&trim_line, line);
-	check_args(&trim_line, command, line);
+	trim_line = ft_strtrim(*(info.line));
+	command = check_first_patr(&trim_line, info);
+	check_args(&trim_line, command, info);
 	ft_strdel(&trim_line);
 }

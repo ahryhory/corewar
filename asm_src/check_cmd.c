@@ -44,7 +44,7 @@ static int	not_cmd(int name, int comment)
 		return (6);
 }
 
-static int	get_index(char *line, char **p_line)
+static int	get_index(char *line, t_info info)
 {
 	int		i;
 
@@ -57,14 +57,13 @@ static int	get_index(char *line, char **p_line)
 	}
 	if (line[i] == '\0')
 	{
-		ft_strdel(p_line);
 		ft_strdel(&line);
-		ft_exit(1);
+		ft_exit(1,  info);
 	}
 	return (i);
 }
 
-int			check_cmd(char *line, char **p_line)
+int			check_cmd(char *line, t_info info)
 {
 	char			*name_str;
 	int				index;
@@ -73,7 +72,7 @@ int			check_cmd(char *line, char **p_line)
 	static int		comment = 0;
 
 	error = 0;
-	index = get_index(line, p_line);
+	index = get_index(line, info);
 	name_str = ft_strsub(line, 0, index);
 	if (name_str[0] != '.')
 		error = not_cmd(name, comment);
@@ -87,9 +86,8 @@ int			check_cmd(char *line, char **p_line)
 	ft_strdel(&name_str);
 	if (error != 0)
 	{
-		ft_strdel(p_line);
 		ft_strdel(&line);
-		ft_exit(error);
+		ft_exit(error, info);
 	}
 	return (index);
 }

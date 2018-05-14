@@ -34,16 +34,17 @@ void			write_byte(t_data data, char *file)
 
 	oct = 4;
 	line = 1;
+	args.oct = &oct;
+	args.line = &line;
 	fd = open_cor(file);
 	args.fd = fd;
 	cmd = data.command;
-	write_header(fd, data, &oct, &line);
-	args.oct = &oct;
-	args.line = &line;
-	while (cmd)
-	{
-		write_exec(args, cmd, data.command);
-		cmd = cmd->next;
-	}
+	write_header(fd, data, args.oct, args.line);
+	// while (cmd)
+	// {
+	// 	write_exec(args, cmd, data.command);
+	// 	cmd = cmd->next;
+	// }
+	// system("leaks asm");
 	close(fd);
 }

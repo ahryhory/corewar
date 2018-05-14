@@ -12,10 +12,10 @@
 
 #include "asm.h"
 
-void			check_line(char **line, int number_line)
+void			check_line(t_info info)
 {
-	if (number_line == 0 || number_line == 1)
-		check_start_line(line);
+	if (info.num == 0 || info.num == 1)
+		check_start_line(info);
 	else
-		check_other_line(line);
+		check_other_line(info);
 }

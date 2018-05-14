@@ -107,7 +107,7 @@ static int	check_arg(char *arg, int command, int arg_num)
 	return (0);
 }
 
-void		check_args(char **line, int command, char **p_line)
+void		check_args(char **line, int command, t_info info)
 {
 	char	**args;
 	int		err;
@@ -123,8 +123,7 @@ void		check_args(char **line, int command, char **p_line)
 	if (count != g_optab[command].args_number)
 	{
 		ft_split_del(&args);
-		ft_strdel(p_line);
-		ft_exit(15);
+		ft_exit(15, info);
 	}
 	err = 0;
 	err = check_arg(args[0], command, 0);
@@ -134,8 +133,5 @@ void		check_args(char **line, int command, char **p_line)
 		err = check_arg(args[2], command, 2);
 	ft_split_del(&args);
 	if (err != 0)
-	{
-		ft_strdel(p_line);
-		ft_exit(err);
-	}
+		ft_exit(err, info);
 }

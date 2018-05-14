@@ -2,7 +2,7 @@
 .comment	"Jour J"
 
 		ld   %0,r3		
-label: 		zjmp %:avantdebut
+label:		zjmp %:avantdebut
 		zjmp %0				# pour eviter ecrasement
 						# de l'instruction suivante
 code:		live %42			# 5
@@ -21,7 +21,7 @@ code:		live %42			# 5
 		zjmp %-200			# 3
 		sti  r15,%0,r14			# 6
 		zjmp %-200
-
+	
 avantdebut:	sti   r1,%:code,%1  # 		#7	
 		sti   r1,%:code,%15 # 		#7	
 		sti   r1,%:code,%29 # 		#7	

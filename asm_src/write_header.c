@@ -12,73 +12,92 @@
 
 #include "asm.h"
 
-static	void	write_name(int fd, t_data data, int *oct, int *line)
+static	void	write_name(int fd, t_data data)
 {
 	int		i;
-	char	*tmp;
+	char	ch;
 
 	i = 0;
-	while (i < PROG_NAME_LENGTH)
+	while (i < PROG_NAME_LENGTH + 4)
 	{
-		if (count_al(fd, oct, line))
-			continue ;
+		ch = '\0';
 		if (i < ft_strlen(data.head.prog_name))
 		{
-			tmp = ft_itoa_base(data.head.prog_name[i], 16);
-			write(fd, tmp, 2);
-			free(tmp);
+			ch = data.head.prog_name[i];
+			printf("%d\n", ch);
+			write(fd, &ch, 1);
 		}
 		else
-			write(fd, "00", 2);
-		(*oct) += 2;
+			write(fd, &ch, 1);
 		i++;
 	}
 }
-
-static	void	write_size(int fd, t_data data, int *oct, int *line)
+static	void	write_size(int fd, t_data data)
 {
-	char	*tmp;
-	char	bytes[9];
+	int		size;
+	int		tmp;
 
-	write(fd, " 0000 0000", 10);
-	cpy_in_4b(data.head.prog_size, bytes);
-	write_4b(fd, oct, line, bytes);
-	*oct = 4;
-	*line = 5;
+	size = 325;
+	// // tmp = size;
+	// // tmp = tmp << 24;
+	// // write(fd, &tmp, 1);
+	// // tmp = size;
+	// // tmp = (tmp >> 8) << 16;
+	// // write(fd, &tmp, 1);
+ // 	tmp = (tmp << 24) >> 8;
+	// write(fd, &tmp, 1);
+	// tmp = size;
+	// tmp = tmp >> 8;
+	// write(fd, &tmp, 1);
+	// tmp = size;
+	// tmp = (tmp >> 16) << 24;
+	// write(fd, &tmp, 1);
+	unsigned char a1 = 0;
+	unsigned char a2 = 0;
+	unsigned char a3 = 0;
+	unsigned char a4 = 0;
+	a1 = (size << 24) >> 24;
+	a2 = ((size >> 8) << 24) >> 24;
+	a3 = ((size >> 16) << 24) >> 24;
+	a4 = (size >> 24);
+	// write(fd, &a4, 1);
+	// write(fd, &a3, 1);
+	write(fd, &a2, 1);
+	write(fd, &a1, 1);
 }
 
-static	void	write_comm(int fd, t_data data, int *oct, int *line)
-{
-	int		i;
-	char	*tmp;
+// static	void	write_comm(int fd, t_data data, int *oct, int *line)
+// {
+// 	int		i;
+// 	char	*tmp;
 
-	i = 0;
-	while (i < COMMENT_LENGTH)
-	{
-		if (count_al(fd, oct, line))
-			continue ;
-		if (i < ft_strlen(data.head.comment))
-		{
-			tmp = ft_itoa_base(data.head.comment[i], 16);
-			write(fd, tmp, 2);
-			free(tmp);
-		}
-		else
-			write(fd, "00", 2);
-		(*oct) += 2;
-		i++;
-	}
-	write(fd, " 0000 0000", 10);
-	*line = 0;
-	*oct = 0;
-	write(fd, "\n", 1);
-}
+// 	i = 0;
+// 	while (i < COMMENT_LENGTH)
+// 	{
+// 		if (count_al(fd, oct, line, 8))
+// 			continue ;
+// 		if (i < ft_strlen(data.head.comment))
+// 		{
+// 			tmp = ft_itoa_base(data.head.comment[i], 16);
+// 			write(fd, tmp, 2);
+// 			free(tmp);
+// 		}
+// 		else
+// 			write(fd, "00", 2);
+// 		(*oct) += 2;
+// 		i++;
+// 	}
+// 	write(fd, " 0000 0000", 10);
+// 	*line = 0;
+// 	*oct = 0;
+// 	write(fd, "\n", 1);
+// }
 
 void			write_header(int fd, t_data data, int *oct, int *line)
 {
-	
-	write(fd, "00ea 83f3", 9);
-	write_name(fd, data, oct, line);
-	write_size(fd, data, oct, line);
-	write_comm(fd, data, oct, line);
+	int		magic = 0xF383EA00;
+	write(fd, &magic, 4);
+	write_name(fd, data);
+	write_size(fd, data);
+	// write_comm(fd, data, oct, line);
 }

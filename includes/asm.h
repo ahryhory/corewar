@@ -86,5 +86,6 @@ t_commands					*init_command(void);
 int							get_label_size(char *command);
 char						*create_codage(t_commands *curr);
 void						check_args(char **line, int command, t_info info);
+int							check_arg(char *arg, int command, int arg_num);
 
 #endif

@@ -58,14 +58,14 @@ static int	get_index(char *line, t_info info)
 	if (line[i] == '\0')
 	{
 		ft_strdel(&line);
-		ft_exit(1,  info);
+		ft_exit(1, info);
 	}
 	return (i);
 }
 
 int			check_cmd(char *line, t_info info)
 {
-	char			*name_str;
+	char			*str;
 	int				index;
 	int				error;
 	static int		name = 0;
@@ -73,17 +73,17 @@ int			check_cmd(char *line, t_info info)
 
 	error = 0;
 	index = get_index(line, info);
-	name_str = ft_strsub(line, 0, index);
-	if (name_str[0] != '.')
+	str = ft_strsub(line, 0, index);
+	if (str[0] != NAME_CMD_STRING[0] && str[0] != COMMENT_CMD_STRING[0])
 		error = not_cmd(name, comment);
 	else
 	{
-		name = equ_name(name_str, &error, name);
-		comment = equ_comment(name_str, &error, comment);
+		name = equ_name(str, &error, name);
+		comment = equ_comment(str, &error, comment);
 		if (!name && !comment)
 			error = 1;
 	}
-	ft_strdel(&name_str);
+	ft_strdel(&str);
 	if (error != 0)
 	{
 		ft_strdel(&line);

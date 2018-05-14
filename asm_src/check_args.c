@@ -44,69 +44,6 @@ static void	ft_args_trim(char ***p_args)
 	}
 }
 
-static int	check_arg(char *arg, int command, int arg_num)
-{
-	int		check;
-	int		i;
-
-	check = 0;
-	if (g_optab[command].args[arg_num][0] && check == 0)
-	{
-		if (arg[0] == 'r')
-		{
-			check = 1;
-			i = 1;
-			while (arg[i])
-			{
-				if (!ft_isdigit(arg[i]))
-					return (16 + arg_num);
-				i++;
-			}
-			i = ft_atoi(arg + 1);
-			if (i > REG_NUMBER || i <= 0)
-				return (16 + arg_num);
-		}
-	}
-	if (g_optab[command].args[arg_num][1] && check == 0)
-	{
-		if (arg[0] == DIRECT_CHAR)
-		{
-			check = 1;
-			if (arg[1] != LABEL_CHAR)
-			{
-				i = 1;
-				if (arg[i] == '-')
-					i++;
-				while (arg[i])
-				{
-					if (!ft_isdigit(arg[i]))
-						return (16 + arg_num);
-					i++;
-				}
-			}
-		}
-	}
-	if (g_optab[command].args[arg_num][2] && check == 0)
-	{
-		if (arg[1] != LABEL_CHAR)
-		{
-			i = 0;
-			if (arg[i] == '-')
-				i++;
-			while (arg[i])
-			{
-				if (!ft_isdigit(arg[i]))
-					return (16 + arg_num);
-				i++;
-			}
-		}
-		check = 1;
-	}
-	if (check == 0)
-		return (16 + arg_num);
-	return (0);
-}
-
 void		check_args(char **line, int command, t_info info)
 {
 	char	**args;

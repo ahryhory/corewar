@@ -37,11 +37,29 @@ static char		*get_content_in_quotation(char *line)
 	return (ft_strsub(line, begin, end - begin));
 }
 
+static int			check_curr_line(char *line)
+{
+	char			**split;
+	char			*trim;
+
+	if (line[0] == COMMENT_CHAR)
+		return (0);
+	split = ft_strsplit(line, COMMENT_CHAR);
+	trim = ft_strtrim(split[0]);
+	ft_split_del(&split);
+	if (ft_strequ(trim, ""))
+	{
+		ft_strdel(&trim);
+		return (0);
+	}
+	ft_strdel(&trim);
+	return (1);
+}
+
 t_data				parse(char *file)
 {
 	int				fd;
 	int				count;
-	int				i;
 	int				size;
 	char			*line;
 	char			*content;
@@ -50,12 +68,12 @@ t_data				parse(char *file)
 
 	data.command = NULL;
 	fd = open(file, O_RDONLY);
-	if (fd < 0)		/* HANDLE */
-		exit(1);	/* THIS */
+	if (fd < 0)
+		ft_exit(14);
 	count = 0;
 	while (ft_get_next_line(fd, &line))
 	{
-		if (!ft_strequ(line, ""))
+		if (!ft_strequ(line, "") && check_curr_line(line))
 		{
 			check_line(&line, count);
 			count++;
@@ -65,7 +83,8 @@ t_data				parse(char *file)
 				ft_strcpy(data.head.prog_name, content);
 				ft_strdel(&content);
 			}
-			else if (ft_strnequ(line, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+			else if (ft_strnequ(line, COMMENT_CMD_STRING,
+				ft_strlen(COMMENT_CMD_STRING)))
 			{
 				content = get_content_in_quotation(line);
 				ft_strcpy(data.head.comment, content);
@@ -80,25 +99,27 @@ t_data				parse(char *file)
 	}
 	list = data.command;
 	size = 0;
-	while(list)
+	while (list)
 	{
 		list->begin = size;
-		// if (list->label)
-		// 	printf("%d  %s:  ", list->begin, list->label);
-		// printf("%15s%s", " ",list->command);
-		// if (list->arg_1)
-		// 	printf(" %s", list->arg_1);
-		// if (list->arg_2)
-		// 	printf(" %s", list->arg_2);
-		// if (list->arg_3)
-		// 	printf(" %s", list->arg_3);
-		// printf("\n%d  (%d)\n", list->begin, list->size);
+		if (list->label)
+			printf("%d  |%s|:  ", list->begin, list->label);
+		printf("%15s|%s|", " ", list->command);
+		if (list->arg_1)
+			printf(" %s", list->arg_1);
+		if (list->arg_2)
+			printf(" %s", list->arg_2);
+		if (list->arg_3)
+			printf(" %s", list->arg_3);
+		printf("\n%d  (%d)\n", list->begin, list->size);
 		size += list->size;
-		// printf("\n");
+		printf("\n");
 		list = list->next;
 	}
 	data.head.prog_size = size;
-	// printf("%d\n", data.head.prog_size);
+	printf("%d\n", data.head.prog_size);
+	printf("%s\n", data.head.prog_name);
+	printf("%s\n", data.head.comment);
 	close(fd);
 	// system("leaks asm");
 	return (data);

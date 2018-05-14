@@ -75,11 +75,12 @@ void						write_4b(int fd, int *oct, int *line, char w[10]);
 void						write_2b(int fd, int *oct, int *line, char w[5]);
 int							count_al(int fd, int *oct, int *line);
 void						check_line(char **line, int number_line);
-void						check_comment(char *line);
-int							check_quotes(char *line);
+void						check_comment(char *line, char **p_line);
+int							check_quotes(char *line, char **p_line);
 void						check_start_line(char **line);
 void						check_other_line(char **line);
-int							check_cmd(char *line);
+int							check_cmd(char *line, char **p_line);
+int							check_first_patr(char **line, char **p_line);
 void						ft_exit(int error);
 void						init_name(void);
 void						init_args_number(void);
@@ -90,5 +91,9 @@ void						init_description(void);
 void						init_carry(void);
 void						init_cod_octal(void);
 void						init_lable_size(void);
+t_commands					*init_command(void);
+int							get_label_size(char *command);
+char						*create_codage(t_commands *curr);
+void						check_args(char **line, int command, char **p_line);
 
 #endif

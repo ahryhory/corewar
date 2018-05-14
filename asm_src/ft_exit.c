@@ -23,10 +23,20 @@
 	8 - no end quote
 	9 - shit after command (no comment)
 	10 - no text (comment or name vars)
+
+	11 - wrong line
+	12 - wrong LABEL_CHARS
+	13 - wrong command name
+	14 - file not exist
+	15 - wrong srgs count
+	16 - wrong 1 arg
+	17 - wrong 2 arg
+	18 - wrong 3 arg
 */
 
 void	ft_exit(int error)
 {
 	printf("ERROR: %d\n", error);
+	system("leaks asm");
 	exit(0);
 }

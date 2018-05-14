@@ -46,41 +46,41 @@ static void	init_args_2(void)
 	g_optab[13].args[0][2] = 1;
 	g_optab[14].args[0][1] = 1;
 	g_optab[15].args[0][0] = 1;
-	g_optab[1].args[0][0] = 1;
-	g_optab[2].args[0][0] = 1;
-	g_optab[2].args[0][2] = 1;
-	g_optab[3].args[0][0] = 1;
-	g_optab[4].args[0][0] = 1;
-	g_optab[5].args[0][0] = 1;
-	g_optab[5].args[0][1] = 1;
-	g_optab[5].args[0][2] = 1;
-	g_optab[6].args[0][0] = 1;
-	g_optab[6].args[0][1] = 1;
-	g_optab[6].args[0][2] = 1;
-	g_optab[7].args[0][0] = 1;
-	g_optab[7].args[0][1] = 1;
-	g_optab[7].args[0][2] = 1;
-	g_optab[9].args[0][0] = 1;
-	g_optab[9].args[0][1] = 1;
-	g_optab[10].args[0][0] = 1;
-	g_optab[10].args[0][1] = 1;
-	g_optab[10].args[0][2] = 1;
-	g_optab[12].args[0][0] = 1;
-	g_optab[13].args[0][0] = 1;
-	g_optab[13].args[0][1] = 1;
+	g_optab[1].args[1][0] = 1;
+	g_optab[2].args[1][0] = 1;
+	g_optab[2].args[1][2] = 1;
+	g_optab[3].args[1][0] = 1;
+	g_optab[4].args[1][0] = 1;
+	g_optab[5].args[1][0] = 1;
+	g_optab[5].args[1][1] = 1;
+	g_optab[5].args[1][2] = 1;
+	g_optab[6].args[1][0] = 1;
+	g_optab[6].args[1][1] = 1;
+	g_optab[6].args[1][2] = 1;
+	g_optab[7].args[1][0] = 1;
+	g_optab[7].args[1][1] = 1;
+	g_optab[7].args[1][2] = 1;
+	g_optab[9].args[1][0] = 1;
+	g_optab[9].args[1][1] = 1;
+	g_optab[10].args[1][0] = 1;
+	g_optab[10].args[1][1] = 1;
+	g_optab[10].args[1][2] = 1;
+	g_optab[12].args[1][0] = 1;
+	g_optab[13].args[1][0] = 1;
+	g_optab[13].args[1][1] = 1;
 }
 
 static void	init_args_3(void)
 {
-	g_optab[3].args[0][0] = 1;
-	g_optab[4].args[0][0] = 1;
-	g_optab[5].args[0][0] = 1;
-	g_optab[6].args[0][0] = 1;
-	g_optab[7].args[0][0] = 1;
-	g_optab[9].args[0][0] = 1;
-	g_optab[10].args[0][0] = 1;
-	g_optab[10].args[0][1] = 1;
-	g_optab[13].args[0][0] = 1;
+	g_optab[3].args[2][0] = 1;
+	g_optab[4].args[2][0] = 1;
+	g_optab[5].args[2][0] = 1;
+	g_optab[6].args[2][0] = 1;
+	g_optab[7].args[2][0] = 1;
+	g_optab[9].args[2][0] = 1;
+	g_optab[10].args[2][0] = 1;
+	g_optab[10].args[2][1] = 1;
+	g_optab[13].args[2][0] = 1;
 }
 
 void		init_args(void)

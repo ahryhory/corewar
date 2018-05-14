@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_comment.c                                    :+:      :+:    :+:   */
+/*   get_label_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/11 15:01:26 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/11 15:01:27 by ahryhory         ###   ########.fr       */
+/*   Created: 2018/05/13 15:20:30 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/05/13 15:20:31 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	check_comment(char *line, char **p_line)
+int				get_label_size(char *command)
 {
-	if (line[0] != '\0' && line[0] != COMMENT_CHAR)
+	int			i;
+
+	i = 0;
+	while (i < COUNT_OP)
 	{
-		ft_strdel(p_line);
-		ft_exit(9);
+		if (ft_strequ(g_optab[i].name, command))
+			return (g_optab[i].lable_size);
+		i++;
 	}
+	return (0);
 }

@@ -61,11 +61,27 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
+typedef struct 				s_args
+{
+	int						op;
+	t_commands 				*cmd;
+	int 					fd;
+	int						*oct;
+	int						*line;
+}							t_args;
+
+void						write_exec(t_args args, t_commands *cur, t_commands *cmd);
 t_data						parse(char *file, t_info info);
 void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
 void						write_header(int fd, t_data data, int *oct, int *line);
-void						cpy_in_4b(t_data data, char w[10]);
+void						cpy_in_4b(unsigned int nbr, char w[10]);
+void						cpy_in_2b(int nbr, char w[5]);
+void						cpy_in_1b(int nbr, char w[3]);
+void						write_1b(int fd, int *oct, int *line, char w[3]);
+void						write_4b(int fd, int *oct, int *line, char w[10]);
+void						write_2b(int fd, int *oct, int *line, char w[5]);
+int							count_al(int fd, int *oct, int *line, int kostil);
 void						check_line(t_info info);
 void						check_comment(char *line, t_info info);
 int							check_quotes(char *line, t_info info);
@@ -86,7 +102,7 @@ void						init_lable_size(void);
 void						flag_a(t_data *data);
 t_commands					*init_command(void);
 int							get_label_size(char *command);
-char						*create_codage(t_commands *curr);
+unsigned char				create_codage(t_commands *cmd);
 void						check_args(char **line, int command, t_info info);
 int							check_arg(char *arg, int command, int arg_num);
 void						check_commands(t_commands *commands);

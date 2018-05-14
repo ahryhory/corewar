@@ -12,26 +12,6 @@
 
 #include "asm.h"
 
-static	int	count_al(int fd, int *oct, int *line)
-{
-	if (*line == 8)
-	{
-		write(fd, "\n", 1);
-		*line = 0;
-		*oct = 0;
-		return (2);
-	}
-	if (*line != 8 && *oct == 4)
-	{
-		if (*line != 7)
-			write(fd, " ", 1);
-		*oct = 0;
-		(*line)++;
-		return (1);
-	}
-	return (0);
-}
-
 static	void	write_name(int fd, t_data data, int *oct, int *line)
 {
 	int		i;
@@ -58,11 +38,11 @@ static	void	write_name(int fd, t_data data, int *oct, int *line)
 static	void	write_size(int fd, t_data data, int *oct, int *line)
 {
 	char	*tmp;
-	char	bytes[10];
+	char	bytes[9];
 
-	write(fd, " 0000 0000 ", 11);
-	cpy_in_4b(data, bytes);
-	write(fd, bytes, 9);
+	write(fd, " 0000 0000", 10);
+	cpy_in_4b(data.head.prog_size, bytes);
+	write_4b(fd, oct, line, bytes);
 	*oct = 4;
 	*line = 5;
 }
@@ -91,6 +71,7 @@ static	void	write_comm(int fd, t_data data, int *oct, int *line)
 	write(fd, " 0000 0000", 10);
 	*line = 0;
 	*oct = 0;
+	write(fd, "\n", 1);
 }
 
 void			write_header(int fd, t_data data, int *oct, int *line)

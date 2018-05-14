@@ -26,13 +26,24 @@ static	int		open_cor(char *file)
 
 void			write_byte(t_data data, char *file)
 {
-	int		fd;
-	int		oct;
-	int		line;
+	int			fd;
+	int			oct;
+	int			line;
+	t_args		args;
+	t_commands	*cmd;
 
 	oct = 4;
 	line = 1;
 	fd = open_cor(file);
+	args.fd = fd;
+	cmd = data.command;
 	write_header(fd, data, &oct, &line);
+	args.oct = &oct;
+	args.line = &line;
+	while (cmd)
+	{
+		write_exec(args, cmd, data.command);
+		cmd = cmd->next;
+	}
 	close(fd);
 }

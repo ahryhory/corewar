@@ -53,11 +53,27 @@ typedef struct 				s_data
 	t_header				head;
 }							t_data;
 
+typedef struct 				s_args
+{
+	int						op;
+	t_commands 				*cmd;
+	int 					fd;
+	int						*oct;
+	int						*line;
+}							t_args;
+
 t_data						parse(char *file);
+void						write_exec(t_args args, t_commands *cur, t_commands *cmd);
 void						parse_line(char *line, t_commands **command);
 void						write_byte(t_data data, char *file);
 void						write_header(int fd, t_data data, int *oct, int *line);
-void						cpy_in_4b(t_data data, char w[10]);
+void						cpy_in_4b(int nbr, char w[10]);
+void						cpy_in_2b(int nbr, char w[5]);
+void						cpy_in_1b(int nbr, char w[3]);
+void						write_1b(int fd, int *oct, int *line, char w[3]);
+void						write_4b(int fd, int *oct, int *line, char w[10]);
+void						write_2b(int fd, int *oct, int *line, char w[5]);
+int							count_al(int fd, int *oct, int *line);
 void						check_line(char **line, int number_line);
 void						check_comment(char *line);
 int							check_quotes(char *line);

@@ -27,8 +27,9 @@ static void		init_optab(void)
 
 int				main(int argc, char **argv)
 {
-	t_data	data;
-	t_info	info;
+	t_data		data;
+	t_commands	*lst;
+	t_info		info;
 	
 	init_optab();
 	if (ft_strequ(FLAG_A, argv[1]))

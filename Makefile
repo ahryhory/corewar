@@ -13,6 +13,7 @@
 .PHONY: all, clean, fclean, re, get_lib
 
 NAME_A = asm
+NAME_C = corewar
 
 C = gcc
 
@@ -22,6 +23,8 @@ LIBFT = ./libft/
 LIB = ./libft/libft.a
 ASM_SRC = asm_src
 ASM_OBJ = asm_obj
+COR_SRC = vm_src
+COR_OBJ = vm_obj
 INC = ./includes
 
 SRC_A = 
@@ -61,7 +64,14 @@ SRC_A += check_commands.c
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
-all: get_lib $(NAME_A)
+SRC_C = 
+
+SRC_C += main.c
+
+COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
+COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))
+
+all: get_lib $(NAME_A) $(NAME_C)
 
 get_lib:
 	@make -C $(LIBFT)
@@ -69,16 +79,25 @@ get_lib:
 $(NAME_A): $(ASM_OBJS)
 	@$(C) $(FLAGS) -o $(NAME_A) $(ASM_OBJS) $(LIB) -I $(LIBFT) -I $(INC)
 
+$(NAME_C): $(COR_OBJS)
+	@$(C) $(FLAGS) -o $(NAME_C) $(COR_OBJS) $(LIB) -I $(LIBFT) -I $(INC)
+
 $(ASM_OBJ)/%.o: $(ASM_SRC)/%.c
 	@mkdir -p $(ASM_OBJ)
 	@$(C) $(FLAGS) -c -I $(LIBFT) -I $(INC) -o $@ -c $<
 
+$(COR_OBJ)/%.o: $(COR_SRC)/%.c
+	@mkdir -p $(COR_OBJ)
+	@$(C) $(FLAGS) -c -I $(LIBFT) -I $(INC) -o $@ -c $<
+
 clean:
 	@rm -rf $(ASM_OBJ)
+	@rm -rf $(COR_OBJ)
 	@make clean -C $(LIBFT)
 
 fclean: clean
 	@rm -f $(NAME_A)
+	@rm -f $(NAME_C)
 	@make fclean -C $(LIBFT)
 
 re: fclean all

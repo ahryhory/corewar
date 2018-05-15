@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/vm.h"
+#include "vm.h"
+
+static void		init_optab(void)
+{
+	init_name();
+	init_args_number();
+	init_args();
+	init_opcode();
+	init_cycles();
+	init_description();
+	init_carry();
+	init_cod_octal();
+	init_lable_size();
+}
 
 int				main(int ac, char **av)
-{	
+{
 	t_memory	*memory;
 	int			i;
 
+	init_optab();
 	if (ac == 1)
 		exit(1);
 	memory = allocate_memory();

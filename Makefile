@@ -66,7 +66,7 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
 SRC_C = 
 
-SRC_C += main.c
+SRC_C += vm.c
 SRC_C += do_add.c
 SRC_C += do_aff.c
 SRC_C += do_and.c
@@ -83,6 +83,15 @@ SRC_C += do_sti.c
 SRC_C += do_sub.c
 SRC_C += do_xor.c
 SRC_C += do_zjmp.c
+SRC_C += init_args_number.c
+SRC_C += init_args.c
+SRC_C += init_opcode.c
+SRC_C += init_cycles.c
+SRC_C += init_description.c
+SRC_C += init_carry.c
+SRC_C += init_cod_octal.c
+SRC_C += init_lable_size.c
+SRC_C += init_name.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

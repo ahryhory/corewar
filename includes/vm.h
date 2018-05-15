@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 12:41:26 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/05/15 16:56:23 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ typedef struct      s_optab
 
 t_optab             g_optab[COUNT_OP];
 
+typedef struct		s_chemp
+{
+	int				nbr;
+	int				live;
+	int				live_icp;
+	struct s_chemp	*next;
+}					t_chemp;
+
 typedef struct      s_memory
 {
 	int				byte;
-	int				champ_number;
+	t_chemp			*chemp;
 }					t_memory;
 
 typedef struct    s_proc
@@ -68,6 +76,15 @@ typedef struct    s_proc
     t_memory    *mem;
     struct s_proc        *next;
 }                t_proc;
+
+typedef struct	s_con
+{
+	int			cycl;
+	int			cycl_to_day;
+	t_memory	*mem;
+	t_chemp		*chemp;
+	t_proc		*proc;
+}				t_con;
 
 t_memory			*allocate_memory();
 void				add_champions(t_memory **memory, int ac, char **av);

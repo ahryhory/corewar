@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	do_and(t_memory *memory, int index, int *n, t_proc *proc)
+void	do_and(t_con *con, int index, int *n, t_proc *proc)
 {
 
 }

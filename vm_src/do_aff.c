@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	do_aff(t_memory *memory, int index, t_proc *proc)
+void	do_aff(t_con *con, int index, t_proc *proc)
 {
 
 }

@@ -35,11 +35,11 @@ int				main(int ac, char **av)
 		exit(1);
 	memory = allocate_memory();
 	add_champions(&memory, ac, av);
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		printf("%d ", memory[i].byte);
-		i++;
-	}
+	// i = 0;
+	// while (i < MEM_SIZE)
+	// {
+	// 	printf("%d ", memory[i].byte);
+	// 	i++;
+	// }
 	return (0);
 }

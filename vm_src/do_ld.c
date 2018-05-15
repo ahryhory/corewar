@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	do_ld(t_memory *memory, int index, int *n, t_proc *proc)
+void	do_ld(t_con *con, int index, int *n, t_proc *proc)
 {
 
 }

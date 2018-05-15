@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	do_live(t_memory *memory, int index, t_proc *proc)
+void	do_live(t_con *con, int index, t_proc *proc)
 {
-
+	proc->cycl_live = CYCLE_TO_DIE;
 }

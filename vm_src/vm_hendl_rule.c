@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vm_hendl_rule.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 12:40:17 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/05/15 13:09:30 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/15 13:10:23 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/vm.h"
+#include "vm.h"
 
-int				main(int ac, char **av)
-{	
-	t_memory	*memory;
-	int			i;
+int		vm_hendl_proc(t_proc *proc)
+{
+	int		i;
 
-	if (ac == 1)
-		exit(1);
-	memory = allocate_memory();
-	add_champions(&memory, ac, av);
 	i = 0;
-	while (i < MEM_SIZE)
+	while (proc)
 	{
-		printf("%d ", memory[i].byte);
 		i++;
+		vm_hendl_byte(proc);
+		proc = proc->next;
 	}
-	return (0);
+	return (i);
 }

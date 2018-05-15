@@ -14,5 +14,5 @@
 
 void	do_st(t_con *con, int index, int *n, t_proc *proc)
 {
-
+	
 }

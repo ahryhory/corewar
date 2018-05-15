@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_hendl_comand.c                                  :+:      :+:    :+:   */
+/*   get_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 15:11:39 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/15 15:44:13 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/15 17:52:56 by ahryhory          #+#    #+#             */
+/*   Updated: 2018/05/15 17:52:57 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		vm_hendl_command(t_proc *proc)
+int		get_index(int index, int step)
 {
-	if ((proc->mem)[proc->index]->byte == 1)
-		do_live(proc->mem, proc->index, proc);
-	if ((proc->
+	int		final_index;
+
+	final_index = index + step;
+	while (final_index > MEM_SIZE)
+		final_index -= MEM_SIZE;
+	return (final_index);
 }

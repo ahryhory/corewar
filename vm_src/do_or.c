@@ -12,6 +12,6 @@
 
 #include "vm.h"
 
-void	do_or(t_memory *memoryt_con *con
-
+void	do_or(t_con *con, int index, int *n, t_proc *proc)
+{
 }

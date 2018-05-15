@@ -22,7 +22,11 @@ t_memory		*allocate_memory()
 	while (i < MEM_SIZE)
 	{
 		memory[i].byte = 0;
-		memory[i].champ_number = 0;
+		memory[i].chemp = (t_chemp *)malloc(sizeof(t_chemp));
+		memory[i].chemp->nbr[0] = 0;
+		memory[i].chemp->nbr[1] = 0;
+		memory[i].chemp->nbr[2] = 0;
+		memory[i].chemp->nbr[3] = 1;
 		i++;
 	}
 	return (memory);

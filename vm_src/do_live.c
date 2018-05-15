@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:49 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:33:51 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:09:06 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,4 @@ void		do_live(t_con *con, int index, t_proc *proc)
 		con->mem[index].chemp->live++;
 		con->mem[index].chemp->live_icp++;
 	}
-	if (proc->index == MEM_SIZE)
-		proc->index = 0;
-	else
-		proc->index++;
 }

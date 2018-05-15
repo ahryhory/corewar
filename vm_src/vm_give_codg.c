@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 18:03:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/15 19:00:38 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/15 21:53:45 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	s_add_cp(t_proc *proc, int *codg)
 	proc->mem[proc->index]->byte != 13 && proc->mem[proc->index]->byte != 16 ?
 	2 : 4;
 	i = 0;
+	proc->cp = 1;
 	while (i < 3)
 	{
 		if (!codg[i])

@@ -35,9 +35,10 @@ int				main(int argc, char **argv)
 	if (ft_strequ(FLAG_A, argv[1]))
 	{
 		data = parse(argv[2], info);
+		check_commands(data.command);
 		flag_a(&data);
 		// system("leaks asm");
-		return (1);
+		return (0);
 	}
 	data = parse(argv[1], info);
 	check_commands(data.command);

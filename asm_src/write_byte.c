@@ -40,11 +40,10 @@ void			write_byte(t_data data, char *file)
 	args.fd = fd;
 	cmd = data.command;
 	write_header(fd, data, args.oct, args.line);
-	// while (cmd)
-	// {
-	// 	write_exec(args, cmd, data.command);
-	// 	cmd = cmd->next;
-	// }
-	// system("leaks asm");
+	while (cmd)
+	{
+		write_exec(args, cmd, data.command);
+		cmd = cmd->next;
+	}
 	close(fd);
 }

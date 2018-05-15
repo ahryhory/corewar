@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+# define COUNT_OP 16
+
 typedef struct      s_optab
 {
     char            name[10];
@@ -64,7 +66,7 @@ typedef struct    s_proc
     int            index;
     int            work;
     t_memory    *mem;
-    t_proc        *next;
+    struct s_proc        *next;
 }                t_proc;
 
 t_memory			*allocate_memory();

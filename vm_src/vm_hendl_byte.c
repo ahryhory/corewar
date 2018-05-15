@@ -6,17 +6,36 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/15 14:33:34 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/15 19:14:27 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		vm_hendl_byte(t_proc *proc)
+static void	s_init_proc(t_proc *proc)
 {
-	if (!proc->worc)
-		vm_init_proc(proc);
-	if (!cycl)
-		vm_hendl_comand(proc);
+	if ((proc->mem)[proc->index]->byte >= 1 &&
+			(proc->mem)[proc->index]->byte <= 16)
+	{
+		proc->work = 1;
+		proc->cycl = g_optab[(proc->mem)[proc->index]->byte].cycles;
+	}
+	else
+	{
+		proc->worc = 0;
+		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
+		proc->cycl = 0;
+	}
+}
+
+void		vm_hendl_byte(t_proc *proc, t_con *con)
+{
+	if (!proc->work)
+		s_init_proc(proc);
+	if (!cycl && proc->work)
+		vm_hendl_comand(proc, con);
+	if (!cycl && s_proc->cp)
+		while (s_proc->cp--)
+			proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
 	cycl_live--;
 }

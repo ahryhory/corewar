@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_hendl_rule.c                                    :+:      :+:    :+:   */
+/*   vm_del_proc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 13:09:30 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/15 19:14:33 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/15 19:00:56 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/15 19:06:35 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		vm_hendl_proc(t_proc *proc, t_con *con)
+void	vm_del_proc(t_proc **b_proc, i)
 {
-	int		i;
-	t_proc	*b_proc;
+	t_proc	*proc;
+	t_proc	*s_proc;
 
-	i = 0;
-	b_proc = proc;
-	while (proc)
+	if (!b_proc || !(proc = *b_proc))
+		return ;
+	if (!i)
 	{
-		if (!proc->cycl_live)
-		{
-			proc = proc->next;
-			vm_del_proc(&b_proc, i);
-			continue;
-		}
-		i++;
-		vm_hendl_byte(proc, con);
-		proc = proc->next;
+		*b_proc = (*b_proc)->next;
+		free(proc);
+		return ;
 	}
-	return (i);
+	while (i && (s_proc = proc))
+		proc = proc->next;
+	s_proc->next = proc->next;
+	free(proc);
 }

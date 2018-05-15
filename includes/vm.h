@@ -14,10 +14,11 @@
 # define VM_H
 
 # include "op.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 
+<<<<<<< HEAD
 void	do_add(t_memory *memory, int index, t_proc *proc);
 void	do_aff(t_memory *memory, int index, t_proc *proc);
 void	do_and(t_memory *memory, int index, int *n, t_proc *proc);
@@ -34,5 +35,15 @@ void	do_sti(t_memory *memory, int index, int *n, t_proc *proc);
 void	do_sub(t_memory *memory, int index, t_proc *proc);
 void	do_xor(t_memory *memory, int index, int *n, t_proc *proc);
 void	do_zjmp(t_memory *memory, int index, t_proc *proc);
+=======
+typedef struct		s_memory
+{
+	int				byte;
+	int				champ_number;
+}					t_memory;
+
+t_memory			*allocate_memory();
+void				add_champions(t_memory **memory, int ac, char **av);
+>>>>>>> 082dfec5ef4a6b83e3c83e3f4ece21c35946117a
 
 #endif

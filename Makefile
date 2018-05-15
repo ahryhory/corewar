@@ -67,6 +67,8 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 SRC_C = 
 
 SRC_C += main.c
+SRC_C += allocate_memory.c
+SRC_C += add_champions.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

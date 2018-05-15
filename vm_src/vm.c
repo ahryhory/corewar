@@ -28,8 +28,6 @@ static void		init_optab(void)
 int				main(int ac, char **av)
 {
 	t_con		*con;
-	t_proc		*proc;
-	int			n[2];
 	int			i;
 
 	init_optab();
@@ -38,9 +36,6 @@ int				main(int ac, char **av)
 	con = (t_con *)malloc(sizeof(t_con));
 	con->mem = allocate_memory();
 	add_champions(&(con->mem), ac, av);
-	//n[0] = 2;
-	//n[0] = 4;
-	//do_ld(con, 0, n, proc);
 	// i = 0;
 	// while (i < MEM_SIZE)
 	// {

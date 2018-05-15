@@ -40,4 +40,8 @@ void		do_live(t_con *con, int index, t_proc *proc)
 		con->mem[index].chemp->live++;
 		con->mem[index].chemp->live_icp++;
 	}
+	if (proc->index == MEM_SIZE)
+		proc->index = 0;
+	else
+		proc->index++;
 }

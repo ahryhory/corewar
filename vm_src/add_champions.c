@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_champions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 12:40:17 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/05/15 14:42:37 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int				main(int ac, char **av)
-{	
-	t_memory	*memory;
+void		add_champions(t_memory **memory, int ac, char **av)
+{
+	int			line;
+	int			fd;
 	int			i;
+	int			j;
+	int			
 
-	if (ac == 1)
-		exit(1);
-	memory = allocate_memory();
-	add_champions(&memory, ac, av);
+	fd = open(av[1], O_RDONLY);
 	i = 0;
-	while (i < MEM_SIZE)
+	j = 0;
+	while (read(fd, &line, 1))
 	{
-		printf("%d ", memory[i].byte);
+		// if (i > PROG_NAME_LENGTH + 7 && i <= PROG_NAME_LENGTH + 11	)
+		// 	printf("%d\n", line);
+		if (i == PROG_NAME_LENGTH + COMMENT_LENGTH + 15)
+			break ;
 		i++;
 	}
-	return (0);
+	// printf("%d\n", size);
+	j = 0;
+	while (read(fd, &(*memory)[j].byte, 1))
+		j++;
 }

@@ -35,7 +35,8 @@ int				main(int ac, char **av)
 		exit(1);
 	con = (t_con *)malloc(sizeof(t_con));
 	con->mem = allocate_memory();
-	add_champions(&(con->mem), ac, av);
+	add_champions(con, ac, av);
+	
 	// i = 0;
 	// while (i < MEM_SIZE)
 	// {

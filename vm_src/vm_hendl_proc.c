@@ -12,11 +12,13 @@
 
 #include "vm.h"
 
-int		vm_hendl_proc(t_proc *proc, t_con *con)
+int		vm_hendl_proc(t_con *con)
 {
 	int		i;
+	t_proc	*proc;
 	t_proc	*b_proc;
 
+	proc = con->proc;
 	i = 0;
 	b_proc = proc;
 	while (proc)

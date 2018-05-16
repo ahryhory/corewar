@@ -12,12 +12,12 @@
 
 #include "../includes/vm.h"
 
-t_memory		*allocate_memory()
+t_mem			*allocate_memory()
 {
-	t_memory	*memory;
+	t_mem		*memory;
 	int			i;
 
-	memory = (t_memory*)malloc(sizeof(t_memory) * MEM_SIZE);
+	memory = (t_mem*)malloc(sizeof(t_mem) * MEM_SIZE);
 	i = 0;
 	while (i < MEM_SIZE)
 	{

@@ -22,7 +22,25 @@ static int	calc_begin(int ac, int file)
 	return (0);
 }
 
-void		add_champions(t_memory **memory, int ac, char **av)
+static void	s_init_proc(t_con *con)
+{
+	////
+	/////
+}
+
+static void	s_add_proces(t_con *con, int index)
+{
+	t_proc	*proc;
+
+	proc = con->proc;
+	if (!proc)
+		s_init_proc(con, index);
+	while (proc->next)
+		proc = proc->next;
+	s_init_proc(con, index);
+}
+
+void		add_champions(t_con *con, int ac, char **av)
 {
 	int			line;
 	int			fd;
@@ -45,9 +63,14 @@ void		add_champions(t_memory **memory, int ac, char **av)
 		}
 		// printf("%d\n", size);
 		j = calc_begin(ac, file);
+		i = j;
 		// printf("%d\n", j);
-		while (read(fd, &(*memory)[j].byte, 1))
+		while (read(fd, (con->mem)[j].byte, 1))
+		{
+			if (j == i)
+				s_add_proces(con, j);
 			j++;
+		}
 		file++;
 	}
 }

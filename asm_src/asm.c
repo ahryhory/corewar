@@ -30,19 +30,17 @@ int				main(int argc, char **argv)
 	t_data		data;
 	t_commands	*lst;
 	t_info		info;
-	
+
 	init_optab();
 	if (ft_strequ(FLAG_A, argv[1]))
 	{
 		data = parse(argv[2], info);
 		check_commands(data.command);
 		flag_a(&data);
-		// system("leaks asm");
 		return (0);
 	}
 	data = parse(argv[1], info);
 	check_commands(data.command);
 	write_byte(data, argv[1]);
-	// system("leaks asm");
 	return (0);
 }

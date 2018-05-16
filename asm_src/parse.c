@@ -110,6 +110,7 @@ t_data				parse(char *file, t_info info)
 	char			*line;
 	t_data			data;
 
+	data.head.magic = COREWAR_EXEC_MAGIC;
 	data.command = NULL;
 	info.line = NULL;
 	fd = open(file, O_RDONLY);

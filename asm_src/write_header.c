@@ -31,6 +31,7 @@ static	void	write_name(int fd, t_data data)
 		i++;
 	}
 }
+
 static	void	write_size(int fd, t_data data)
 {
 	write_4b(fd, (unsigned int)data.head.prog_size);
@@ -39,7 +40,7 @@ static	void	write_size(int fd, t_data data)
 static	void	write_comm(int fd, t_data data)
 {
 	int		i;
-	char ch;
+	char	ch;
 
 	i = 0;
 	while (i < COMMENT_LENGTH + 4)
@@ -58,8 +59,7 @@ static	void	write_comm(int fd, t_data data)
 
 void			write_header(int fd, t_data data, int *oct, int *line)
 {
-	int		magic = 0xF383EA00;
-	write(fd, &magic, 4);
+	write_4b(fd, (unsigned int)data.head.magic);
 	write_name(fd, data);
 	write_size(fd, data);
 	write_comm(fd, data);

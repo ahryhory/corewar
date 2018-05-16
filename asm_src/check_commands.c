@@ -30,7 +30,6 @@ static void	check_lbl(char *label, t_commands *commands)
 	if (!check)
 	{
 		line = ft_strdup(label);
-		// FREE HEAD (STRUCT COMMANDS)
 		info.line = &line;
 		info.num = 0;
 		info.real_num = 0;

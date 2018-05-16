@@ -17,5 +17,7 @@ int		get_index(int index, int step)
 	int		final_index;
 
 	final_index = index + step;
-	return (final_index > MEM_SIZE ? final_index - MEM_SIZE : final_index);
+	while (final_index >= MEM_SIZE)
+		final_index -= MEM_SIZE;
+	return (final_index);
 }

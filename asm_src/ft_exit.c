@@ -42,6 +42,5 @@ void	ft_exit(int error, t_info info)
 		printf("ERROR: %d\nLINE: %d\n%s\n", error, info.real_num, *(info.line));
 		ft_strdel(info.line);
 	}
-	system("leaks asm");
 	exit(0);
 }

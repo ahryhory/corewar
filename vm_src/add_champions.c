@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 15:47:56 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:49:08 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,26 @@ static int	calc_begin(int ac, int file)
 	return (0);
 }
 
-static t_proc	s_init_proc(t_con *con, int index)
+static void		s_init_r(int *r, int nbr)
+{
+	int		i;
+
+	i = 1;
+	r[0] = -nbr;
+	while (i < 16)
+		r[i++] = 0;
+}
+
+static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
 	proc = malloc(sizeof(t_proc));
-	proc->r = s_inir_r();
+	s_init_r(proc->r, nbr);
 	proc->cp = 0;
 	proc->carry = 0;
 	proc->cycl = 0;
-	proc->live = CYCLE_TO_DIE;
+	proc->cycl_live = CYCLE_TO_DIE;
 	proc->index = index;
 	proc->work = 0;
 	proc->mem = con->mem;
@@ -39,16 +49,16 @@ static t_proc	s_init_proc(t_con *con, int index)
 	return (proc);
 }
 
-static void	s_add_proces(t_con *con, int index)
+static void	s_add_proces(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
 	proc = con->proc;
 	if (!proc)
-		proc = s_init_proc(con, index);
+		proc = s_init_proc(con, index, nbr);
 	while (proc->next)
 		proc = proc->next;
-	proc = s_init_proc(con, index);
+	proc = s_init_proc(con, index, nbr);
 }
 
 void		add_champions(t_con *con, int ac, char **av)
@@ -76,9 +86,9 @@ void		add_champions(t_con *con, int ac, char **av)
 		j = calc_begin(ac, file);
 		i = j;
 		// printf("%d\n", j);
-		while (read(fd, (con->mem)[j].byte, 1) > 0)
+		while (read(fd, &((con->mem)[j].byte), 1) > 0)
 			if (j++ == i)
-				s_add_proces(con, j - 1);
+				s_add_proces(con, j - 1, fd - 2);
 		file++;
 	}
 }

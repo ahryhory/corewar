@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 15:57:30 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:36:21 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,9 @@ void                init_cod_octal(void);
 void                init_lable_size(void);
 int                 get_index(int index, int step);
 unsigned int        get_nbr(t_con *con, int index, int size);
+int					vm_hendl_proc(t_con *con);
+void				vm_hendl_command(t_proc *proc, t_con *con);
+void				vm_give_cord(t_proc *proc, int *codg);
+void				vm_del_proc(t_proc **b_proc, int i);
 
 #endif

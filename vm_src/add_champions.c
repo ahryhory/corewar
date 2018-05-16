@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 14:42:37 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/05/16 15:47:56 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,21 @@ static int	calc_begin(int ac, int file)
 	return (0);
 }
 
-static void	s_init_proc(t_con *con)
+static t_proc	s_init_proc(t_con *con, int index)
 {
-	////
-	/////
+	t_proc	*proc;
+
+	proc = malloc(sizeof(t_proc));
+	proc->r = s_inir_r();
+	proc->cp = 0;
+	proc->carry = 0;
+	proc->cycl = 0;
+	proc->live = CYCLE_TO_DIE;
+	proc->index = index;
+	proc->work = 0;
+	proc->mem = con->mem;
+	proc->next = 0;
+	return (proc);
 }
 
 static void	s_add_proces(t_con *con, int index)
@@ -34,10 +45,10 @@ static void	s_add_proces(t_con *con, int index)
 
 	proc = con->proc;
 	if (!proc)
-		s_init_proc(con, index);
+		proc = s_init_proc(con, index);
 	while (proc->next)
 		proc = proc->next;
-	s_init_proc(con, index);
+	proc = s_init_proc(con, index);
 }
 
 void		add_champions(t_con *con, int ac, char **av)
@@ -65,12 +76,9 @@ void		add_champions(t_con *con, int ac, char **av)
 		j = calc_begin(ac, file);
 		i = j;
 		// printf("%d\n", j);
-		while (read(fd, (con->mem)[j].byte, 1))
-		{
-			if (j == i)
-				s_add_proces(con, j);
-			j++;
-		}
+		while (read(fd, (con->mem)[j].byte, 1) > 0)
+			if (j++ == i)
+				s_add_proces(con, j - 1);
 		file++;
 	}
 }

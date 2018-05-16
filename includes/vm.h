@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 16:56:23 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 15:57:30 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ typedef struct    s_proc
 
 typedef struct      s_con
 {
-	int            cycl;
-	int            cycl_to_day;
-	t_mem          *mem;
-	t_chemp		*chemp;
-	t_proc		*proc;
-}				t_con;
+	int				cycl;
+	int				cycl_day_per;
+	int				cycl_to_day;
+	t_mem			*mem;
+	t_chemp			*chemp;
+	t_proc			*proc;
+}					t_con;
 
 t_mem			    *allocate_memory();
 void				add_champions(t_con *con, int ac, char **av);

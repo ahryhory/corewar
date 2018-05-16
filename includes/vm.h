@@ -99,6 +99,7 @@ void                init_description(void);
 void                init_carry(void);
 void                init_cod_octal(void);
 void                init_lable_size(void);
-int                get_index(int index, int step);
+int                 get_index(int index, int step);
+int                 get_nbr(t_con *con, int index, int size);
 
 #endif

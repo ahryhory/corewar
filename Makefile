@@ -95,6 +95,7 @@ SRC_C += init_cod_octal.c
 SRC_C += init_lable_size.c
 SRC_C += init_name.c
 SRC_C += get_index.c
+SRC_C += get_nbr.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

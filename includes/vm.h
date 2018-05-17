@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 16:56:23 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 19:33:39 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct      s_optab
 {
     char            name[10];
     int             args_number;
-    int             args[3][3];
+    int             args[3];
     char            opcode[5];
     int             code;
     int             cycles;
@@ -44,11 +44,11 @@ typedef struct		s_chemp
 	struct s_chemp	*next;
 }					t_chemp;
 
-typedef struct      s_memory
+typedef struct      s_mem
 {
 	int				byte;
 	t_chemp			*chemp;
-}					t_memory;
+}					t_mem;
 
 typedef struct    s_proc
 {
@@ -59,21 +59,22 @@ typedef struct    s_proc
     int             cycl_live;
     int             index;
     int             work;
-    t_memory        *mem;
+    t_mem           *mem;
     struct s_proc   *next;
 }                t_proc;
 
-typedef struct	s_con
+typedef struct      s_con
 {
-	int			cycl;
-	int			cycl_to_day;
-	t_memory	*mem;
-	t_chemp		*chemp;
-	t_proc		*proc;
-}				t_con;
+	int				cycl;
+	int				cycl_day_per;
+	int				cycl_to_day;
+	t_mem			*mem;
+	t_chemp			*chemp;
+	t_proc			*proc;
+}					t_con;
 
-t_memory			*allocate_memory();
-void				add_champions(t_memory **memory, int ac, char **av);
+t_mem			    *allocate_memory();
+void				add_champions(t_con *con, int ac, char **av);
 void				do_add(t_con *con, int index, t_proc *proc);
 void				do_aff(t_con *con, int index, t_proc *proc);
 void				do_and(t_con *con, int index, int *n, t_proc *proc);
@@ -100,6 +101,12 @@ void                init_carry(void);
 void                init_cod_octal(void);
 void                init_lable_size(void);
 int                 get_index(int index, int step);
-int                 get_nbr(t_con *con, int index, int size);
+unsigned int        get_nbr(t_con *con, int index, int size);
+int					vm_hendl_proc(t_con *con);
+void				vm_hendl_command(t_proc *proc, t_con *con);
+void				vm_give_cord(t_proc *proc, int *codg);
+void				vm_del_proc(t_con **con, int i);
+void				vm_hendl_byte(t_proc *proc, t_con *con);
+int					vm_give_codg(t_proc *proc, int *codg);
 
 #endif

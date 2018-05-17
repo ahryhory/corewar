@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/15 12:40:17 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/05/16 18:40:19 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,45 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
+static void		s_init_con(t_con *con)
+{
+	con->cycl_to_day = CYCLE_TO_DIE;
+	con->cycl = 0;
+	con->cycl_day_per = 0;
+	con->mem = 0;
+	con->chemp = 0;
+	con->proc = 0;
+}
+
 int				main(int ac, char **av)
 {
-	t_con		*con;
+	t_con		con;
 	int			i;
 
 	init_optab();
 	if (ac == 1)
 		exit(1);
-	con = (t_con *)malloc(sizeof(t_con));
-	con->mem = allocate_memory();
-	add_champions(&(con->mem), ac, av);
-	// i = 0;
-	// while (i < MEM_SIZE)
-	// {
-	// 	printf("%d ", con->mem[i].byte);
-	// 	i++;
-	// }
+	s_init_con(&con);
+	con.mem = allocate_memory();
+	add_champions(&con, ac, av);
+	i = 0;
+	while (con.cycl_to_day > 0 && con.proc)
+	{
+		i++;
+		if (con.cycl_day_per == con.cycl_to_day)
+		{
+			con.cycl_to_day -= CYCLE_DELTA;
+			con.cycl_day_per = 0;
+		}
+		vm_hendl_proc(&con);
+		con.cycl++;
+		con.cycl_day_per++;
+	}
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		printf("%d ", con.mem[i].byte);
+		i++;
+	}
 	return (0);
 }

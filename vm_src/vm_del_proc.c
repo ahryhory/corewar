@@ -6,26 +6,26 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 19:00:56 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/15 19:06:35 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 18:27:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_del_proc(t_proc **b_proc, i)
+void	vm_del_proc(t_con **con, int i)
 {
 	t_proc	*proc;
 	t_proc	*s_proc;
 
-	if (!b_proc || !(proc = *b_proc))
+	if (!(proc = (*con)->proc))
 		return ;
 	if (!i)
 	{
-		*b_proc = (*b_proc)->next;
+		(*con)->proc = (*con)->proc->next;
 		free(proc);
 		return ;
 	}
-	while (i && (s_proc = proc))
+	while (i-- && (s_proc = proc))
 		proc = proc->next;
 	s_proc->next = proc->next;
 	free(proc);

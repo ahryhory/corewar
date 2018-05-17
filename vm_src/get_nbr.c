@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		get_nbr(t_con *con, int index, int size)
+unsigned int	get_nbr(t_con *con, int index, int size)
 {
 	int		n1;
 	int		n2;

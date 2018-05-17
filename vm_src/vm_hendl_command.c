@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_hendl_comand.c                                  :+:      :+:    :+:   */
+/*   vm_hendl_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 15:11:39 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/16 16:33:11 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/16 19:57:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		vm_hendl_command(t_proc *proc, t_con *con)
 	if (g_optab[(proc->mem)[proc->index].byte].cod_octal &&
 			vm_give_codg(proc, codg))
 	{
+		printf("check so so\n");
 		if ((proc->mem)[proc->index].byte == 2)
 			do_ld(con, proc->index, codg, proc);
 		if ((proc->mem)[proc->index].byte == 3)

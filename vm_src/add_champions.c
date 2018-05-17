@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 16:49:08 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/16 17:25:59 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ static void	s_add_proces(t_con *con, int index, int nbr)
 
 	proc = con->proc;
 	if (!proc)
-		proc = s_init_proc(con, index, nbr);
+	{
+		con->proc = s_init_proc(con, index, nbr);
+		return ;
+	}
 	while (proc->next)
 		proc = proc->next;
-	proc = s_init_proc(con, index, nbr);
+	proc->next = s_init_proc(con, index, nbr);
 }
 
 void		add_champions(t_con *con, int ac, char **av)
@@ -88,7 +91,7 @@ void		add_champions(t_con *con, int ac, char **av)
 		// printf("%d\n", j);
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)
 			if (j++ == i)
-				s_add_proces(con, j - 1, fd - 2);
+				s_add_proces(con, j - 1, file);
 		file++;
 	}
 }

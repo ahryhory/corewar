@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:33:08 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:56:30 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	do_fork(t_con *con, int index, t_proc *proc)
 {
+	printf("COMMAND: fork\n");
 
 }

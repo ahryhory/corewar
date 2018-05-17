@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:01 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:33:02 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:56:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	do_and(t_con *con, int index, int *n, t_proc *proc)
 {
+	printf("COMMAND: and\n");
 
 }

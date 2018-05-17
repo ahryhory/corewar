@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/16 19:57:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 22:06:27 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 {
+	int		i;
+
+	i = 0;
+	i = 1;
+	printf("do byte nocodg: %d\n", (proc->mem)[proc->index].byte);
+	if (i)
+	{
+		printf("\nНажми ctrl + d\n");
+		read(0, &i, 1);
+	}
+
 	if ((proc->mem)[proc->index].byte == 1)
 	{
 		do_live(con, proc->index, proc);
@@ -50,12 +61,23 @@ static void	s_helpa_codg(t_proc *proc, t_con *con, int *codg)
 
 void		vm_hendl_command(t_proc *proc, t_con *con)
 {
-	int		codg[3];
+	unsigned int	codg[3];
+	int				i;
 
-	if (g_optab[(proc->mem)[proc->index].byte].cod_octal &&
+	i = 0;
+	if (g_optab[(proc->mem)[proc->index].byte - 1].cod_octal &&
 			vm_give_codg(proc, codg))
 	{
-		printf("check so so\n");
+	////////
+		i = 1;
+printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
+	if (i)
+	{
+		printf("\nНажми ctrl + d\n");
+		read(0, &i, 1);
+	}
+	//////
+		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TADAM\n");
 		if ((proc->mem)[proc->index].byte == 2)
 			do_ld(con, proc->index, codg, proc);
 		if ((proc->mem)[proc->index].byte == 3)

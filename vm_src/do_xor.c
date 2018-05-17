@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:34 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:35:35 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:58:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	do_xor(t_con *con, int index, int *n, t_proc *proc)
 {
+	printf("COMMAND: xor\n");
 
 }

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 18:40:19 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 17:51:22 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void		init_optab(void)
 
 static void		s_init_con(t_con *con)
 {
-	con->cycl_to_day = CYCLE_TO_DIE;
+	con->cycl_to_die = CYCLE_TO_DIE;
 	con->cycl = 0;
-	con->cycl_day_per = 0;
+	con->cycl_die_per = 0;
 	con->mem = 0;
 	con->chemp = 0;
 	con->proc = 0;
@@ -46,18 +46,17 @@ int				main(int ac, char **av)
 	s_init_con(&con);
 	con.mem = allocate_memory();
 	add_champions(&con, ac, av);
-	i = 0;
-	while (con.cycl_to_day > 0 && con.proc)
+	while (con.cycl_to_die > 0 && con.proc)
 	{
-		i++;
-		if (con.cycl_day_per == con.cycl_to_day)
+		printf("cycl: %d\n", con.cycl);
+		if (con.cycl_die_per == con.cycl_to_die) //добавить условия на 21 жизнь
 		{
-			con.cycl_to_day -= CYCLE_DELTA;
-			con.cycl_day_per = 0;
+			con.cycl_to_die -= CYCLE_DELTA;
+			con.cycl_die_per = 0;
 		}
 		vm_hendl_proc(&con);
 		con.cycl++;
-		con.cycl_day_per++;
+		con.cycl_die_per++;
 	}
 	i = 0;
 	while (i < MEM_SIZE)

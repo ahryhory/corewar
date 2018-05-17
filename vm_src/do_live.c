@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:49 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 20:09:06 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:57:11 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void		do_live(t_con *con, int index, t_proc *proc)
 {
 	int		nbr[4];
 
-	proc->cycl_live = con->cycl_to_day;
+	printf("COMMAND: live\n");
+	proc->cycl_live += con->cycl_to_die;
 	nbr[0] = con->mem[index].byte;
 	nbr[1] = con->mem[get_index(index, 1)].byte;
 	nbr[2] = con->mem[get_index(index, 2)].byte;

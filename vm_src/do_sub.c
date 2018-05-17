@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:28 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:35:29 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:58:13 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	do_sub(t_con *con, int index, t_proc *proc)
 {
+	printf("COMMAND: sub\n");
 
 }

@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:34:50 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/15 14:34:51 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:57:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	do_lldi(t_con *con, int index, int *n, t_proc *proc)
 {
+	printf("COMMAND: lldi\n");
 
 }

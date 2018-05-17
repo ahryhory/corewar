@@ -6,12 +6,12 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 14:32:16 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/16 19:58:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:37:51 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-/*
+
 static void	init_args_1(void)
 {
 	g_optab[0].args[0][1] = 1;
@@ -109,8 +109,8 @@ void		init_args(void)
 	init_args_1();
 	init_args_2();
 	init_args_3();
-}*/
-
+}
+/*
 static void	s_ws(t_optab *g_optab, int i, int j, int k)
 {
 	g_optab->args[0] = i;
@@ -158,3 +158,5 @@ void		init_args(void)
 	}
 	init_args_1();
 }
+
+*/

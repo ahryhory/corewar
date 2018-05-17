@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 19:33:39 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 22:06:43 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct      s_optab
 {
     char            name[10];
     int             args_number;
-    int             args[3];
+    int             args[3][3];
     char            opcode[5];
     int             code;
     int             cycles;
@@ -66,8 +66,8 @@ typedef struct    s_proc
 typedef struct      s_con
 {
 	int				cycl;
-	int				cycl_day_per;
-	int				cycl_to_day;
+	int				cycl_die_per;
+	int				cycl_to_die;
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;
@@ -107,6 +107,6 @@ void				vm_hendl_command(t_proc *proc, t_con *con);
 void				vm_give_cord(t_proc *proc, int *codg);
 void				vm_del_proc(t_con **con, int i);
 void				vm_hendl_byte(t_proc *proc, t_con *con);
-int					vm_give_codg(t_proc *proc, int *codg);
+int					vm_give_codg(t_proc *proc, unsigned int *codg);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 18:03:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/16 19:59:03 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/17 22:30:05 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	s_add_cp(t_proc *proc, int *codg)
+static void	s_add_cp(t_proc *proc, unsigned int *codg)
 {
 	int		n;
 	int		i;
@@ -20,7 +20,6 @@ static void	s_add_cp(t_proc *proc, int *codg)
 	n = (proc->mem)[proc->index].byte >= 9 &&
 	proc->mem[proc->index].byte != 13 && proc->mem[proc->index].byte != 16 ?
 	2 : 4;
-	printf("ALAL!!!!%d\n", n);
 	i = -1;
 	proc->cp = 1;
 	while (++i < 3)
@@ -34,24 +33,42 @@ static void	s_add_cp(t_proc *proc, int *codg)
 	}
 }
 
-int			vm_give_codg(t_proc *proc, int *codg)
+int			vm_give_codg(t_proc *proc, unsigned int *codg)
 {
 	int		index;
-	int		*arg;
 	int		i;
+	int		j;
 
-	arg = (int *)g_optab[proc->mem[proc->index].byte].args;
 	index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
+	printf("Log codg:\n");
+	printf("byte: %d, cod: %d\n", (proc->mem)[proc->index].byte, (proc->mem)[index].byte);
 	codg[0] = (proc->mem)[index].byte >> 6;
-	codg[1] = ((proc->mem)[index].byte << 26) >> 30;
-	codg[2] = ((proc->mem)[index].byte << 28) >> 30;
+	codg[1] = (((proc->mem)[index].byte << 26) >> 30) & 3;
+	codg[2] = (((proc->mem)[index].byte << 28) >> 30) & 3;
+	printf(" codg[0] = %d\n codg[1] = %d\n codg[2] = %d\n", codg[0], codg[1], codg[2]);
 	s_add_cp(proc, codg);
 	i = 0;
-	while (i < 3 && arg)
+	while (i < 3)
 	{
-		if ((arg[codg[i] - 1] && !codg[i]) || (!arg[codg[i] - 1] && codg[i]))
-			return (0);
-		i++;
+		if (!codg[i] && (j = -1))
+		{
+			while (++j != 3)
+				if (g_optab[proc->mem[proc->index].byte - 1].args[i][j])
+				{
+		printf("PPEEEZZDDAAAAAAAAAAAAAa %d | %d\n", i, j);
+					return (0);
+				}
+			i++;
+			continue;
+		}
+		if ((codg[i] &&
+	g_optab[proc->mem[proc->index].byte - 1].args[i][codg[i] - 1]))
+		{
+			i++;
+			continue;
+		}
+		printf("ZZZZAAAAAALLLLLLUUUUUUUPPPPPPAAAAAAA\n");
+		return (0);
 	}
 	return (1);
 }

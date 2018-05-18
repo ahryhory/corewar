@@ -36,7 +36,14 @@ static void			add_args(t_commands **new, char **split)
 		i++;
 		ft_strdel(&trim);
 	}
-	if (i > 1)
+	i = 0;
+	while (i < COUNT_OP)
+	{
+		if (ft_strequ(g_optab[i].name, (*new)->command))
+			break ;
+		i++;
+	}
+	if (g_optab[i].cod_octal)
 		(*new)->size += 1;
 }
 

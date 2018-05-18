@@ -3,6 +3,8 @@
 
 ld %0, r1
 live %42
+aff r1
+aff r1
 # ld	%0, r1
 # zjmp	%-20
 # live	%228

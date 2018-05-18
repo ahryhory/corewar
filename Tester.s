@@ -1,7 +1,19 @@
 .name           "Tester"
 .comment        "Just a tester"
 
-ld %0, r1
+ld %88, r2
+ld %89, r3
+ld %85, r4
+ld %0, r5
+aff		r2
+aff		r3
+aff		r4
+zjmp %-40
+live %42
+aff		r1
+aff		r1
+aff		r1
+aff		r1
 live %42
 # ld	%0, r1
 # zjmp	%-20
@@ -84,4 +96,3 @@ live %42
 # lldi	12, r1, r1
 # lldi	12, %42, r1
 # lfork	%42
-# aff		r1

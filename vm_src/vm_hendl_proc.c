@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_hendl_rule.c                                    :+:      :+:    :+:   */
+/*   vm_hendl_proc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 13:09:30 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/16 18:44:54 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/18 16:04:25 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/18 17:50:12 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		vm_hendl_proc(t_con *con)
 	i = 0;
 	while (proc)
 	{
-		if (proc && !proc->cycl_live)
+		if (proc && !proc->live)
 		{
 			printf("del proc\n");
 			proc = proc->next;

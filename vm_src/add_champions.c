@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/16 17:25:59 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 18:37:42 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 	proc->cp = 0;
 	proc->carry = 0;
 	proc->cycl = 0;
-	proc->cycl_live = CYCLE_TO_DIE;
+	proc->live = 1;
 	proc->index = index;
 	proc->work = 0;
 	proc->mem = con->mem;
@@ -64,7 +64,7 @@ static void	s_add_proces(t_con *con, int index, int nbr)
 	proc->next = s_init_proc(con, index, nbr);
 }
 
-void		add_champions(t_con *con, int ac, char **av)
+void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 {
 	int			line;
 	int			fd;
@@ -90,8 +90,12 @@ void		add_champions(t_con *con, int ac, char **av)
 		i = j;
 		// printf("%d\n", j);
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)
+		{
+			((con->mem)[j]).chemp = chemp;
 			if (j++ == i)
 				s_add_proces(con, j - 1, file);
+		}
+		chemp = chemp->next;
 		file++;
 	}
 }

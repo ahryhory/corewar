@@ -15,6 +15,8 @@ aff		r1
 aff		r1
 aff		r1
 live %42
+aff r1
+aff r1
 # ld	%0, r1
 # zjmp	%-20
 # live	%228
@@ -95,4 +97,9 @@ live %42
 # lldi	%42, %42, r1
 # lldi	12, r1, r1
 # lldi	12, %42, r1
+<<<<<<< HEAD
 # lfork	%42
+=======
+# lfork	%42
+# aff		r1
+>>>>>>> ba698ff02b7b6d22ece74009284ffa61070e7cc8

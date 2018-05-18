@@ -52,7 +52,7 @@ typedef struct      s_mem
 
 typedef struct    s_proc
 {
-    int             r[16];
+    int             r[REG_NUMBER];
     int             cp;
     int             carry;
 	int				cycl;

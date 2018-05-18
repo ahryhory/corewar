@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/17 22:06:27 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 20:41:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 {
-	int		i;
-
+	int	i;
+	printf("do byte nocodg: %d\n", (proc->mem)[proc->index].byte);
+	
 	i = 0;
 	i = 1;
-	printf("do byte nocodg: %d\n", (proc->mem)[proc->index].byte);
 	if (i)
 	{
 		printf("\nНажми ctrl + d\n");
-		read(0, &i, 1);
+	//	read(0, &i, 1);
 	}
-
 	if ((proc->mem)[proc->index].byte == 1)
 	{
 		do_live(con, proc->index, proc);
@@ -49,6 +48,8 @@ static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 
 static void	s_helpa_codg(t_proc *proc, t_con *con, int *codg)
 {
+	int		i;
+
 	if ((proc->mem)[proc->index].byte == 11)
 		do_sti(con, proc->index, codg, proc);
 	if ((proc->mem)[proc->index].byte == 13)
@@ -57,6 +58,7 @@ static void	s_helpa_codg(t_proc *proc, t_con *con, int *codg)
 		do_lldi(con, proc->index, codg, proc);
 	if ((proc->mem)[proc->index].byte == 16)
 		do_aff(con, proc->index, proc);
+
 }
 
 void		vm_hendl_command(t_proc *proc, t_con *con)
@@ -71,13 +73,8 @@ void		vm_hendl_command(t_proc *proc, t_con *con)
 	////////
 		i = 1;
 printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
-	if (i)
-	{
-		printf("\nНажми ctrl + d\n");
-		read(0, &i, 1);
-	}
+
 	//////
-		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TADAM\n");
 		if ((proc->mem)[proc->index].byte == 2)
 			do_ld(con, proc->index, codg, proc);
 		if ((proc->mem)[proc->index].byte == 3)
@@ -95,6 +92,11 @@ printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
 		if ((proc->mem)[proc->index].byte == 10)
 			do_ldi(con, proc->index, codg, proc);
 		s_helpa_codg(proc, con, codg);
+		if (i)
+		{
+			printf("\nНажми ctrl + d\n");
+		//	read(0, &i, 1);
+		}
 	}
 	else
 		s_hendl_nocodg(proc, con);

@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 16:04:25 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/18 17:50:12 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 21:23:25 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		vm_hendl_proc(t_con *con)
 	i = 0;
 	while (proc)
 	{
+		printf("index: %d\n", proc->index);
 		if (proc && !proc->live)
 		{
-			printf("del proc\n");
 			proc = proc->next;
 			vm_del_proc(&con, i);
 			continue;

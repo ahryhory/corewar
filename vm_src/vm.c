@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/18 18:39:06 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 21:26:35 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ static int		s_check_cycl(t_con *con)
 	t_chemp	*chemp;
 
 	chemp = con->chemp;
-	printf("check\n");
-	if (chemp)
-		printf("HAHA %d\n", chemp->live_icp);
 	if (con->cycl_die_per >= con->cycl_to_die)
 	{
 		con->m_check++;
@@ -59,6 +56,18 @@ static int		s_check_cycl(t_con *con)
 			return (1);
 	}
 	return (0);
+}
+
+static void		s_null_chemp(t_con *con)
+{
+	t_chemp	*chemp;
+
+	chemp = con->chemp;
+	while (chemp)
+	{
+		chemp->live_icp = 0;
+		chemp = chemp->next;
+	}
 }
 
 int				main(int ac, char **av)
@@ -81,6 +90,7 @@ int				main(int ac, char **av)
 			con.cycl_to_die -= CYCLE_DELTA;
 			con.cycl_die_per = 0;
 			con.m_check = 0;
+			s_null_chemp(&con);
 		}
 		vm_hendl_proc(&con);
 		con.cycl++;

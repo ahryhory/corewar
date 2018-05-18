@@ -40,13 +40,9 @@ int				main(int argc, char **argv)
 		// system("leaks asm");
 		return (0);
 	}
-		printf("1       %s\n", "svsdv");
 	data = parse(argv[1], info);
-		printf("2       %s\n", "svsdv");
 	check_commands(data.command);
-		printf("3       %s\n", "svsdv");
 	write_byte(data, argv[1]);
-		printf("4       %s\n", "svsdv");
 	// system("leaks asm");
 	return (0);
 }

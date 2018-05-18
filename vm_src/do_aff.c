@@ -14,5 +14,9 @@
 
 void	do_aff(t_con *con, int index, t_proc *proc)
 {
+	char	c;
+
 	printf("COMMAND: aff\n");
+	c = proc->r[con->mem[get_index(index, 2)].byte] % 256;
+	ft_putchar(c);
 }

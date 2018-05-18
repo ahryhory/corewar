@@ -14,10 +14,37 @@
 
 void	do_xor(t_con *con, int index, int *n, t_proc *proc)
 {
+	int		num_1;
+	int		num_2;
+	int		step;
+
 	printf("COMMAND: xor\n");
-	con->mem[get_index(index, 4)].byte = con->mem[get_index(index, 2)].byte ^ con->mem[get_index(index, 3)].byte;
-	if (con->mem[get_index(index, 4)].byte == 0)
-		proc->carry = 1;
-	else
-		proc->carry = 0;
+	if (n[0] == 1)
+	{
+		num_1 = proc->r[con->mem[get_index(index, 2)].byte];
+		step = 1;
+	}
+	else if (n[0] == 2)
+	{
+		num_1 = get_nbr(con, get_index(index, 2), 4);
+		step = 4;
+	}
+	else if (n[0] == 3)
+	{
+		num_1 = get_nbr(con, get_index(index, 2), 2);
+		step = 2;
+	}
+	if (n[1] == 1)
+	{
+		num_2 = proc->r[con->mem[get_index(index, 2 + step)].byte];
+	}
+	else if (n[1] == 2)
+	{
+		num_2 = get_nbr(con, get_index(index, 2 + step), 4);
+	}
+	else if (n[1] == 3)
+	{
+		num_2 = get_nbr(con, get_index(index, 2 + step), 2);
+	}
+	proc->r[con->mem[get_index(index, 4)].byte] = num_1 ^ num_2;
 }

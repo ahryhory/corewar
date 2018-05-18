@@ -1,22 +1,23 @@
 .name           "Tester"
 .comment        "Just a tester"
 
-ld %88, r2
-ld %89, r3
-ld %85, r4
-ld %0, r5
-aff		r2
-aff		r3
-aff		r4
-zjmp %-40
-live %42
-aff		r1
-aff		r1
-aff		r1
-aff		r1
-live %42
-aff r1
-aff r1
+# ld %42, r2
+ld %-1, r1
+ld  %10, r2
+ld  %15, r3
+add r2, r3, r4
+# aff		r2
+# aff		r3
+# aff		r4
+# zjmp %-40
+# live %42
+# aff		r1
+# aff		r1
+# aff		r1
+# aff		r1
+# live %42
+# aff r1
+# aff r1
 # ld	%0, r1
 # zjmp	%-20
 # live	%228
@@ -97,9 +98,6 @@ aff r1
 # lldi	%42, %42, r1
 # lldi	12, r1, r1
 # lldi	12, %42, r1
-<<<<<<< HEAD
 # lfork	%42
-=======
 # lfork	%42
 # aff		r1
->>>>>>> ba698ff02b7b6d22ece74009284ffa61070e7cc8

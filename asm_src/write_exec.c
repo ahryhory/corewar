@@ -66,24 +66,12 @@ void			write_exec(t_args args, t_commands *cur, t_commands *cmd)
 	int				i;
 
 	i = 0;
-		printf("0       %s\n", "WRITE EXEC");
 	while (ft_strcmp(cur->command, g_optab[i].name))
-	{
-		printf("%s\n", cur->command);
-		printf("%s\n", g_optab[i].name);
 		i++;
-	}
-		printf("1.5       %s\n", "WRITE EXEC");
 	args.op = i;
-		printf("1       %s\n", "WRITE EXEC");
 	write_1b(args.fd, (unsigned char)args.op + 1);
-		printf("2       %s\n", "WRITE EXEC");
 	write_codage(args, create_codage(cur));
-		printf("3       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_1, cur->begin, cmd);
-		printf("4       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_2, cur->begin, cmd);
-		printf("5       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_3, cur->begin, cmd);
-		printf("6       %s\n", "WRITE EXEC");
 }

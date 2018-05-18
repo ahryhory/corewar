@@ -36,18 +36,14 @@ void			write_byte(t_data data, char *file)
 	line = 1;
 	args.oct = &oct;
 	args.line = &line;
-		printf("1       %s\n", "WRITE");
 	fd = open_cor(file);
-		printf("2       %s\n", "WRITE");
 	args.fd = fd;
 	cmd = data.command;
 	write_header(fd, data, args.oct, args.line);
-		printf("3       %s\n", "WRITE");
 	while (cmd)
 	{
 		write_exec(args, cmd, data.command);
 		cmd = cmd->next;
 	}
-		printf("4       %s\n", "WRITE");
 	close(fd);
 }

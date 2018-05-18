@@ -18,18 +18,18 @@ static unsigned char		write_bits(char *arg, int b)
 
 	if (arg && arg[0] == 'r')
 	{
-		a = T_REG;
-		a = a << b;
+		a = 1;
+		a = a << b & 255;
 	}
 	else if (arg && arg[0] == '%')
 	{
-		a = T_DIR;
-		a = a << b;
+		a = 2;
+		a = a << b & 255;
 	}
 	else if (arg && (ft_isdigit(arg[0]) || arg[0] == LABEL_CHAR))
 	{
-		a = T_IND;
-		a = a << b;
+		a = 3;
+		a = a << b & 255;
 	}
 	else
 		a = 0;

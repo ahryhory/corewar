@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/05/16 16:37:50 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/05/18 18:32:55 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ SRC_C += vm_give_codg.c
 SRC_C += vm_hendl_byte.c
 SRC_C += vm_hendl_proc.c
 SRC_C += vm_hendl_command.c
+SRC_C += vm_add_chemp.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

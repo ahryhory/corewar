@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/17 22:06:43 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 18:36:11 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,17 @@ typedef struct    s_proc
     int             r[16];
     int             cp;
     int             carry;
-    int             cycl;
-    int             cycl_live;
-    int             index;
-    int             work;
-    t_mem           *mem;
-    struct s_proc   *next;
-}                t_proc;
+	int				cycl;
+	int				live;
+	int				index;
+    int				work;
+    t_mem			*mem;
+    struct s_proc	*next;
+}					t_proc;
 
 typedef struct      s_con
 {
+	int				m_check;
 	int				cycl;
 	int				cycl_die_per;
 	int				cycl_to_die;
@@ -74,7 +75,8 @@ typedef struct      s_con
 }					t_con;
 
 t_mem			    *allocate_memory();
-void				add_champions(t_con *con, int ac, char **av);
+void				add_champions(t_con *con, int ac, char **av,
+														t_chemp *chemp);
 void				do_add(t_con *con, int index, t_proc *proc);
 void				do_aff(t_con *con, int index, t_proc *proc);
 void				do_and(t_con *con, int index, int *n, t_proc *proc);
@@ -108,5 +110,6 @@ void				vm_give_cord(t_proc *proc, int *codg);
 void				vm_del_proc(t_con **con, int i);
 void				vm_hendl_byte(t_proc *proc, t_con *con);
 int					vm_give_codg(t_proc *proc, unsigned int *codg);
+t_chemp				*vm_add_chemp(int nbr);
 
 #endif

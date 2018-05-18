@@ -23,7 +23,7 @@ static void	s_init_proc(t_proc *proc)
 	{
 		proc->work = 1;
 		proc->cycl = g_optab[(proc->mem)[proc->index].byte - 1].cycles;
-	//	printf("!!!!!!!!!!!!!!!minus cycl: %d\n",  proc->cycl); //RAZKOMENT (1)
+		printf("!!!!!!!!!!!!!!!minus cycl: %d\n",  proc->cycl); //RAZKOMENT (1)
 	}
 	else
 	{
@@ -35,7 +35,7 @@ static void	s_init_proc(t_proc *proc)
 
 void		vm_hendl_byte(t_proc *proc, t_con *con)
 {
-//	printf("CYCL in hendl_byte %d\n", con->cycl);    //RAZKOMENT (2)
+	//printf("CYCL in hendl_byte %d\n", con->cycl);    //RAZKOMENT (2)
 	if (!proc->work)
 		s_init_proc(proc);
 	if (proc->cycl > 0)

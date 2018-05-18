@@ -43,6 +43,7 @@ static	void	write_args(t_args args, char *arg, int begin, t_commands *cmd)
 {
 	if (!arg)
 		return ;
+
 	if (arg[0] == DIRECT_CHAR)
 		write_direct(args, arg + 1, begin, cmd);
 	else if (arg[0] == 'r')
@@ -51,7 +52,7 @@ static	void	write_args(t_args args, char *arg, int begin, t_commands *cmd)
 	{
 		if (arg[0] == LABEL_CHAR)
 		{
-			while (!ft_strequ(cmd->label, arg + 2))
+			while (!ft_strequ(cmd->label, arg + 1))
 				cmd = cmd->next;
 			write_4b(args.fd, (unsigned short)cmd->begin - begin);
 		}
@@ -65,12 +66,24 @@ void			write_exec(t_args args, t_commands *cur, t_commands *cmd)
 	int				i;
 
 	i = 0;
+		printf("0       %s\n", "WRITE EXEC");
 	while (ft_strcmp(cur->command, g_optab[i].name))
+	{
+		printf("%s\n", cur->command);
+		printf("%s\n", g_optab[i].name);
 		i++;
+	}
+		printf("1.5       %s\n", "WRITE EXEC");
 	args.op = i;
+		printf("1       %s\n", "WRITE EXEC");
 	write_1b(args.fd, (unsigned char)args.op + 1);
+		printf("2       %s\n", "WRITE EXEC");
 	write_codage(args, create_codage(cur));
+		printf("3       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_1, cur->begin, cmd);
+		printf("4       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_2, cur->begin, cmd);
+		printf("5       %s\n", "WRITE EXEC");
 	write_args(args, cur->arg_3, cur->begin, cmd);
+		printf("6       %s\n", "WRITE EXEC");
 }

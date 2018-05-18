@@ -83,6 +83,7 @@ static int			check_curr_line(char **line, t_commands **new)
 static char			*add_command(t_commands **new, char *line)
 {
 	int				size;
+	int				i;
 	char			*cmd;
 	char			*trim;
 	char			**split;
@@ -93,7 +94,21 @@ static char			*add_command(t_commands **new, char *line)
 	cmd = ft_strsub(line, size, ft_strlen(line) - ft_strlen((*new)->label));
 	trim = ft_strtrim(cmd);
 	ft_strdel(&cmd);
-	split = ft_strsplit(trim, ' ');
+	i = 0;
+	while (trim[i])
+	{
+		if (trim[i] == ' ')
+		{
+			split = ft_strsplit(trim, ' ');
+			break ;
+		}
+		if (trim[i] == '\t')
+		{
+			split = ft_strsplit(trim, '\t');
+			break ;
+		}
+		i++;
+	}
 	(*new)->command = ft_strdup(split[0]);
 	cmd = ft_strsub(trim, ft_strlen((*new)->command),
 		ft_strlen(trim) - ft_strlen((*new)->command));

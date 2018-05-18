@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/17 21:14:21 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/18 17:50:32 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,16 @@ static void	s_init_proc(t_proc *proc)
 	{
 		proc->work = 1;
 		proc->cycl = g_optab[(proc->mem)[proc->index].byte - 1].cycles;
-		printf("!!!!!!!!!!!!!!!minus cycl: %d\n",  proc->cycl); //RAZKOMENT (1)
 	}
 	else
 	{
 		proc->work = 0;
-		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
 		proc->cycl = 0;
 	}
 }
 
 void		vm_hendl_byte(t_proc *proc, t_con *con)
 {
-	//printf("CYCL in hendl_byte %d\n", con->cycl);    //RAZKOMENT (2)
 	if (!proc->work)
 		s_init_proc(proc);
 	if (proc->cycl > 0)
@@ -57,5 +54,6 @@ void		vm_hendl_byte(t_proc *proc, t_con *con)
 	{
 		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
 	}
-	proc->cycl_live--;
+	if (con->cycl_die_per == con->cycl_to_die - 1)
+		proc->live--;
 }

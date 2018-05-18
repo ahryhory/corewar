@@ -1,6 +1,7 @@
 .name           "Tester"
 .comment        "Just a tester"
 
+<<<<<<< HEAD
 # ld %42, r2
 ld %-1, r1
 ld  %10, r2
@@ -18,6 +19,49 @@ add r2, r3, r4
 # live %42
 # aff r1
 # aff r1
+=======
+<<<<<<< HEAD
+ld %0, r1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+live %-1
+=======
+ld %88, r2
+ld %89, r3
+ld %85, r4
+ld %0, r5
+aff		r2
+aff		r3
+aff		r4
+zjmp %-40
+live %42
+aff		r1
+aff		r1
+aff		r1
+aff		r1
+live %42
+aff r1
+aff r1
+>>>>>>> e4dc3a407b57b1977b4e8a360c310479e75229fe
+>>>>>>> 873d06010945526e0306175d46495f0f13312844
 # ld	%0, r1
 # zjmp	%-20
 # live	%228

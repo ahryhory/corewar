@@ -6,13 +6,13 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:20 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/17 19:58:05 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 13:51:38 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	do_sti(t_con *con, int index, int *n, t_proc *proc)
+void	do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	printf("COMMAND: sti\n");
 

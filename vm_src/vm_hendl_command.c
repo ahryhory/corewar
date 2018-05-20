@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/18 20:41:24 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 13:52:59 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 	}
 }
 
-static void	s_helpa_codg(t_proc *proc, t_con *con, int *codg)
+static void	s_helpa_codg(t_proc *proc, t_con *con, unsigned int *codg)
 {
 	int		i;
 

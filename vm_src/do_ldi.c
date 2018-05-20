@@ -6,13 +6,13 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:20 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/17 19:56:51 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 15:36:15 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	do_ldi(t_con *con, int index, int *n, t_proc *proc)
+void	do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	int		num_1;
 	int		num_2;
@@ -23,22 +23,22 @@ void	do_ldi(t_con *con, int index, int *n, t_proc *proc)
 	printf("COMMAND: ldi\n");
 	if (n[0] == 1)
 	{
-		num_1 = proc->r[con->mem[get_index(index, 2)].byte];
+		num_1 = (short int)proc->r[con->mem[get_index(index, 2)].byte];
 		step = 1;
 	}
 	else
 	{
-		num_1 = get_nbr(con, get_index(index, 2), 2);
+		num_1 = (short int)get_nbr(con, get_index(index, 2), 2);
 		step = 2;
 	}
 	if (n[1] == 1)
 	{
-		num_2 = proc->r[con->mem[get_index(index, 2 + step)].byte];
+		num_2 = (short int)proc->r[con->mem[get_index(index, 2 + step)].byte];
 		step++;
 	}
 	else
 	{
-		num_2 = get_nbr(con, get_index(index, 2 + step), 2);
+		num_2 = (short int)get_nbr(con, get_index(index, 2 + step), 2);
 		step += 2;
 	}
 	if (n[0] == 3)

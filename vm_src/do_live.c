@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:49 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/18 20:21:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/19 17:51:58 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void		do_live(t_con *con, int index, t_proc *proc)
 		if(nbr[i] != con->mem[index].chemp->nbr[i])
 			return ;
 	}
-	con->mem[index].chemp->live++;
+	con->mem[index].chemp->cycl_live = con->cycl;
 	con->mem[index].chemp->live_icp++;
 }

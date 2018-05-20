@@ -6,13 +6,13 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:34:50 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/17 19:57:28 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 13:50:55 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	do_lldi(t_con *con, int index, int *n, t_proc *proc)
+void	do_lldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	printf("COMMAND: lldi\n");
 

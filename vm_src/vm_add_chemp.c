@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/18 18:33:34 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 13:44:59 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_chemp	*s_create_chemp(int nbr)
 	chemp->nbr[1] = ((nbr << 8) >> 24) & 255;
 	chemp->nbr[2] = ((nbr << 16) >> 24) & 255;
 	chemp->nbr[3] = ((nbr << 24) >> 24) & 255;
-	chemp->live = 0;
+	chemp->cycl_live = 0;
 	chemp->live_icp = 0;
 	chemp->next = 0;
 	return (chemp);

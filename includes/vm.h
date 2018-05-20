@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/18 18:36:11 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/20 13:49:35 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_optab             g_optab[COUNT_OP];
 typedef struct		s_chemp
 {
 	int				nbr[4];
-	int				live;
+	int				cycl_live;
 	int				live_icp;
 	struct s_chemp	*next;
 }					t_chemp;
@@ -52,7 +52,7 @@ typedef struct      s_mem
 
 typedef struct    s_proc
 {
-    int             r[REG_NUMBER];
+    unsigned int	r[REG_NUMBER];
     int             cp;
     int             carry;
 	int				cycl;
@@ -79,19 +79,24 @@ void				add_champions(t_con *con, int ac, char **av,
 														t_chemp *chemp);
 void				do_add(t_con *con, int index, t_proc *proc);
 void				do_aff(t_con *con, int index, t_proc *proc);
-void				do_and(t_con *con, int index, int *n, t_proc *proc);
+void				do_and(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
 void				do_fork(t_con *con, int index, t_proc *proc);
-void				do_ld(t_con *con, int index, int *n, t_proc *proc);
-void				do_ldi(t_con *con, int index, int *n, t_proc *proc);
+void				do_ld(t_con *con, int index, unsigned int *n, t_proc *proc);
+void				do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc);
 void				do_lfork(t_con *con, int index, t_proc *proc);
 void				do_live(t_con *con, int index, t_proc *proc);
-void				do_lld(t_con *con, int index, int *n, t_proc *proc);
-void				do_lldi(t_con *con, int index, int *n, t_proc *proc);
-void				do_or(t_con *con, int index, int *n, t_proc *proc);
-void				do_st(t_con *con, int index, int *n, t_proc *proc);
-void				do_sti(t_con *con, int index, int *n, t_proc *proc);
+void				do_lld(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
+void				do_lldi(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
+void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc);
+void				do_st(t_con *con, int index, unsigned int *n, t_proc *proc);
+void				do_sti(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
 void				do_sub(t_con *con, int index, t_proc *proc);
-void				do_xor(t_con *con, int index, int *n, t_proc *proc);
+void				do_xor(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
 void				do_zjmp(t_con *con, int index, t_proc *proc);
 void                init_name(void);
 void                init_args_number(void);
@@ -111,5 +116,6 @@ void				vm_del_proc(t_con **con, int i);
 void				vm_hendl_byte(t_proc *proc, t_con *con);
 int					vm_give_codg(t_proc *proc, unsigned int *codg);
 t_chemp				*vm_add_chemp(int nbr);
+void				vm_add_proces(t_con *con, int index, int nbr);
 
 #endif

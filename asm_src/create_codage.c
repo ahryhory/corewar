@@ -26,7 +26,8 @@ static unsigned char		write_bits(char *arg, int b)
 		a = 2;
 		a = a << b & 255;
 	}
-	else if (arg && (ft_isdigit(arg[0]) || arg[0] == LABEL_CHAR))
+	else if (arg && (((ft_isdigit(arg[0]) || (arg[0] == '-' && arg[1] &&
+		ft_isdigit(arg[1])))) || arg[0] == LABEL_CHAR))
 	{
 		a = 3;
 		a = a << b & 255;

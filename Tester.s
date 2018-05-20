@@ -1,8 +1,9 @@
 .name           "Tester"
 .comment        "Just a tester"
-ld %-1, r2
+fork	%4
 ld	%0, r3
-st	r2, 6
+st	r1, 6000
+st	r1, 6
 live %1324
 zjmp %-42
 live %1324

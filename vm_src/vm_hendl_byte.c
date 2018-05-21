@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/18 17:50:32 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/21 23:14:38 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	s_init_proc(t_proc *proc)
 
 void		vm_hendl_byte(t_proc *proc, t_con *con)
 {
+	int		i;
+
 	if (!proc->work)
 		s_init_proc(proc);
 	if (proc->cycl > 0)
@@ -45,14 +47,22 @@ void		vm_hendl_byte(t_proc *proc, t_con *con)
 	if (!proc->cycl && proc->cp)
 	{
 		printf("do cp-- %d\n", proc->cp);
-		while (--(proc->cp) > 0)
-			proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
-		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
-		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
+		proc->cp = proc->cp == -1 ? 0 : proc->cp;
+		if (proc->cp)
+		{
+			while (--(proc->cp) > 0)
+				proc->index = get_index(proc->index, 1);
+			proc->index = get_index(proc->index, 1);
+			proc->index = get_index(proc->index, 1);
+		}
 	}
 	else if (!proc->cycl)
 	{
-		proc->index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
+		printf("DA U NAS TUT ZALUPA!!!!, chemp: %d, index: %d, byte %.2x\n", 
+				(char)((con->mem)[proc->index].chemp->nbr[3]), proc->index,
+				(con->mem)[proc->index].byte);
+		read(0, &i, 1);
+		proc->index = get_index(proc->index, 1);
 	}
 	if (con->cycl_die_per == con->cycl_to_die - 1)
 		proc->live--;

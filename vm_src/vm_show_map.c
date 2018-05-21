@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_hendl_proc.c                                    :+:      :+:    :+:   */
+/*   vm_show_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/18 16:04:25 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/21 23:16:49 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/21 19:35:14 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/21 20:18:22 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		vm_hendl_proc(t_con *con)
+void	vm_show_map(t_con con)
 {
+	t_mem	*mem;
 	int		i;
-	t_proc	*proc;
+	int		j;
 
-	proc = con->proc;
+	mem = con.mem;
 	i = 0;
-	while (proc)
+	j = -1;
+	while (i < MEM_SIZE)
 	{
-	//	printf("cycl_to_dei: %d index: %d proc: %d\n", con->cycl_to_die, proc->index, i);
-		if (proc && !proc->live)
+		printf("%2.2x ", mem[i++].byte);
+		if (i % 64 == 0 && (++j || !j))
 		{
-			printf("Proces died\n");
-			proc = proc->next;
-			vm_del_proc(&con, i);
-			continue;
+			if (j == 0)
+				printf("%20s %d", "cycl:          ", con.cycl);
+			if (j == 2)
+				printf("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
+//			if (j == 4)
+//				printf("%4c cycl: %d", ' ', con->cycl);
+//			else if (j
+			printf("\n");
 		}
-		i++;
-		vm_hendl_byte(proc, con);
-		proc = proc->next;
 	}
-	return (i);
+	printf("%d\n", i);
 }

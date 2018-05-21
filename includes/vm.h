@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/20 13:49:35 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:41:57 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void				vm_hendl_byte(t_proc *proc, t_con *con);
 int					vm_give_codg(t_proc *proc, unsigned int *codg);
 t_chemp				*vm_add_chemp(int nbr);
 void				vm_add_proces(t_con *con, int index, int nbr);
+void				vm_show_map(t_con con);
 
 #endif

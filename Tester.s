@@ -1,13 +1,16 @@
 .name           "Tester"
 .comment        "Just a tester"
-fork	%4
-ld	%0, r3
-st	r1, 6000
-st	r1, 6
-live %1324
-zjmp %-42
-live %1324
+
+#ld	500, r3 
+#st	r1, 500
+#sti	r3, 300, %300
 ld %0, r3
+sti	r1, %7, r3
+live %1324
+zjmp %-17
+zjmp %-17
+zjmp %-18
+#live %1324
 # live %0
 # ld	%0, r2
 # zjmp	%-50

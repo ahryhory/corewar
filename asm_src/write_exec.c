@@ -54,7 +54,7 @@ static	void	write_args(t_args args, char *arg, int begin, t_commands *cmd)
 		{
 			while (!ft_strequ(cmd->label, arg + 1))
 				cmd = cmd->next;
-			write_4b(args.fd, (unsigned short)cmd->begin - begin);
+			write_2b(args.fd, (unsigned short)cmd->begin - begin);
 		}
 		else
 			write_2b(args.fd, (unsigned short)ft_atoi(arg));

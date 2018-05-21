@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 18:03:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/18 21:26:33 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/21 23:43:04 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	s_add_cp(t_proc *proc, unsigned int *codg)
 		else
 			proc->cp = codg[i] == 2 ? proc->cp + n : proc->cp + 2;
 	}
+	printf("proc->cp = %d\n", proc->cp);
 }
 
 int			vm_give_codg(t_proc *proc, unsigned int *codg)
@@ -39,10 +40,18 @@ int			vm_give_codg(t_proc *proc, unsigned int *codg)
 	int		i;
 	int		j;
 
-	index = proc->index >= MEM_SIZE ? 0 : proc->index + 1;
+	index = get_index(proc->index, 1);
 	codg[0] = (proc->mem)[index].byte >> 6;
 	codg[1] = (((proc->mem)[index].byte << 26) >> 30) & 3;
 	codg[2] = (((proc->mem)[index].byte << 28) >> 30) & 3;
+	ALLAH SUDIYA;
+	//нужно проверять кодж на валидность
+	//в случае невалидного сп = 1
+	//хф
+	printf("Codg logo: index = %d\n", index);
+	printf("	codg[0] = %d\n", codg[0]);
+	printf("	codg[1] = %d\n", codg[1]);
+	printf("	codg[2] = %d\n", codg[2]);
 	s_add_cp(proc, codg);
 	i = 0;
 	while (i < 3)

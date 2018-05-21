@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:52:56 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/20 14:40:48 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/21 22:55:04 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		get_index(int index, int step)
 {
 	int		final_index;
+	int		i;
 
 	final_index = index + step;
 	while (final_index > MEM_SIZE)

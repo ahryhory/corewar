@@ -1,16 +1,31 @@
+# live	+
+# ld 	+
+# st 	+
+# add	+
+# sub	+
+# and	+
+# or	+
+# xor	+
+# zjmp	+
+# ldi	+
+# sti	+
+# fork	+-
+# lld	+-
+# lldi	+-
+# lfork	+-
+# aff	+
 .name           "Tester"
 .comment        "Just a tester"
-
 #ld	500, r3 
 #st	r1, 500
 #sti	r3, 300, %300
-ld %0, r3
-sti	r1, %7, r3
+#ldi %2, %2, r4
+#xor %-20, %-2000, r4
+lfork %2060
 live %1324
-zjmp %-17
-zjmp %-17
+sub  r6, r7, r16
 zjmp %-18
-#live %1324
+#live %1324									
 # live %0
 # ld	%0, r2
 # zjmp	%-50

@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/21 23:33:53 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:55:32 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 {
 	int	i;
-printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
+//printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
 	//read(0, &i, 1);
 	if ((proc->mem)[proc->index].byte == 1)
 	{
@@ -65,7 +65,7 @@ void		vm_hendl_command(t_proc *proc, t_con *con)
 	{
 	////////
 		i = 1;
-printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
+//printf("do byte: %d, index: %d\n", (proc->mem)[proc->index].byte, proc->index);
 
 	//////
 		if ((proc->mem)[proc->index].byte == 2)

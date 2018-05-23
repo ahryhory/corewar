@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:28 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/17 19:58:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/22 17:27:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	do_sub(t_con *con, int index, t_proc *proc)
 {
 	printf("COMMAND: sub\n");
-	proc->r[con->mem[get_index(index, 4)].byte] = proc->r[con->mem[get_index(index, 2)].byte] - proc->r[con->mem[get_index(index, 3)].byte];
-	if (proc->r[con->mem[get_index(index, 4)].byte] == 0)
+	proc->r[con->mem[get_index(index, 4)].byte - 1] =
+		proc->r[con->mem[get_index(index, 2)].byte - 1] -
+		proc->r[con->mem[get_index(index, 3)].byte - 1];
+	if (proc->r[con->mem[get_index(index, 4)].byte - 1] == 0)
 		proc->carry = 1;
 	else
 		proc->carry = 0;

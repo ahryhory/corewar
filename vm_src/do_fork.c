@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/21 17:43:48 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:44:22 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	void	s_cpy_proc(t_proc *proc, t_proc *new_proc)
 
 	i = -1;
 	while (++i < 16)
-		new_proc->r[i] = proc->r[i];
+		new_proc->r[i] = (unsigned int)proc->r[i];
 	new_proc->carry = proc->carry;
 	new_proc->live = proc->live;
 	new_proc->cycl = proc->cycl;

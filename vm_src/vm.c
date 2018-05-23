@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/21 23:08:31 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/22 15:30:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ static void		s_init_con(t_con *con, t_chemp **chemp, int nbr)
 	con->mem = 0;
 	con->chemp = *chemp;
 	con->proc = 0;
+	con->live = 0;
 }
 
 static void		s_null_chemp(t_con *con)
 {
 	t_chemp	*chemp;
 
+	con->live = 0;
 	chemp = con->chemp;
 	while (chemp)
 	{
@@ -52,28 +54,19 @@ static void		s_null_chemp(t_con *con)
 static int		s_check_cycl(t_con *con)
 {
 	t_chemp	*chemp;
-	int		live;
-	int		i;
 
 	chemp = con->chemp;
-	if (con->cycl_die_per >= con->cycl_to_die && !(live = 0))
+	if (con->cycl_die_per >= con->cycl_to_die)
 	{
 		con->m_check++;
 		con->cycl_die_per = 0;
-		while (chemp)
-		{	
-			printf("chemp live: %d\n", chemp->live_icp);
-			live += chemp->live_icp;
-			if (live >= 21)
-			{
-				printf("\nlive_icp >= 21\n");
-				return (1);
-			}
-			chemp = chemp->next;
+		if (con->live >= 21)
+		{
+			printf("live >= 21\n");
+			return (1);
 		}
 		if (con->m_check >= 10)
 		{
-			exit(0);
 			printf("\nm_check >= 10\n");
 			con->m_check = 0;
 			return (1);
@@ -87,7 +80,6 @@ int				main(int ac, char **av)
 {
 	t_con		con;
 	int			i;
-	int				k;
 	t_chemp		*chemp;
 
 	init_optab();
@@ -96,7 +88,8 @@ int				main(int ac, char **av)
 	s_init_con(&con, &chemp, ac - 1); ///// nbr chemp!
 	con.mem = allocate_memory();
 	add_champions(&con, ac, av, chemp);
-
+	vm_show_map(con);
+	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
@@ -105,7 +98,7 @@ int				main(int ac, char **av)
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
 				break ;
 			vm_show_map(con);
-			read(0, 0, 1);
+	//		read(0, 0, 1);
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
@@ -113,6 +106,6 @@ int				main(int ac, char **av)
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-vm_show_map(con);
+	vm_show_map(con);
 	return (0);
 }

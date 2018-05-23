@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/21 19:41:57 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/22 13:30:46 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct      s_con
 	int				cycl;
 	int				cycl_die_per;
 	int				cycl_to_die;
+	int				live;
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;
@@ -83,7 +84,8 @@ void				do_and(t_con *con, int index, unsigned int *n,
 															t_proc *proc);
 void				do_fork(t_con *con, int index, t_proc *proc);
 void				do_ld(t_con *con, int index, unsigned int *n, t_proc *proc);
-void				do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc);
+void				do_ldi(t_con *con, int index, unsigned int *n,
+															t_proc *proc);
 void				do_lfork(t_con *con, int index, t_proc *proc);
 void				do_live(t_con *con, int index, t_proc *proc);
 void				do_lld(t_con *con, int index, unsigned int *n,

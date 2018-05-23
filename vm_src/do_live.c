@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:49 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/21 23:10:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:05:22 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		do_live(t_con *con, int index, t_proc *proc)
 	int				l;
 
 	printf("COMMAND: live\n");
+	con->live++;
 	if (proc->live <= 1)
 		proc->live++;
 	nbr[0] = con->mem[get_index(index, 1)].byte;
@@ -47,7 +48,6 @@ void		do_live(t_con *con, int index, t_proc *proc)
 	}
 	con->mem[index].chemp->cycl_live = con->cycl;
 	con->mem[index].chemp->live_icp++;
-	printf("chemp: %d, live: %d\n", (char)con->mem[index].chemp->nbr[3],
-			con->mem[index].chemp->live_icp);
-	read(0, &l, 1);
+//	printf("chemp: %d, live: %d\n", (char)con->mem[index].chemp->nbr[3],
+//			con->mem[index].chemp->live_icp);
 }

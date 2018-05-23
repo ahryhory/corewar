@@ -6,11 +6,22 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 18:03:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/21 23:43:04 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:49:12 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+static int	s_helpa(t_proc *proc, int i)
+{
+	int		j;
+
+	j = -1;
+	while (++j != 3)
+		if (g_optab[proc->mem[proc->index].byte - 1].args[i][j])
+			return (1);
+	return (0);
+}
 
 static void	s_add_cp(t_proc *proc, unsigned int *codg)
 {
@@ -26,12 +37,15 @@ static void	s_add_cp(t_proc *proc, unsigned int *codg)
 	{
 		if (!codg[i])
 			continue;
-		if (codg[i] == 1)
-			proc->cp++;
-		else
-			proc->cp = codg[i] == 2 ? proc->cp + n : proc->cp + 2;
+		if (s_helpa(proc, i))
+		{
+			if (codg[i] == 1)
+				proc->cp++;
+			else
+				proc->cp = codg[i] == 2 ? proc->cp + n : proc->cp + 2;
+		}
 	}
-	printf("proc->cp = %d\n", proc->cp);
+//	printf("proc->cp = %d\n", proc->cp);
 }
 
 int			vm_give_codg(t_proc *proc, unsigned int *codg)
@@ -44,15 +58,11 @@ int			vm_give_codg(t_proc *proc, unsigned int *codg)
 	codg[0] = (proc->mem)[index].byte >> 6;
 	codg[1] = (((proc->mem)[index].byte << 26) >> 30) & 3;
 	codg[2] = (((proc->mem)[index].byte << 28) >> 30) & 3;
-	ALLAH SUDIYA;
-	//нужно проверять кодж на валидность
-	//в случае невалидного сп = 1
-	//хф
-	printf("Codg logo: index = %d\n", index);
+/*	printf("Codg logo: index = %d\n", index);
 	printf("	codg[0] = %d\n", codg[0]);
 	printf("	codg[1] = %d\n", codg[1]);
 	printf("	codg[2] = %d\n", codg[2]);
-	s_add_cp(proc, codg);
+*/	s_add_cp(proc, codg);
 	i = 0;
 	while (i < 3)
 	{

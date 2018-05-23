@@ -6,35 +6,45 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:32:37 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/20 14:44:34 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:53:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+static void	s_add_to_mem(t_con *con, unsigned int value, int index, t_chemp *chemp)
+{
+	con->mem[index].chemp = chemp;
+	con->mem[index].byte = (value >> 24) & 255;
+	index = get_index(index, 1);
+	con->mem[index].chemp = chemp;
+	con->mem[index].byte = (value >> 16) & 255;
+	index = get_index(index, 1);
+	con->mem[index].chemp = chemp;
+	con->mem[index].byte = (value >> 8) & 255;
+	index = get_index(index, 1);
+	con->mem[index].chemp = chemp;
+	con->mem[index].byte = value & 255;
+}
 
 void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	int		coord;
 	int		indx;
 	int		tmp;
+	t_chemp	*chemp;
 
 	printf("COMMAND: st\n");
+	chemp = con->mem[index].chemp;
 	index = get_index(index, 2);
 	if (n[1] == 3)
 	{
-		printf("%d\n", (short int)(get_nbr(con, get_index(index, 1), 2)));
-
 		indx = get_index(proc->index,
 				(short int)(get_nbr(con, get_index(index, 1), 2)) % IDX_MOD);
-		printf("%d\n", indx);
 		tmp = proc->r[con->mem[index].byte - 1];
-		con->mem[indx].byte = (tmp >> 24) & 255;
-		con->mem[get_index(indx, 1)].byte = ((tmp << 8) >> 24) & 255;
-		con->mem[get_index(indx, 2)].byte = ((tmp << 16) >> 24) & 255;
-		con->mem[get_index(indx, 3)].byte = ((tmp << 24) >> 24) & 255;
-		printf("%d, %d, %d, %d\n", index, indx, tmp, con->mem[index].byte);
-//		exit(0);
+		s_add_to_mem(con, tmp, indx, chemp);
 	}
 	else
-		proc->r[con->mem[get_index(index, 1)].byte] = proc->r[con->mem[index].byte];
+		proc->r[con->mem[get_index(index, 1)].byte] =
+			proc->r[con->mem[index].byte];
 }

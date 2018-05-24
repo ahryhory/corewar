@@ -112,7 +112,9 @@ t_data				parse(char *file, t_info info)
 
 	data.command = NULL;
 	info.line = NULL;
-	fd = open(file, O_RDONLY);
+	if (!(file[ft_strlen(file) - 2] == '.' && file[ft_strlen(file) - 1] == 's'))
+		ft_exit(20, info);
+	fd = open(file, O_RDWR);
 	if (fd < 0)
 		ft_exit(14, info);
 	count = 0;

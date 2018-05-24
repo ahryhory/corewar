@@ -33,6 +33,7 @@
 	17 - wrong 2 arg
 	18 - wrong 3 arg
 	19 - no this lable
+	20 - wrong filename extension
 */
 
 void	ft_exit(int error, t_info info)

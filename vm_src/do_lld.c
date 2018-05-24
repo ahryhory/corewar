@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:34:44 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/21 18:06:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/24 14:33:36 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void		do_lld(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	int		tmp;
 	int		val;
-	printf("COMMAND: lld\n");
 
-	index = get_index(index, 2); // because this command has codage
+	printf("COMMAND: lld\n");
+	index = get_index(index, 2);	
 	if (n[0] == 2)
 	{
 		val = get_nbr(con, index, 4);

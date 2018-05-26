@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 19:35:14 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/22 15:25:47 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 20:27:38 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ void	vm_show_map(t_con con)
 				printf("%20s", "Proces:");
 			if (j > 3 && j < REG_NUMBER + 5)
 				s_print_reg(con.proc, j - 5);
-//			if (j == 4)
-//				printf("%4c cycl: %d", ' ', con->cycl);
-//			else if (j
 			printf("\n");
 		}
 	}
-	printf("%d\n", i);
 }

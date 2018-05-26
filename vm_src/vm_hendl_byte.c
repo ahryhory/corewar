@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/23 19:50:11 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/24 19:55:08 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	s_init_proc(t_proc *proc)
 	{
 		proc->work = 1;
 		proc->cycl = g_optab[(proc->mem)[proc->index].byte - 1].cycles;
+		proc->do_byte = (proc->mem)[proc->index].byte;
 	}
 	else
 	{

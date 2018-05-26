@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/22 13:30:46 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 22:30:05 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct    s_proc
     int             carry;
 	int				cycl;
 	int				live;
+	int				do_byte;
 	int				index;
     int				work;
     t_mem			*mem;
@@ -75,7 +76,8 @@ typedef struct      s_con
 	t_proc			*proc;
 }					t_con;
 
-t_mem			    *allocate_memory();
+int					vm_count_proc(t_proc *proc);
+t_mem			    *allocate_memory(t_chemp *zero);
 void				add_champions(t_con *con, int ac, char **av,
 														t_chemp *chemp);
 void				do_add(t_con *con, int index, t_proc *proc);

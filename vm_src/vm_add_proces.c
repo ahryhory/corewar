@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:32:34 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/20 14:00:29 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 22:02:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
+	printf("proc: %d\n", vm_count_proc(con->proc));
 	proc = malloc(sizeof(t_proc));
+	printf("1\n");
 	s_init_r(proc->r, nbr);
 	proc->cp = 0;
 	proc->carry = 0;
+	proc->do_byte = 0;
 	proc->cycl = 0;
 	proc->live = 1;
 	proc->index = index;

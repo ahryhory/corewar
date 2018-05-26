@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:32 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/20 15:19:40 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 22:10:46 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	void	s_cpy_proc(t_proc *proc, t_proc *new_proc)
 {
 	int		i;
 
-	i = -1;
+	i = 0;
 	while (++i < 16)
 		new_proc->r[i] = proc->r[i];
 	new_proc->carry = proc->carry;
@@ -31,8 +31,7 @@ void			do_lfork(t_con *con, int index, t_proc *proc)
 
 	printf("COMMAND: lfork\n");
 	nbr = (short int)get_nbr(con, get_index(proc->index, 1), 2);
-	vm_add_proces(con, get_index(index, nbr),
-			proc->r[con->mem[index].byte - 1]);
+	vm_add_proces(con, get_index(index, nbr), proc->r[0]);
 	new_proc = con->proc;
 	s_cpy_proc(proc, new_proc);
 }

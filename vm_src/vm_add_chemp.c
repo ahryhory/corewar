@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/20 13:44:59 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 21:25:59 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_chemp	*vm_add_chemp(int nbr)
 	t_chemp	*b_chemp;
 
 	i = -1;
-	b_chemp = 0;
+	b_chemp = s_create_chemp(0);
 	while (nbr--)
 	{
 		chemp = b_chemp;

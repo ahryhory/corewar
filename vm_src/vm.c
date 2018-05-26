@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/22 15:30:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 21:52:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,10 @@ int				main(int ac, char **av)
 	init_optab();
 	if (ac == 1)
 		exit(1);
-	s_init_con(&con, &chemp, ac - 1); ///// nbr chemp!
-	con.mem = allocate_memory();
-	add_champions(&con, ac, av, chemp);
+	printf("%lu\n", sizeof(t_proc));
+	s_init_con(&con, &chemp, ac); ///// nbr chemp!
+	con.mem = allocate_memory(chemp);
+	add_champions(&con, ac, av, chemp->next);
 	vm_show_map(con);
 	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)

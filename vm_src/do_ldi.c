@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:20 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/23 19:36:53 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/26 17:51:27 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 	else if (n[1] == 2 && (step2 = 2))
 		arg_2 = (short int)get_nbr(con, get_index(index, step + 2), 2);
 	proc->r[con->mem[get_index(index, 2 + step + step2)].byte - 1] =
-	get_nbr(con, get_index(index, get_index(index, (short int)((arg_1 + arg_2)
-					% IDX_MOD))), 4);
+	get_nbr(con, get_index(index, ((short int)(arg_1 + arg_2) % IDX_MOD)), 4);
 }

@@ -60,97 +60,99 @@ void	vm_show_map(t_con con)
 	{
 		proc = con.proc;
 		check = 1;
-		if (mem[i].chemp->color == 1)
+		while (proc)
+		{
+			if (proc->index == i)
+			{
+				if (i % 64 == 0 && i != 0)
+				{
+					printw("\n");
+					printw("%#.4x : ", i);
+				}
+				attron(COLOR_PAIR(1));
+				printw("%2.2x", mem[i].byte);
+				attroff(COLOR_PAIR(1));
+				printw(" ");
+				check = 0;
+				break ;
+			}
+			proc = proc->next;
+		}
+		if (mem[i].chemp->color == 1 && check)
 		{
 			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
 			{
 				attron(COLOR_PAIR(6));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(6));
 				printw(" ");
 			}
 			else
 			{
 				attron(COLOR_PAIR(2));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(2));
 				printw(" ");
 			}
 			check = 0;
 		}
-		else if (mem[i].chemp->color == 2)
+		else if (mem[i].chemp->color == 2 && check)
 		{
 			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
 			{
 				attron(COLOR_PAIR(7));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(7));
 				printw(" ");
 			}
 			else
 			{
 				attron(COLOR_PAIR(3));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(3));
 				printw(" ");
 			}
 			check = 0;
 		}
-		else if (mem[i].chemp->color == 3)
+		else if (mem[i].chemp->color == 3 && check)
 		{
 			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
 			{
 				attron(COLOR_PAIR(8));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(8));
 				printw(" ");
 			}
 			else
 			{
 				attron(COLOR_PAIR(4));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(4));
 				printw(" ");
 			}
 			check = 0;
 		}
-		else if (mem[i].chemp->color == 4)
+		else if (mem[i].chemp->color == 4 && check)
 		{
 			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
 			{
 				attron(COLOR_PAIR(9));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(9));
 				printw(" ");
 			}
 			else
 			{
 				attron(COLOR_PAIR(5));
-				printw("%2.2x", mem[i++].byte);
+				printw("%2.2x", mem[i].byte);
 				attroff(COLOR_PAIR(5));
 				printw(" ");
 			}
 			check = 0;
 		}
-		while (proc)
-		{
-			if (proc->index == i)
-			{
-				if (i % 64 == 0)
-				{
-					printw("\n");
-					printw("%#.4x : ", i);
-				}
-				attron(COLOR_PAIR(1));
-				printw("%2.2x", mem[i++].byte);
-				attroff(COLOR_PAIR(1));
-				printw(" ");
-				check = 0;
-			}
-			proc = proc->next;
-		}
 		if (check)
-			printw("%2.2x ", mem[i++].byte);
+			printw("%2.2x ", mem[i].byte);
+		i++;
 		if (i % 64 == 0 && (++j || !j))
 		{
 			if (j == 0)

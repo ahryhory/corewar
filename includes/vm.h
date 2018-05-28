@@ -126,5 +126,6 @@ int					vm_give_codg(t_proc *proc, unsigned int *codg);
 t_chemp				*vm_add_chemp(int nbr);
 void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
+void				vm_show_map_win(t_con con);
 
 #endif

@@ -17,16 +17,25 @@ static void	s_print_reg(t_proc *proc, int j)
 	int		i;
 
 	i = -1;
-	if (j == -1)
-		while (proc && ++i <= 4)
+	if (j == -2)
+		while (proc && ++i <= 8)
 		{
-			printw("%9d", (char)proc->mem[proc->index].chemp->nbr[3]);
+			printw("%10d", (char)proc->mem[proc->index].chemp->nbr[3]);
 			proc = proc->next;
 		}
+	else if (j == -1)
+	{
+		printw("     index:");
+		while (proc && ++i <= 8)
+		{
+			printw(" %-10d", proc->index);
+			proc = proc->next;
+		}
+	}
 	else
 	{
-		printw("r[%2d%-3s", j + 1, "]");
-		while (proc && ++i <= 4)
+		printw("     r[%2d%-3s", j + 1, "]");
+		while (proc && ++i <= 8)
 		{
 			printw("%-10.8x", proc->r[j]);
 			proc = proc->next;
@@ -37,15 +46,16 @@ static void	s_print_reg(t_proc *proc, int j)
 void	vm_show_map(t_con con)
 {
 	t_mem	*mem;
-	t_proc	*proc;
 	int		i;
 	int		j;
 	int		check;
+	t_proc	*proc;
 
 	clear();
 	mem = con.mem;
 	i = 0;
 	j = -1;
+	printw("0x%.4x : ", i);
 	while (i < MEM_SIZE)
 	{
 		proc = con.proc;
@@ -103,10 +113,15 @@ void	vm_show_map(t_con con)
 			if (j == 2)
 				printw("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
 			if (j == 3)
-				printw("%20s", "Proces:");
-			if (j > 3 && j < REG_NUMBER + 5)
-				s_print_reg(con.proc, j - 5);
+				printw("%20s %d", "Proces:", vm_count_proc(con.proc));
+			if (j > 3 && j < REG_NUMBER + 6)
+				s_print_reg(con.proc, j - 6);
+//			if (j == 4)
+//				printf("%4c cycl: %d", ' ', con->cycl);
+//			else if (j
 			printw("\n");
+			if (i < MEM_SIZE)
+				printw("%#.4x : ", i);
 		}
 	}
 	refresh();

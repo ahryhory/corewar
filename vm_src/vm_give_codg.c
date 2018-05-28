@@ -82,10 +82,10 @@ int			vm_give_codg(t_proc *proc, unsigned int *codg)
 	codg[0] = (proc->mem)[index].byte >> 6;
 	codg[1] = (((proc->mem)[index].byte << 26) >> 30) & 3;
 	codg[2] = (((proc->mem)[index].byte << 28) >> 30) & 3;
-	printf("Codg logo: index = %d\n", index);
-	printf("	codg[0] = %d\n", codg[0]);
-	printf("	codg[1] = %d\n", codg[1]);
-	printf("	codg[2] = %d\n", codg[2]);
+	//printf("Codg logo: index = %d\n", index);
+	//printf("	codg[0] = %d\n", codg[0]);
+	// printf("	codg[1] = %d\n", codg[1]);
+	// printf("	codg[2] = %d\n", codg[2]);
 	s_add_cp(proc, codg);
 	if (!s_check_valid(codg, proc, -1))
 		return (0);

@@ -37,7 +37,7 @@ void	do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
 	t_chemp			*chemp;
 	int				step;
 
-	printf("COMMAND: sti\n");
+	// /printf("COMMAND: sti\n");
 	arg_1 = 0;
 	arg_2 = 0;
 	value = 0;

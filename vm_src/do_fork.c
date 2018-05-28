@@ -29,7 +29,7 @@ void			do_fork(t_con *con, int index, t_proc *proc)
 	short int		nbr;
 	t_proc	*new_proc;
 
-	printf("COMMAND: fork\n");
+	//printf("COMMAND: fork\n");
 	nbr = (short int)get_nbr(con, get_index(proc->index, 1), 2);
 	vm_add_proces(con, get_index(index, nbr % IDX_MOD), proc->r[0]);
 	new_proc = con->proc;

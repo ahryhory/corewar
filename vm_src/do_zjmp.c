@@ -16,11 +16,11 @@ void	do_zjmp(t_con *con, int index, t_proc *proc)
 {
 	int		coord;
 
-	printf("Command zjmp\n");
+	//printf("Command zjmp\n");
 	if (proc->carry == 0)
 		return ;
 	coord = ((short int)(get_nbr(con, get_index(index, 1), 2))) % IDX_MOD;
 	proc->cp = -1;
 	proc->index = get_index(index, coord);
-	printf("end com\n");
+	//printf("end com\n");
 }

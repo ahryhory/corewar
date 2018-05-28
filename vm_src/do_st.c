@@ -33,7 +33,7 @@ void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 	unsigned int	tmp;
 	t_chemp			*chemp;
 
-	printf("COMMAND: st\n");
+	//printf("COMMAND: st\n");
 	chemp = con->mem[index].chemp;
 	index = get_index(index, 2);
 	if (n[1] == 3)

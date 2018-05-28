@@ -63,12 +63,12 @@ static int		s_check_cycl(t_con *con)
 		con->cycl_die_per = 0;
 		if (con->live >= 21)
 		{
-			printf("live >= 21\n");
+			//printf("live >= 21\n");
 			return (1);
 		}
 		if (con->m_check >= 10)
 		{
-			printf("\nm_check >= 10\n");
+			//printf("\nm_check >= 10\n");
 			con->m_check = 0;
 			return (1);
 		}
@@ -100,7 +100,7 @@ int				main(int ac, char **av)
 //	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
-		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
+		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)

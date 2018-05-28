@@ -136,6 +136,11 @@ void	vm_show_map(t_con con)
 		{
 			if (proc->index == i)
 			{
+				if (i % 64 == 0)
+				{
+					printw("\n");
+					printw("%#.4x : ", i);
+				}
 				attron(COLOR_PAIR(1));
 				printw("%2.2x", mem[i++].byte);
 				attroff(COLOR_PAIR(1));

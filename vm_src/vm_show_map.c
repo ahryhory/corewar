@@ -20,24 +20,24 @@ static void	s_print_reg(t_proc *proc, int j)
 	if (j == -2)
 		while (proc && ++i <= 8)
 		{
-			printf("%10d", (char)proc->mem[proc->index].chemp->nbr[3]);
+			printw("%10d", (char)proc->mem[proc->index].chemp->nbr[3]);
 			proc = proc->next;
 		}
 	else if (j == -1)
 	{
-		printf("     index:");
+		printw("     index:");
 		while (proc && ++i <= 8)
 		{
-			printf(" %-10d", proc->index);
+			printw(" %-10d", proc->index);
 			proc = proc->next;
 		}
 	}
 	else
 	{
-		printf("     r[%2d%-3s", j + 1, "]");
+		printw("     r[%2d%-3s", j + 1, "]");
 		while (proc && ++i <= 8)
 		{
-			printf("%-10.8x", proc->r[j]);
+			printw("%-10.8x", proc->r[j]);
 			proc = proc->next;
 		}
 	}
@@ -48,30 +48,126 @@ void	vm_show_map(t_con con)
 	t_mem	*mem;
 	int		i;
 	int		j;
+	int		check;
+	t_proc	*proc;
 
+	clear();
 	mem = con.mem;
 	i = 0;
 	j = -1;
-	printf("0x%.4x : ", i);
+	printw("0x%.4x : ", i);
 	while (i < MEM_SIZE)
 	{
-		printf("%2.2x ", mem[i++].byte);
+		proc = con.proc;
+		check = 1;
+		if (mem[i].chemp->color == 1)
+		{
+			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
+			{
+				attron(COLOR_PAIR(6));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(6));
+				printw(" ");
+			}
+			else
+			{
+				attron(COLOR_PAIR(2));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(2));
+				printw(" ");
+			}
+			check = 0;
+		}
+		else if (mem[i].chemp->color == 2)
+		{
+			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
+			{
+				attron(COLOR_PAIR(7));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(7));
+				printw(" ");
+			}
+			else
+			{
+				attron(COLOR_PAIR(3));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(3));
+				printw(" ");
+			}
+			check = 0;
+		}
+		else if (mem[i].chemp->color == 3)
+		{
+			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
+			{
+				attron(COLOR_PAIR(8));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(8));
+				printw(" ");
+			}
+			else
+			{
+				attron(COLOR_PAIR(4));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(4));
+				printw(" ");
+			}
+			check = 0;
+		}
+		else if (mem[i].chemp->color == 4)
+		{
+			if (mem[i].light + 50 > con.cycl && mem[i].light != 0)
+			{
+				attron(COLOR_PAIR(9));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(9));
+				printw(" ");
+			}
+			else
+			{
+				attron(COLOR_PAIR(5));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(5));
+				printw(" ");
+			}
+			check = 0;
+		}
+		while (proc)
+		{
+			if (proc->index == i)
+			{
+				if (i % 64 == 0)
+				{
+					printw("\n");
+					printw("%#.4x : ", i);
+				}
+				attron(COLOR_PAIR(1));
+				printw("%2.2x", mem[i++].byte);
+				attroff(COLOR_PAIR(1));
+				printw(" ");
+				check = 0;
+			}
+			proc = proc->next;
+		}
+		if (check)
+			printw("%2.2x ", mem[i++].byte);
 		if (i % 64 == 0 && (++j || !j))
 		{
 			if (j == 0)
-				printf("%20s %d", "cycl:          ", con.cycl);
+				printw("%20s %d", "cycl:          ", con.cycl);
 			if (j == 2)
-				printf("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
+				printw("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
 			if (j == 3)
-				printf("%20s %d", "Proces:", vm_count_proc(con.proc));
+				printw("%20s %d", "Proces:", vm_count_proc(con.proc));
 			if (j > 3 && j < REG_NUMBER + 6)
 				s_print_reg(con.proc, j - 6);
 //			if (j == 4)
 //				printf("%4c cycl: %d", ' ', con->cycl);
 //			else if (j
-			printf("\n");
+			printw("\n");
 			if (i < MEM_SIZE)
-				printf("%#.4x : ", i);
+				printw("%#.4x : ", i);
 		}
 	}
+	refresh();
 }

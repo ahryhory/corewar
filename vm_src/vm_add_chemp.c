@@ -12,16 +12,16 @@
 
 #include "vm.h"
 
-static t_chemp	*s_create_chemp(int nbr)
+static t_chemp	*s_create_chemp(int nbr, int color)
 {
 	t_chemp	*chemp;
 
 	chemp = malloc(sizeof(t_chemp));
-	chemp->nbr = malloc(sizeof(int) * 4);
-	(chemp->nbr)[0] = (nbr >> 24) & 255;
-	(chemp->nbr)[1] = ((nbr << 8) >> 24) & 255;
-	(chemp->nbr)[2] = ((nbr << 16) >> 24) & 255;
-	(chemp->nbr)[3] = ((nbr << 24) >> 24) & 255;
+	chemp->nbr[0] = (nbr >> 24) & 255;
+	chemp->nbr[1] = ((nbr << 8) >> 24) & 255;
+	chemp->nbr[2] = ((nbr << 16) >> 24) & 255;
+	chemp->nbr[3] = ((nbr << 24) >> 24) & 255;
+	chemp->color = color;
 	chemp->cycl_live = 0;
 	chemp->live_icp = 0;
 	chemp->next = 0;
@@ -31,22 +31,24 @@ static t_chemp	*s_create_chemp(int nbr)
 t_chemp	*vm_add_chemp(int nbr)
 {
 	int		i;
+	int		color;
 	t_chemp	*chemp;
 	t_chemp	*b_chemp;
 
 	i = -1;
-	b_chemp = s_create_chemp(0);
+	color = 0;
+	b_chemp = s_create_chemp(0, color++);
 	while (nbr--)
 	{
 		chemp = b_chemp;
 		if (!b_chemp)
 		{
-			b_chemp = s_create_chemp(i--);
+			b_chemp = s_create_chemp(i--, color++);
 			continue;
 		}
 		while (chemp->next)
 			chemp = chemp->next;
-		chemp->next = s_create_chemp(i--);
+		chemp->next = s_create_chemp(i--, color++);
 	}
 	return (b_chemp);
 }

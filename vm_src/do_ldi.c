@@ -19,7 +19,7 @@ void	do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 	int		step;
 	int		step2;
 
-	printf("COMMAND: ldi\n");
+	//printf("COMMAND: ldi\n");
 	step = 0;
 	step2 = 0;
 	arg_1 = 0;
@@ -37,5 +37,5 @@ void	do_ldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 		arg_2 = (short int)get_nbr(con, get_index(index, step + 2), 2);
 	proc->r[con->mem[get_index(index, 2 + step + step2)].byte - 1] =
 	get_nbr(con, get_index(index, ((short int)(arg_1 + arg_2) % IDX_MOD)), 4);
-	printf("end com\n");
+	//printf("end com\n");
 }

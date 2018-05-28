@@ -17,7 +17,7 @@ void		do_ld(t_con *con, int index, unsigned int *n, t_proc *proc)
 	int				tmp;
 	unsigned int	val;
 
-	printf("COMMAND: ld\n");
+	//printf("COMMAND: ld\n");
 	index = get_index(index, 2);
 	if (n[0] == 2)
 	{
@@ -34,5 +34,5 @@ void		do_ld(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
-	printf("end com\n");
+	//printf("end com\n");
 }

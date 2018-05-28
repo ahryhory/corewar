@@ -16,15 +16,19 @@ static void	s_add_to_mem(t_con *con, unsigned int value, int index, t_chemp *che
 {
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = (value >> 24) & 255;
+	con->mem[index].light = con->cycl;
 	index = get_index(index, 1);
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = (value >> 16) & 255;
+	con->mem[index].light = con->cycl;
 	index = get_index(index, 1);
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = (value >> 8) & 255;
+	con->mem[index].light = con->cycl;
 	index = get_index(index, 1);
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = value & 255;
+	con->mem[index].light = con->cycl;
 }
 
 void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
@@ -33,7 +37,7 @@ void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 	unsigned int	tmp;
 	t_chemp			*chemp;
 
-	printf("COMMAND: st\n");
+	//printf("COMMAND: st\n");
 	chemp = con->mem[index].chemp;
 	index = get_index(index, 2);
 	if (n[1] == 3)

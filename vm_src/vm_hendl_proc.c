@@ -24,7 +24,7 @@ int		vm_hendl_proc(t_con *con)
 	{
 		if (proc && !proc->live)
 		{
-			printf("Proces died\n");
+			//printf("Proces died\n");
 			proc = proc->next;
 			vm_del_proc(&con, i);
 			continue;

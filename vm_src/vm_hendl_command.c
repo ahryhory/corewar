@@ -14,7 +14,7 @@
 
 static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 {
-printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, proc->index, con->cycl);
+//printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, proc->index, con->cycl);
 
 	if (proc->do_byte == 1)
 	{
@@ -71,7 +71,7 @@ void		vm_hendl_command(t_proc *proc, t_con *con)
 	{
 	////////
 		i = 1;
-printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, proc->index, con->cycl);
+//printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, proc->index, con->cycl);
 
 	//////
 		if (proc->do_byte == 2)

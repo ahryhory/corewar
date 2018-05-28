@@ -63,12 +63,12 @@ static int		s_check_cycl(t_con *con)
 		con->cycl_die_per = 0;
 		if (con->live >= 21)
 		{
-			printf("live >= 21\n");
+			//printf("live >= 21\n");
 			return (1);
 		}
 		if (con->m_check >= 10)
 		{
-			printf("\nm_check >= 10\n");
+			//printf("\nm_check >= 10\n");
 			con->m_check = 0;
 			return (1);
 		}
@@ -81,20 +81,40 @@ int				main(int ac, char **av)
 {
 	t_con		con;
 	t_chemp		*chemp;
+	int			k;
+	int			step;
 
 	init_optab();
+	k = 1;
+	step = 1;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
-//	vm_show_map(con);
+	initscr();
+	noecho();
+	start_color();
+	init_pair(1, COLOR_BLACK, COLOR_CYAN);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(5, COLOR_BLUE, COLOR_BLACK);
+	init_pair(6, COLOR_GREEN, COLOR_WHITE);
+	init_pair(7, COLOR_RED, COLOR_WHITE);
+	init_pair(8, COLOR_YELLOW, COLOR_WHITE);
+	init_pair(9, COLOR_BLUE, COLOR_WHITE);
+	vm_show_map(con);
 //	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
+<<<<<<< HEAD
 		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		con.cycl++;
 		con.cycl_die_per++;
+=======
+		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
+>>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -102,14 +122,28 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
+<<<<<<< HEAD
 		if (con.cycl >= con.dump && !(con.cycl % 100) && con.dump)
+=======
+		if (con.cycl >= con.dump && !(con.cycl % step))
+>>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 		{
 			vm_show_map(con);
-			read(0, 0, 1);
+			while (read(0, &k, 1) > 0 && k != ' ')
+			{
+				if (k == 's')
+					step++;
+				if (k == 'd' && step > 1)
+					step--;
+			}
 		}
 		vm_hendl_proc(&con);
 	}
 	vm_show_map(con);
+<<<<<<< HEAD
 	system("leaks corewar");
+=======
+	endwin();
+>>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 	return (0);
 }

@@ -33,7 +33,7 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 	int			file;
 
 	file = con->dump == 0 ? 1 : 3;
-	printf("file %d \n", file);
+	//printf("file %d \n", file);
 	while (file < ac)
 	{
 		fd = open(av[file], O_RDONLY);

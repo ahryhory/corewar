@@ -14,7 +14,7 @@
 
 void	do_sub(t_con *con, int index, t_proc *proc)
 {
-	printf("COMMAND: sub\n");
+	//printf("COMMAND: sub\n");
 	proc->r[con->mem[get_index(index, 4)].byte - 1] =
 		proc->r[con->mem[get_index(index, 2)].byte - 1] -
 		proc->r[con->mem[get_index(index, 3)].byte - 1];

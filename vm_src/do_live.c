@@ -18,7 +18,7 @@ void		do_live(t_con *con, int index, t_proc *proc)
 	int		i;
 //	int				l;
 
-	printf("COMMAND: live\n");
+	//printf("COMMAND: live\n");
 	con->live++;
 	if (proc->live <= 1)
 		proc->live++;

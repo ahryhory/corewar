@@ -14,7 +14,7 @@
 
 void	do_add(t_con *con, int index, t_proc *proc)
 {
-	printf("COMMAND: add\n");
+	//printf("COMMAND: add\n");
 	proc->r[con->mem[get_index(index, 4)].byte - 1] =
 		(unsigned int)(proc->r[con->mem[get_index(index, 2)].byte - 1] +
 		proc->r[con->mem[get_index(index, 3)].byte - 1]);

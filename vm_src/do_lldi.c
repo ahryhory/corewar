@@ -19,7 +19,7 @@ void	do_lldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 	int		step;
 	int		step2;
 
-	printf("COMMAND: lldi\n");
+	//printf("COMMAND: lldi\n");
 	step = 0;
 	step2 = 0;
 	arg_1 = 0;

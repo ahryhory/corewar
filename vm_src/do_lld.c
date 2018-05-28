@@ -17,7 +17,7 @@ void		do_lld(t_con *con, int index, unsigned int *n, t_proc *proc)
 	int				tmp;
 	unsigned int	val;
 
-	printf("COMMAND: lld\n");
+	//printf("COMMAND: lld\n");
 	index = get_index(index, 2);	
 	if (n[0] == 2)
 	{

@@ -29,7 +29,7 @@ void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 	unsigned int	step;
 	unsigned int	step2;
 
-	printf("COMMAND: or\n");
+	///printf("COMMAND: or\n");
 	num_1 = 0;
 	num_2 = 0;
 	step = 0;
@@ -51,5 +51,5 @@ void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
-	printf("end com\n");
+	//printf("end com\n");
 }

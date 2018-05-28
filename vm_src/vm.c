@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/28 15:08:43 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 20:02:49 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,9 @@ int				main(int ac, char **av)
 	init_pair(7, COLOR_RED, COLOR_WHITE);
 	init_pair(8, COLOR_YELLOW, COLOR_WHITE);
 	init_pair(9, COLOR_BLUE, COLOR_WHITE);
-	vm_show_map(con);
-//	read(0, 0, 1);
+//	vm_show_map(con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
-		con.cycl++;
-		con.cycl_die_per++;
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
@@ -121,17 +118,20 @@ int				main(int ac, char **av)
 		if (con.cycl >= con.dump && !(con.cycl % step))
 		{
 			vm_show_map(con);
-			while (read(0, &k, 1) > 0 && k != ' ')
+			while (read(0, &k, 1) > 0 && k != 's')
 			{
-				if (k == 's')
+				if (k == 'e')
 					step++;
-				if (k == 'd' && step > 1)
+				if (k == 'q' && step > 1)
 					step--;
 			}
 		}
 		vm_hendl_proc(&con);
+		con.cycl++;
+		con.cycl_die_per++;
 	}
 	vm_show_map(con);
+	getch();
 	endwin();
 	return (0);
 }

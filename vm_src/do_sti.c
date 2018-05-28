@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:20 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 16:16:02 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:52:11 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
 	arg_2 = 0;
 	value = 0;
 	step = 0;
-	chemp = con->mem[index].chemp;
+	chemp = proc->chemp;
 	value = (unsigned int)proc->r[con->mem[get_index(index, 2)].byte - 1];
 	if (n[1] == 1 && (step = 1))
 		arg_1 = (short int)proc->r[con->mem[get_index(index, 3)].byte - 1];

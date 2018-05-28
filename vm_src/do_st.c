@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:32:37 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 16:37:49 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:51:59 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 	t_chemp			*chemp;
 
 	//printf("COMMAND: st\n");
-	chemp = con->mem[index].chemp;
+	chemp = proc->chemp;
 	index = get_index(index, 2);
 	if (n[1] == 3)
 	{

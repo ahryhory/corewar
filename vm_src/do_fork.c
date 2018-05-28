@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/28 13:52:23 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:51:08 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static	void	s_cpy_proc(t_proc *proc, t_proc *new_proc)
 	new_proc->carry = proc->carry;
 	new_proc->live = proc->live;
 	new_proc->cycl = proc->cycl;
+	new_proc->chemp = proc->chemp;
 }
 
 void			do_fork(t_con *con, int index, t_proc *proc)

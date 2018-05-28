@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 19:35:14 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/27 22:05:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 16:54:47 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	vm_show_map(t_con con)
 	int		j;
 	int		check;
 	t_proc	*proc;
+	int		castil;
 
 	clear();
+	castil = 1;
 	mem = con.mem;
 	i = 0;
 	j = -1;
@@ -64,10 +66,11 @@ void	vm_show_map(t_con con)
 		{
 			if (proc->index == i)
 			{
-				if (i % 64 == 0 && i != 0)
+				if (i % 64 == 0 && i != 0 && castil)
 				{
 					printw("\n");
 					printw("%#.4x : ", i);
+					castil = 0;
 				}
 				attron(COLOR_PAIR(1));
 				printw("%2.2x", mem[i].byte);

@@ -108,13 +108,9 @@ int				main(int ac, char **av)
 //	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
-<<<<<<< HEAD
-		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		con.cycl++;
 		con.cycl_die_per++;
-=======
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
->>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -122,11 +118,7 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-<<<<<<< HEAD
-		if (con.cycl >= con.dump && !(con.cycl % 100) && con.dump)
-=======
 		if (con.cycl >= con.dump && !(con.cycl % step))
->>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 		{
 			vm_show_map(con);
 			while (read(0, &k, 1) > 0 && k != ' ')
@@ -140,10 +132,6 @@ int				main(int ac, char **av)
 		vm_hendl_proc(&con);
 	}
 	vm_show_map(con);
-<<<<<<< HEAD
-	system("leaks corewar");
-=======
 	endwin();
->>>>>>> 72bc7d48872f1ed853e7e3fcdfc28ab3d3faf9fb
 	return (0);
 }

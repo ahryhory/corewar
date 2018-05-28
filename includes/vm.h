@@ -17,6 +17,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <ncurses.h>
 
 # define COUNT_OP 16
 
@@ -38,7 +39,8 @@ t_optab             g_optab[COUNT_OP];
 
 typedef struct		s_chemp
 {
-	int				*nbr;
+	int				nbr[4];
+	int				color;
 	int				cycl_live;
 	int				live_icp;
 	struct s_chemp	*next;

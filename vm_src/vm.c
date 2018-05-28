@@ -88,7 +88,15 @@ int				main(int ac, char **av)
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
-//	vm_show_map(con);
+	initscr();
+	noecho();
+	start_color();
+	init_pair(1, COLOR_BLACK, COLOR_WHITE);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(5, COLOR_BLUE, COLOR_BLACK);
+	vm_show_map(con);
 //	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
@@ -110,5 +118,6 @@ int				main(int ac, char **av)
 		vm_hendl_proc(&con);
 	}
 	vm_show_map(con);
+	endwin();
 	return (0);
 }

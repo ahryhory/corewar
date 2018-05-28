@@ -118,7 +118,7 @@ $(NAME_A): $(ASM_OBJS)
 	@$(C) $(FLAGS) -o $(NAME_A) $(ASM_OBJS) $(LIB) -I $(LIBFT) -I $(INC)
 
 $(NAME_C): $(COR_OBJS)
-	@$(C) $(FLAGS) -o $(NAME_C) $(COR_OBJS) $(LIB) -I $(LIBFT) -I $(INC)
+	@$(C) $(FLAGS) -o $(NAME_C) $(COR_OBJS) $(LIB) -I $(LIBFT) -I $(INC) -lncurses
 
 $(ASM_OBJ)/%.o: $(ASM_SRC)/%.c
 	@mkdir -p $(ASM_OBJ)

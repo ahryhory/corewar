@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/27 20:57:56 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:49:40 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct    s_proc
 	int				do_byte;
 	int				index;
     int				work;
+	t_chemp			*chemp;
     t_mem			*mem;
     struct s_proc	*next;
 }					t_proc;

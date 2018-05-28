@@ -49,6 +49,7 @@ typedef struct		s_chemp
 typedef struct      s_mem
 {
 	int				byte;
+	int				light;
 	t_chemp			*chemp;
 }					t_mem;
 

@@ -81,8 +81,12 @@ int				main(int ac, char **av)
 {
 	t_con		con;
 	t_chemp		*chemp;
+	int			k;
+	int			step;
 
 	init_optab();
+	k = 1;
+	step = 1;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
@@ -91,11 +95,15 @@ int				main(int ac, char **av)
 	initscr();
 	noecho();
 	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_WHITE);
+	init_pair(1, COLOR_BLACK, COLOR_CYAN);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(5, COLOR_BLUE, COLOR_BLACK);
+	init_pair(6, COLOR_GREEN, COLOR_WHITE);
+	init_pair(7, COLOR_RED, COLOR_WHITE);
+	init_pair(8, COLOR_YELLOW, COLOR_WHITE);
+	init_pair(9, COLOR_BLUE, COLOR_WHITE);
 	vm_show_map(con);
 //	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
@@ -108,10 +116,16 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		if (con.cycl >= con.dump && !(con.cycl % 100))
+		if (con.cycl >= con.dump && !(con.cycl % step))
 		{
 			vm_show_map(con);
-			read(0, 0, 1);
+			while (read(0, &k, 1) > 0 && k != ' ')
+			{
+				if (k == 's')
+					step++;
+				if (k == 'd' && step > 1)
+					step--;
+			}
 		}
 		con.cycl++;
 		con.cycl_die_per++;

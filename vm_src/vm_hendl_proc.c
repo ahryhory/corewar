@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 16:04:25 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/26 21:00:49 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 16:08:53 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int		vm_hendl_proc(t_con *con)
 {
 	int		i;
-	int	a;
 	t_proc	*proc;
 
-	proc = con->proc;
+	if (!(proc = 0) && con)
+		proc = con->proc;
 	i = 0;
 	while (proc)
 	{

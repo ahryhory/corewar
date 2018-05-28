@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/24 19:55:08 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:42:51 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void	s_init_proc(t_proc *proc)
 
 void		vm_hendl_byte(t_proc *proc, t_con *con)
 {
-	int		i;
+//	int		i;
 
+//	printf("<<<<<>vm_hendl_byte start\n");
 	if (!proc->work)
 		s_init_proc(proc);
 	if (proc->cycl > 0)

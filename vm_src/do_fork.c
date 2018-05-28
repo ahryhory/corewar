@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/26 22:30:02 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:41:47 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static	void	s_cpy_proc(t_proc *proc, t_proc *new_proc)
 
 void			do_fork(t_con *con, int index, t_proc *proc)
 {
-	int		nbr;
+	short int		nbr;
 	t_proc	*new_proc;
 
 	printf("COMMAND: fork\n");

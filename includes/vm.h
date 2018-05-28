@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/26 22:30:05 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 20:57:56 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_optab             g_optab[COUNT_OP];
 
 typedef struct		s_chemp
 {
-	int				nbr[4];
+	int				*nbr;
 	int				cycl_live;
 	int				live_icp;
 	struct s_chemp	*next;
@@ -52,7 +52,7 @@ typedef struct      s_mem
 
 typedef struct    s_proc
 {
-    unsigned int	r[REG_NUMBER];
+    unsigned int	*r;
     int             cp;
     int             carry;
 	int				cycl;
@@ -71,6 +71,7 @@ typedef struct      s_con
 	int				cycl_die_per;
 	int				cycl_to_die;
 	int				live;
+	int				dump;
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;

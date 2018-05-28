@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 15:16:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/12 15:16:25 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/05/27 15:13:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ static char			*add_command(t_commands **new, char *line)
 	cmd = ft_strsub(line, size, ft_strlen(line) - ft_strlen((*new)->label));
 	trim = ft_strtrim(cmd);
 	ft_strdel(&cmd);
+	split = 0;
 	i = 0;
 	while (trim[i])
 	{
@@ -122,7 +123,7 @@ static char			*add_command(t_commands **new, char *line)
 	size = 0;
 	while ((*new)->command[size] && (*new)->command[size] != ':')
 		size++;
-	if (size < ft_strlen((*new)->command))
+	if (size < (int)ft_strlen((*new)->command))
 	{
 		(*new)->label = ft_strsub((*new)->command, 0, size);
 		ft_strdel(&trim);

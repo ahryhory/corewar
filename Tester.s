@@ -21,12 +21,9 @@
 #sti	r3, 300, %300
 #ldi %2, %2, r4
 #xor %-20, %-2000, r4
-fork %400
-live %1324
-ld	%1, r2
-add	r2, r4, r4
-st	r4, 13
-sub  r6, r7, r16
+st	r1, r2
+ld	%0, r5
+live %42
 zjmp %-33
 #live %1324									
 # live %0

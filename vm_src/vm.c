@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/26 21:52:20 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 22:05:09 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
-static void		s_init_con(t_con *con, t_chemp **chemp, int nbr)
+static void		s_init_con(t_con *con, t_chemp **chemp, int nbr, char **av)
 {
 	*chemp = vm_add_chemp(nbr);
 	con->cycl_to_die = CYCLE_TO_DIE;
 	con->cycl = 0;
 	con->m_check = 0;
+	con->dump = ft_strcmp(av[1], "-d") == 0 ? ft_atoi(av[2]) : 0;
 	con->cycl_die_per = 0;
 	con->mem = 0;
 	con->chemp = *chemp;
@@ -79,18 +80,16 @@ static int		s_check_cycl(t_con *con)
 int				main(int ac, char **av)
 {
 	t_con		con;
-	int			i;
 	t_chemp		*chemp;
 
 	init_optab();
 	if (ac == 1)
 		exit(1);
-	printf("%lu\n", sizeof(t_proc));
-	s_init_con(&con, &chemp, ac); ///// nbr chemp!
+	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
-	vm_show_map(con);
-	read(0, 0, 1);
+//	vm_show_map(con);
+//	read(0, 0, 1);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
@@ -98,14 +97,17 @@ int				main(int ac, char **av)
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
 				break ;
-			vm_show_map(con);
-	//		read(0, 0, 1);
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		vm_hendl_proc(&con);
+		if (con.cycl >= con.dump && !(con.cycl % 100))
+		{
+			vm_show_map(con);
+			read(0, 0, 1);
+		}
 		con.cycl++;
 		con.cycl_die_per++;
+		vm_hendl_proc(&con);
 	}
 	vm_show_map(con);
 	return (0);

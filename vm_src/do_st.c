@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:32:37 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/26 21:30:32 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 16:37:49 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ static void	s_add_to_mem(t_con *con, unsigned int value, int index, t_chemp *che
 
 void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
-	int		coord;
-	int		indx;
-	int		tmp;
-	t_chemp	*chemp;
+	int				indx;
+	unsigned int	tmp;
+	t_chemp			*chemp;
 
 	printf("COMMAND: st\n");
 	chemp = con->mem[index].chemp;
@@ -45,6 +44,6 @@ void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 		s_add_to_mem(con, tmp, indx, chemp);
 	}
 	else
-		proc->r[con->mem[get_index(index, 1)].byte] =
-			proc->r[con->mem[index].byte];
+		proc->r[con->mem[get_index(index, 1)].byte - 1] =
+			proc->r[con->mem[index].byte - 1];
 }

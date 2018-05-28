@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/05/26 21:38:50 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/05/27 15:04:21 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME_C = corewar
 
 C = gcc
 
-# FLAGS += -Wall -Wextra -Werror
+FLAGS += -Wall -Wextra -Werror
 
 LIBFT = ./libft/
 LIB = ./libft/libft.a

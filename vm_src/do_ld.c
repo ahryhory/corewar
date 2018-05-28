@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:32:28 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/24 14:29:21 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:05:49 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void		do_ld(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
-	int		tmp;
-	int		val;
-	printf("COMMAND: ld\n");
+	int				tmp;
+	unsigned int	val;
 
+	printf("COMMAND: ld\n");
 	index = get_index(index, 2);
 	if (n[0] == 2)
 	{
-		val = get_nbr(con, index, 4);
+		val = (unsigned int)get_nbr(con, index, 4);
 		proc->r[con->mem[get_index(index, 4)].byte - 1] = val;
 	}
 	else
@@ -34,4 +34,5 @@ void		do_ld(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
+	printf("end com\n");
 }

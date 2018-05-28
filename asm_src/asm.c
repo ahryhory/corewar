@@ -6,7 +6,7 @@
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:12:51 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 11:12:52 by ybohusev         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:09:33 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ static void		init_optab(void)
 int				main(int argc, char **argv)
 {
 	t_data		data;
-	t_commands	*lst;
+//	t_commands	*lst;
 	t_info		info;
-	
+
+	argc++;
 	init_optab();
+	info.line = 0;
+	info.num = 0;
+	info.real_num = 0;
 	if (ft_strequ(FLAG_A, argv[1]))
 	{
 		data = parse(argv[2], info);

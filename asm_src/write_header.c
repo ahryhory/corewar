@@ -6,7 +6,7 @@
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 16:38:36 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 16:38:37 by ybohusev         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:15:45 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	write_name(int fd, t_data data)
 {
-	int		i;
+	size_t	i;
 	char	ch;
 
 	i = 0;
@@ -38,8 +38,8 @@ static	void	write_size(int fd, t_data data)
 
 static	void	write_comm(int fd, t_data data)
 {
-	int		i;
-	char ch;
+	size_t	i;
+	char	ch;
 
 	i = 0;
 	while (i < COMMENT_LENGTH + 4)
@@ -59,6 +59,9 @@ static	void	write_comm(int fd, t_data data)
 void			write_header(int fd, t_data data, int *oct, int *line)
 {
 	int		magic = 0xF383EA00;
+
+	oct = 0;
+	line = 0;
 	write(fd, &magic, 4);
 	write_name(fd, data);
 	write_size(fd, data);

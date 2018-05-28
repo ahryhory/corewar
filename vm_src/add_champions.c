@@ -6,19 +6,21 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/26 22:30:04 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 21:29:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int	calc_begin(int ac, int file)
+static int	calc_begin(int ac, int file, t_con *con)
 {
 	int		size;
+	int		cast;
 
-	size = MEM_SIZE / (ac - 1);
-	if (ac > 2)
-		return ((file - 1) * size);
+	cast = con->dump == 0 ? 0 : 2;
+	size = MEM_SIZE / (ac - cast - 1);
+	if (ac - cast > 2)
+		return ((file - cast - 1) * size);
 	return (0);
 }
 
@@ -30,7 +32,8 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 	int			j;
 	int			file;
 
-	file = 1;
+	file = con->dump == 0 ? 1 : 3;
+	printf("file %d \n", file);
 	while (file < ac)
 	{
 		fd = open(av[file], O_RDONLY);
@@ -43,10 +46,8 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 				break ;
 			i++;
 		}
-		// printf("%d\n", size);
-		j = calc_begin(ac, file);
+		j = calc_begin(ac, file, con);
 		i = j;
-		// printf("%d\n", j);
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)
 		{
 			((con->mem)[j]).chemp = chemp;

@@ -6,30 +6,31 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:32:34 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/26 22:02:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:00:55 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void		s_init_r(unsigned int *r, int nbr)
+static unsigned int	*s_init_r(int nbr)
 {
-	int		i;
+	int				i;
+	unsigned int	*r;
 
+	r = (unsigned int *)malloc(sizeof(unsigned int) * (REG_NUMBER + 1));
 	i = 1;
 	r[0] = (unsigned int)nbr;
 	while (i < 16)
 		r[i++] = 0;
+	return (r);
 }
 
 static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
-	printf("proc: %d\n", vm_count_proc(con->proc));
 	proc = malloc(sizeof(t_proc));
-	printf("1\n");
-	s_init_r(proc->r, nbr);
+	proc->r = s_init_r(nbr);
 	proc->cp = 0;
 	proc->carry = 0;
 	proc->do_byte = 0;

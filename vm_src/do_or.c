@@ -6,15 +6,15 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/24 14:27:48 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 16:23:48 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int	s_arg_ind(t_con *con, int index)
+static unsigned int	s_arg_ind(t_con *con, int index)
 {
-	int		arg;
+	unsigned int		arg;
 	int		step;
 
 	step = (short int)get_nbr(con, index, 2) % IDX_MOD;
@@ -22,14 +22,18 @@ static int	s_arg_ind(t_con *con, int index)
 	return (arg);
 }
 
-void	do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
+void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
-	int		num_1;
-	int		num_2;
-	int		step;
-	int		step2;
+	unsigned int	num_1;
+	unsigned int	num_2;
+	unsigned int	step;
+	unsigned int	step2;
 
 	printf("COMMAND: or\n");
+	num_1 = 0;
+	num_2 = 0;
+	step = 0;
+	step2 = 0;
 	if (n[0] == 1 && (step = 1))
 		num_1 = proc->r[con->mem[get_index(index, 2)].byte - 1];
 	else if (n[0] == 2 && (step = 4))
@@ -47,4 +51,5 @@ void	do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
+	printf("end com\n");
 }

@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:57:53 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/26 21:49:26 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/27 21:46:17 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	s_hendl_nocodg(t_proc *proc, t_con *con)
 {
-	int	i;
 printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, proc->index, con->cycl);
 
 	if (proc->do_byte == 1)
@@ -37,14 +36,15 @@ printf("do byte: %d, index: %d, cycle: %d\n", (proc->mem)[proc->index].byte, pro
 		do_lfork(con, proc->index, proc);
 		proc->cp = 2;
 	}
-//	vm_show_map(*con);
-//	read(0, &i, 1);
+	if (con->dump < con->cycl)
+	{
+//		vm_show_map(*con);
+//		read(0, 0, 1);
+	}
 }
 
 static void	s_helpa_codg(t_proc *proc, t_con *con, unsigned int *codg)
 {
-	int		i;
-
 	if (proc->do_byte == 11)
 		do_sti(con, proc->index, codg, proc);
 	if (proc->do_byte == 13)
@@ -53,8 +53,11 @@ static void	s_helpa_codg(t_proc *proc, t_con *con, unsigned int *codg)
 		do_lldi(con, proc->index, codg, proc);
 	if (proc->do_byte == 16)
 		do_aff(con, proc->index, proc);
-//	vm_show_map(*con);
-//	read(0, &i, 1);
+	if (con->dump < con->cycl)
+	{
+//		vm_show_map(*con);
+//		read(0, 0, 1);
+	}
 }
 
 void		vm_hendl_command(t_proc *proc, t_con *con)

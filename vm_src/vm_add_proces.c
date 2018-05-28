@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:32:34 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/27 15:00:55 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 14:58:18 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static unsigned int	*s_init_r(int nbr)
 	int				i;
 	unsigned int	*r;
 
-	r = (unsigned int *)malloc(sizeof(unsigned int) * (REG_NUMBER + 1));
+	r = (unsigned int *)malloc(sizeof(unsigned int) * (REG_NUMBER));
 	i = 1;
 	r[0] = (unsigned int)nbr;
 	while (i < 16)
@@ -50,15 +50,5 @@ void	vm_add_proces(t_con *con, int index, int nbr)
 	proc = con->proc;
 	con->proc = s_init_proc(con, index, nbr);
 	con->proc->next = proc;
-	/*
-	if (!proc)
-	{
-		con->proc = s_init_proc(con, index, nbr);
-		return ;
-	}
-	while (proc->next)
-		proc = proc->next;
-	proc->next = s_init_proc(con, index, nbr);
-	*/
 }
 

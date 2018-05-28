@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 15:41:47 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 13:52:23 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void			do_fork(t_con *con, int index, t_proc *proc)
 	vm_add_proces(con, get_index(index, nbr % IDX_MOD), proc->r[0]);
 	new_proc = con->proc;
 	s_cpy_proc(proc, new_proc);
+	printf("%d\n", new_proc->cycl);
 }

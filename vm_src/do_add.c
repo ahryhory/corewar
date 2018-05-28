@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:31:58 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/24 14:21:53 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 13:46:43 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	do_add(t_con *con, int index, t_proc *proc)
 {
 	printf("COMMAND: add\n");
 	proc->r[con->mem[get_index(index, 4)].byte - 1] =
-		proc->r[con->mem[get_index(index, 2)].byte - 1] +
-		proc->r[con->mem[get_index(index, 3)].byte - 1];
+		(unsigned int)(proc->r[con->mem[get_index(index, 2)].byte - 1] +
+		proc->r[con->mem[get_index(index, 3)].byte - 1]);
 	if (proc->r[con->mem[get_index(index, 4)].byte - 1] == 0)
 		proc->carry = 1;
 	else

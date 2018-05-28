@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/27 22:05:09 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/28 15:08:43 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int				main(int ac, char **av)
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
+		con.cycl++;
+		con.cycl_die_per++;
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -100,15 +102,14 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		if (con.cycl >= con.dump && !(con.cycl % 100))
+		if (con.cycl >= con.dump && !(con.cycl % 100) && con.dump)
 		{
 			vm_show_map(con);
 			read(0, 0, 1);
 		}
-		con.cycl++;
-		con.cycl_die_per++;
 		vm_hendl_proc(&con);
 	}
 	vm_show_map(con);
+	system("leaks corewar");
 	return (0);
 }

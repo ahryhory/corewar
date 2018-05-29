@@ -102,12 +102,50 @@ static void			add_size(t_data *data)
 	data->head.prog_size = size;
 }
 
+int					is_all_quotes(char *begin, char *line)
+{
+	int				i;
+	int				count;
+
+	i = 0;
+	count = 0;
+	if (ft_strnequ(line, begin, ft_strlen(begin)))
+	{
+		while (line[i])
+		{
+			if (line[i] == '"')
+				count++;
+			i++;
+		}
+		if (count == 2)
+			return (1);
+		else
+			return (0);
+	}
+	else
+	{
+		while (line[i])
+		{
+			if (line[i] == '"')
+				count++;
+			i++;
+		}
+		if (count == 1)
+			return (1);
+		else
+			return (0);
+	}
+}
+
 t_data				parse(char *file, t_info info)
 {
 	int				fd;
 	int				count;
 	int				real_count;
 	char			*line;
+	char			*trim;
+	char			*join;
+	char			**split;
 	t_data			data;
 
 	data.command = NULL;
@@ -121,6 +159,67 @@ t_data				parse(char *file, t_info info)
 	real_count = 0;
 	while (ft_get_next_line(fd, &line))
 	{
+		if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+		{
+			trim = ft_strtrim(line);
+			while (!is_all_quotes(NAME_CMD_STRING, trim))
+			{
+				ft_strdel(&line);
+				if (!ft_get_next_line(fd, &line))
+					ft_exit(8, info);
+				join = ft_strjoin(trim, line);
+				ft_strdel(&trim);
+				trim = ft_strtrim(join);
+				ft_strdel(&join);
+			}
+			ft_strdel(&line);
+			line = ft_strdup(trim);
+			ft_strdel(&trim);
+		}
+		else if (ft_strnequ(line, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+		{
+			trim = ft_strtrim(line);
+			while (!is_all_quotes(COMMENT_CMD_STRING, trim))
+			{
+				ft_strdel(&line);
+				if (!ft_get_next_line(fd, &line))
+					ft_exit(8, info);
+				join = ft_strjoin(trim, line);
+				ft_strdel(&trim);
+				trim = ft_strtrim(join);
+				ft_strdel(&join);
+			}
+			ft_strdel(&line);
+			line = ft_strdup(trim);
+			ft_strdel(&trim);
+		}
+		else
+		{
+			split = ft_strsplit(line, '#');
+			trim = ft_strtrim(split[0]);
+			// printf("%s\n", trim);
+			if (split)
+				ft_split_del(&split);
+			if (trim && trim[ft_strlen(trim) - 1] == ':')
+			{
+				ft_strdel(&line);
+				while (ft_get_next_line(fd, &line))
+				{
+					join = ft_strtrim(line);
+					ft_strdel(&line);
+					if (join)
+					{
+						line = ft_strjoin(trim, join);
+						ft_strdel(&join);
+						break ;
+					}
+					else
+						ft_strdel(&join);
+				}
+			}
+			if (trim)
+				ft_strdel(&trim);
+		}
 		real_count++;
 		if (!ft_strequ(line, "") && check_curr_line(line))
 			count = processing(&line, real_count, count, &data);
@@ -128,5 +227,6 @@ t_data				parse(char *file, t_info info)
 	}
 	add_size(&data);
 	close(fd);
+	// system("leaks asm");
 	return (data);
 }

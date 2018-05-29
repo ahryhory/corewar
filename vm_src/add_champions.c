@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/27 21:29:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 12:31:23 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 		{
 			((con->mem)[j]).chemp = chemp;
 			if (j++ == i)
-				vm_add_proces(con, j - 1, -file);
+				vm_add_proces(con, j - 1, (con->dump == 0 ? -file : -file + 2));
 		}
 		chemp = chemp->next;
 		file++;

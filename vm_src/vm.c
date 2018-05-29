@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/28 20:02:49 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 14:38:21 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ int				main(int ac, char **av)
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_CYAN);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(5, COLOR_BLUE, COLOR_BLACK);
+	init_pair(3, COLOR_BLUE, COLOR_BLACK);
+	init_pair(4, COLOR_RED, COLOR_BLACK);
+	init_pair(5, COLOR_CYAN, COLOR_BLACK);
 	init_pair(6, COLOR_GREEN, COLOR_WHITE);
-	init_pair(7, COLOR_RED, COLOR_WHITE);
-	init_pair(8, COLOR_YELLOW, COLOR_WHITE);
-	init_pair(9, COLOR_BLUE, COLOR_WHITE);
+	init_pair(7, COLOR_BLUE, COLOR_WHITE);
+	init_pair(8, COLOR_RED, COLOR_WHITE);
+	init_pair(9, COLOR_CYAN, COLOR_WHITE);
 //	vm_show_map(con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
@@ -133,5 +133,6 @@ int				main(int ac, char **av)
 	vm_show_map(con);
 	getch();
 	endwin();
+//	vm_give_winer(con);
 	return (0);
 }

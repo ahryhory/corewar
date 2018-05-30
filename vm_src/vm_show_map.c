@@ -52,7 +52,7 @@ void	vm_show_map(t_con con)
 	t_proc	*proc;
 	int		castil;
 
-	clear();
+	erase();
 	castil = 1;
 	mem = con.mem;
 	i = 0;

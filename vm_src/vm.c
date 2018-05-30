@@ -6,11 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/29 14:38:21 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:20:17 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include <curses.h>
 
 static void		init_optab(void)
 {
@@ -83,6 +84,7 @@ int				main(int ac, char **av)
 	t_chemp		*chemp;
 	int			k;
 	int			step;
+	int		c;
 
 	init_optab();
 	k = 1;
@@ -93,6 +95,8 @@ int				main(int ac, char **av)
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
 	initscr();
+	cbreak();
+	keypad(stdscr, TRUE);
 	noecho();
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_CYAN);
@@ -104,10 +108,12 @@ int				main(int ac, char **av)
 	init_pair(7, COLOR_BLUE, COLOR_WHITE);
 	init_pair(8, COLOR_RED, COLOR_WHITE);
 	init_pair(9, COLOR_CYAN, COLOR_WHITE);
-//	vm_show_map(con);
+	vm_show_map_win(con);
+	getch();
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
+		vm_hendl_proc(&con);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -115,9 +121,18 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
+		vm_show_map_win(con);
+		// timeout(10);
+		// c = getch();
+		// if (c == 'p')
+		// {
+		// 	 timeout(-1);
+		// 	getch();
+		// 	 timeout(10);
+		// }
 		if (con.cycl >= con.dump && !(con.cycl % step))
 		{
-			vm_show_map(con);
+			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
 			{
 				if (k == 'e')
@@ -126,11 +141,10 @@ int				main(int ac, char **av)
 					step--;
 			}
 		}
-		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-	vm_show_map(con);
+	vm_show_map_win(con);
 	getch();
 	endwin();
 //	vm_give_winer(con);

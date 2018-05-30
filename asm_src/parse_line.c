@@ -145,6 +145,20 @@ void				parse_line(char *line, t_commands **command)
 	char			**split;
 
 	new = init_command();
+	if (line[ft_strlen(line) - 1] == ':')
+	{
+		new->label = ft_strsub(line, 0, ft_strlen(line) - 1);
+		lst = *command;
+		if (lst)
+		{
+			while (lst->next != NULL)
+				lst = lst->next;
+			lst->next = new;
+		}
+		else
+			*command = new;
+		return ;
+	}
 	if (!check_curr_line(&line, &new))
 		return ;
 	add_label(&new, line);

@@ -6,11 +6,13 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:28:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/28 17:29:34 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:48:58 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int	main(void)
 {
-	printf("%d\n", (short int)0xffe7);
+	printf("%d\n", (0x2ffee03 + 6) % 512);
 }

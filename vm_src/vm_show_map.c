@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 19:35:14 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/28 16:54:47 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 19:15:19 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	s_print_reg(t_proc *proc, int j)
 			proc = proc->next;
 		}
 	}
-	else
+	else if (j >= 0 && j <= 15)
 	{
 		printw("     r[%2d%-3s", j + 1, "]");
 		while (proc && ++i <= 8)
@@ -41,6 +41,25 @@ static void	s_print_reg(t_proc *proc, int j)
 			proc = proc->next;
 		}
 	}
+	else if (j == 16)
+	{
+		printw("  cycl_create: ");
+		while (proc && ++i <= 8)
+		{
+			printw("%-10d", proc->cycl_create);
+			proc = proc->next;
+		}
+	}
+	else if (j == 17)
+	{
+		printw("  index_create: ");
+		while (proc && ++i <= 8)
+		{
+			printw("%-10d", proc->index_create);
+			proc = proc->next;
+		}
+	}
+
 }
 
 void	vm_show_map(t_con con)
@@ -57,7 +76,7 @@ void	vm_show_map(t_con con)
 	mem = con.mem;
 	i = 0;
 	j = -1;
-	printw("0x%.4x : ", i);
+	printw("0x%.4d : ", i);
 	while (i < MEM_SIZE)
 	{
 		proc = con.proc;
@@ -164,14 +183,14 @@ void	vm_show_map(t_con con)
 				printw("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
 			if (j == 3)
 				printw("%20s %d", "Proces:", vm_count_proc(con.proc));
-			if (j > 3 && j < REG_NUMBER + 6)
+			if (j > 3 && j < REG_NUMBER + 8)
 				s_print_reg(con.proc, j - 6);
 //			if (j == 4)
 //				printf("%4c cycl: %d", ' ', con->cycl);
 //			else if (j
 			printw("\n");
 			if (i < MEM_SIZE)
-				printw("%#.4x : ", i);
+				printw("%#.4d : ", i);
 		}
 	}
 	refresh();

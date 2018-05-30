@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/29 14:38:21 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:20:17 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int				main(int ac, char **av)
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
+		vm_hendl_proc(&con);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -124,7 +125,6 @@ int				main(int ac, char **av)
 					step--;
 			}
 		}
-		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}

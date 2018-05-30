@@ -86,6 +86,7 @@ void	part_2(int error)
 
 void	ft_exit(int error, t_info info)
 {
+	printf("%d\n", error);
 	if (error >= 1 && error <= 10)
 		part_1(error);
 	else

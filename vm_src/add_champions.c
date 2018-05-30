@@ -24,30 +24,33 @@ static int	calc_begin(int ac, int file, t_con *con)
 	return (0);
 }
 
+static void	get_name(t_chemp *chemp, int fd)
+{
+	lseek(fd, 4, 0);
+	read(fd, &chemp->champ_name, PROG_NAME_LENGTH);
+	lseek(fd, 8, 1);
+}
+
+static void	get_comm(t_chemp *chemp, int fd)
+{
+	read(fd, &chemp->champ_comm, COMMENT_LENGTH);
+	lseek(fd, 4, 1);
+}
+
 void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 {
-	// char		line[PROG_NAME_LENGTH + COMMENT_LENGTH + 15];
 	int			fd;
 	int			i;
 	int			j;
 	int			file;
 
 	file = con->dump == 0 ? 1 : 3;
-	//printf("file %d \n", file);
 	while (file < ac)
 	{
 		i = 0;
 		fd = open(av[file], O_RDONLY);
-		lseek(fd, PROG_NAME_LENGTH + COMMENT_LENGTH + 16, 0);
-		// read(fd, &line, i);
-		// while (read(fd, &line, 1))
-		// {
-		// 	// if (i > PROG_NAME_LENGTH + 7 && i <= PROG_NAME_LENGTH + 11	)
-		// 	// 	printf("%d\n", line);
-		// 	if (i == PROG_NAME_LENGTH + COMMENT_LENGTH + 15)
-		// 		break ;
-		// 	i++;
-		// }
+		get_name(chemp, fd);
+		get_comm(chemp, fd);
 		j = calc_begin(ac, file, con);
 		i = j;
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)
@@ -59,4 +62,5 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 		chemp = chemp->next;
 		file++;
 	}
+	close(fd);
 }

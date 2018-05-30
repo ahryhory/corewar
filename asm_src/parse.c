@@ -67,7 +67,8 @@ static int			processing(char **line, int real_count, int count,
 	info.num = count;
 	info.real_num = real_count;
 	check_line(info);
-	count++;
+	// if ((*line)[0] != COMMENT_CHAR)
+		count++;
 	if (ft_strnequ(*line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 	{
 		content = get_content_in_quotation(*line);
@@ -96,7 +97,11 @@ static void			add_size(t_data *data)
 	while (list)
 	{
 		list->begin = size;
-		size += list->size;
+		if (list->command != NULL)
+		{
+			
+			size += list->size;
+		}
 		list = list->next;
 	}
 	data->head.prog_size = size;
@@ -142,6 +147,7 @@ t_data				parse(char *file, t_info info)
 	int				fd;
 	int				count;
 	int				real_count;
+	int				gnl;
 	char			*line;
 	char			*trim;
 	char			*join;
@@ -157,8 +163,14 @@ t_data				parse(char *file, t_info info)
 		ft_exit(14, info);
 	count = 0;
 	real_count = 0;
-	while (ft_get_next_line(fd, &line))
+	gnl = 0;
+	while ((gnl = ft_get_next_line(fd, &line)))
 	{
+		if (line && line[0] == COMMENT_CHAR)
+		{
+			ft_strdel(&line);
+			continue ;
+		}
 		if (ft_strnequ(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 		{
 			trim = ft_strtrim(line);
@@ -203,11 +215,24 @@ t_data				parse(char *file, t_info info)
 			if (trim && trim[ft_strlen(trim) - 1] == ':')
 			{
 				ft_strdel(&line);
-				while (ft_get_next_line(fd, &line))
+				while ((gnl = ft_get_next_line(fd, &line)))
 				{
-					join = ft_strtrim(line);
+					split = ft_strsplit(line, '#');
+					join = ft_strtrim(split[0]);
+					if (split)
+						ft_split_del(&split);
 					ft_strdel(&line);
-					if (join)
+					if (join && join[ft_strlen(join) - 1] == ':')
+					{
+						// line = ft_strjoin(trim, " del this");
+						// ft_strdel(&trim);
+						// printf("TRIM %s\n", trim);
+						count = processing(&trim, real_count, count, &data);
+						ft_strdel(&trim);
+						trim = ft_strdup(join);
+						ft_strdel(&join);
+					}
+					else if (join != NULL)
 					{
 						line = ft_strjoin(trim, join);
 						ft_strdel(&join);
@@ -216,12 +241,20 @@ t_data				parse(char *file, t_info info)
 					else
 						ft_strdel(&join);
 				}
+				if (gnl <= 0)
+				{
+					// printf("TrIM %s\n", trim);
+					count = processing(&trim, real_count, count, &data);
+				}
 			}
 			if (trim)
+			{
+				// count = processing(&trim, real_count, count, &data);
 				ft_strdel(&trim);
+			}
 		}
 		real_count++;
-		if (!ft_strequ(line, "") && check_curr_line(line))
+		if (line && !ft_strequ(line, "") && check_curr_line(line))
 			count = processing(&line, real_count, count, &data);
 		ft_strdel(&line);
 	}

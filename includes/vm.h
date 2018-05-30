@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/29 14:36:44 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 15:59:41 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct		s_chemp
 	int				color;
 	int				cycl_live;
 	int				live_icp;
+	char			champ_name[PROG_NAME_LENGTH + 1];
+	char			champ_comm[COMMENT_LENGTH + 1];
 	struct s_chemp	*next;
 }					t_chemp;
 
@@ -63,6 +65,8 @@ typedef struct    s_proc
 	int				do_byte;
 	int				index;
     int				work;
+	int				index_create;
+	int				cycl_create;
 	t_chemp			*chemp;
     t_mem			*mem;
     struct s_proc	*next;

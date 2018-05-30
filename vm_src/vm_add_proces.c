@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:32:34 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/28 19:49:32 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:07:03 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 	proc->mem = con->mem;
 	proc->next = 0;
 	proc->chemp = con->mem[index].chemp;
+	proc->cycl_create = con->cycl;
+	proc->index_create = index;
 	return (proc);
 }
 

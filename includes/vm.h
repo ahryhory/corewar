@@ -43,6 +43,8 @@ typedef struct		s_chemp
 	int				color;
 	int				cycl_live;
 	int				live_icp;
+	char			champ_name[PROG_NAME_LENGTH + 1];
+	char			champ_comm[COMMENT_LENGTH + 1];
 	struct s_chemp	*next;
 }					t_chemp;
 

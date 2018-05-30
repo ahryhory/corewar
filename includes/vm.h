@@ -79,6 +79,8 @@ typedef struct      s_con
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;
+	WINDOW			*bytes_win;
+	WINDOW			*info_win;
 }					t_con;
 
 int					vm_count_proc(t_proc *proc);
@@ -128,5 +130,6 @@ t_chemp				*vm_add_chemp(int nbr);
 void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
 void				vm_show_map_win(t_con con);
+void				init_ncurses(t_con *con);
 
 #endif

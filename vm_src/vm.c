@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "vm.h"
-#include <curses.h>
 
 static void		init_optab(void)
 {
@@ -94,22 +93,7 @@ int				main(int ac, char **av)
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
-	initscr();
-	cbreak();
-	keypad(stdscr, TRUE);
-	noecho();
-	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_CYAN);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_BLUE, COLOR_BLACK);
-	init_pair(4, COLOR_RED, COLOR_BLACK);
-	init_pair(5, COLOR_CYAN, COLOR_BLACK);
-	init_pair(6, COLOR_GREEN, COLOR_WHITE);
-	init_pair(7, COLOR_BLUE, COLOR_WHITE);
-	init_pair(8, COLOR_RED, COLOR_WHITE);
-	init_pair(9, COLOR_CYAN, COLOR_WHITE);
-	vm_show_map_win(con);
-	getch();
+	init_ncurses(&con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
@@ -120,8 +104,8 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		vm_show_map_win(con);
-		// timeout(10);
+		// vm_show_map_win(con);
+		// timeout(100);
 		// c = getch();
 		// if (c == 'p')
 		// {
@@ -144,6 +128,8 @@ int				main(int ac, char **av)
 		con.cycl++;
 		con.cycl_die_per++;
 	}
+	vm_show_map_win(con);
+	getch();
 	vm_show_map_win(con);
 	getch();
 	endwin();

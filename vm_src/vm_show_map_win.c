@@ -12,16 +12,17 @@
 
 #include "vm.h"
 
-void	draw_proc(t_proc *proc, t_mem *mem, int i, int *draw)
+void	draw_proc(t_proc *proc, t_con con, int i, int *draw, int row, int *column)
 {
 	while (proc)
 	{
 		if (proc->index == i)
 		{
-			attron(COLOR_PAIR(1));
-			printw("%2.2x", mem[i].byte);
-			attroff(COLOR_PAIR(1));
-			printw(" ");
+			wattron(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color + 5));
+			mvwprintw(con.bytes_win , row, *column, "%2.2x", con.mem[i].byte);
+			*column += 2;
+			wattroff(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color + 5));
+			mvwprintw(con.bytes_win , row, (*column)++, " ");
 			*draw = 0;
 			break ;
 		}
@@ -29,54 +30,66 @@ void	draw_proc(t_proc *proc, t_mem *mem, int i, int *draw)
 	}
 }
 
-void	draw_color(t_proc *proc, t_mem *mem, int i, int *draw, int cycl)
+void	draw_color(t_con con, int i, int row, int *column)
 {
-	if (mem[i].light + 50 > cycl && mem[i].light != 0)
+	if (con.mem[i].light + 50 > con.cycl && con.mem[i].light != 0)
 	{
-		attron(COLOR_PAIR(mem[i].chemp->color + 5));
-		printw("%2.2x", mem[i].byte);
-		attroff(COLOR_PAIR(mem[i].chemp->color + 5));
-		printw(" ");
-		*draw = 0;
+		wattron(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color) | A_BOLD);
+		mvwprintw(con.bytes_win , row, *column, "%2.2x ", con.mem[i].byte);
+		*column += 3;
+		wattroff(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color) | A_BOLD);
 	}
-	else if (mem[i].chemp->color != 0)
+	else if (con.mem[i].chemp->color != 0)
 	{
-		attron(COLOR_PAIR(mem[i].chemp->color + 1));
-		printw("%2.2x", mem[i].byte);
-		attroff(COLOR_PAIR(mem[i].chemp->color + 1));
-		printw(" ");
-		*draw = 0;
+		wattron(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color));
+		mvwprintw(con.bytes_win , row, *column, "%2.2x ", con.mem[i].byte);
+		*column += 3;
+		wattroff(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color));
 	}
+	else
+	{
+		wattron(con.bytes_win, A_DIM);
+		mvwprintw(con.bytes_win , row, *column, "%2.2x ", con.mem[i].byte);
+		*column += 3;
+		wattroff(con.bytes_win, A_DIM);
+	}
+}
+
+void	draw_info(t_con con)
+{
+		mvwprintw(con.info_win, 1, 2, "%-15s %d", "Cycl:", con.cycl);
+		mvwprintw(con.info_win, 2, 2, "%-15s %d", "Cycl_to_die:", con.cycl_to_die);
+		mvwprintw(con.info_win, 3, 2, "%-15s %d", "Proces:", vm_count_proc(con.proc));
 }
 
 void	vm_show_map_win(t_con con)
 {
 	int		i;
-	int		j;
 	int		draw;
-	t_proc	*proc;
+	int		row;
+	int		column;
 
-	erase();
+	werase(con.bytes_win);
+	werase(con.info_win);
+	box(con.bytes_win, 0, 0);
+	box(con.info_win, 0, 0);
 	i = 0;
+	row = 1;
+	column = 2;
 	while (i < MEM_SIZE)
 	{
 		draw = 1;
-		draw_proc(con.proc, con.mem, i, &draw);
+		draw_proc(con.proc, con, i, &draw, row, &column);
 		if (draw)
-			draw_color(con.proc, con.mem, i, &draw, con.cycl);
-		if (draw)
-			printw("%2.2x ", con.mem[i].byte);
+			draw_color(con, i, row, &column);
 		i++;
 		if (i % 64 == 0)
 		{
-			if (j == 0)
-				printw("%20s %d", "cycl:          ", con.cycl);
-			if (j == 2)
-				printw("%20s %d", "cycl_to_day:   ", con.cycl_to_die);
-			if (j == 3)
-				printw("%20s %d", "Proces:", vm_count_proc(con.proc));
-			printw("\n");
+			row++;
+			column = 2;
 		}
 	}
-	refresh();
+	draw_info(con);
+	wrefresh(con.bytes_win);
+	wrefresh(con.info_win);
 }

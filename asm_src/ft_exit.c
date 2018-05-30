@@ -95,6 +95,6 @@ void	ft_exit(int error, t_info info)
 		printf("LINE: %d\n%s\n", info.real_num, *(info.line));
 		ft_strdel(info.line);
 	}
-	system("leaks asm");
+	// system("leaks asm");
 	exit(0);
 }

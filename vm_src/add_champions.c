@@ -26,7 +26,7 @@ static int	calc_begin(int ac, int file, t_con *con)
 
 void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 {
-	int			line;
+	// char		line[PROG_NAME_LENGTH + COMMENT_LENGTH + 15];
 	int			fd;
 	int			i;
 	int			j;
@@ -36,16 +36,18 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 	//printf("file %d \n", file);
 	while (file < ac)
 	{
-		fd = open(av[file], O_RDONLY);
 		i = 0;
-		while (read(fd, &line, 1))
-		{
-			// if (i > PROG_NAME_LENGTH + 7 && i <= PROG_NAME_LENGTH + 11	)
-			// 	printf("%d\n", line);
-			if (i == PROG_NAME_LENGTH + COMMENT_LENGTH + 15)
-				break ;
-			i++;
-		}
+		fd = open(av[file], O_RDONLY);
+		lseek(fd, PROG_NAME_LENGTH + COMMENT_LENGTH + 16, 0);
+		// read(fd, &line, i);
+		// while (read(fd, &line, 1))
+		// {
+		// 	// if (i > PROG_NAME_LENGTH + 7 && i <= PROG_NAME_LENGTH + 11	)
+		// 	// 	printf("%d\n", line);
+		// 	if (i == PROG_NAME_LENGTH + COMMENT_LENGTH + 15)
+		// 		break ;
+		// 	i++;
+		// }
 		j = calc_begin(ac, file, con);
 		i = j;
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)

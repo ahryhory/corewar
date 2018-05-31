@@ -66,7 +66,7 @@ static int			processing(char **line, int real_count, int count,
 	info.line = line;
 	info.num = count;
 	info.real_num = real_count;
-	check_line(info);
+	// check_line(info);
 	// if ((*line)[0] != COMMENT_CHAR)
 		count++;
 	if (ft_strnequ(*line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
@@ -166,6 +166,10 @@ t_data				parse(char *file, t_info info)
 	gnl = 0;
 	while ((gnl = ft_get_next_line(fd, &line)))
 	{
+		trim = ft_strtrim(line);
+		ft_strdel(&line);
+		line = ft_strdup(trim);
+		ft_strdel(&trim);
 		if (line && line[0] == COMMENT_CHAR)
 		{
 			ft_strdel(&line);
@@ -196,9 +200,17 @@ t_data				parse(char *file, t_info info)
 				ft_strdel(&line);
 				if (!ft_get_next_line(fd, &line))
 					ft_exit(8, info);
+				if (ft_strlen(line) == 0)
+					join = ft_strjoin(trim, "\n");
+				else
+					join = ft_strjoin(trim, "\n");
+				ft_strdel(&trim);
+				trim = ft_strdup(join);
+				ft_strdel(&join);
 				join = ft_strjoin(trim, line);
 				ft_strdel(&trim);
-				trim = ft_strtrim(join);
+				trim = ft_strdup(join);
+				// trim = ft_strtrim(join);
 				ft_strdel(&join);
 			}
 			ft_strdel(&line);

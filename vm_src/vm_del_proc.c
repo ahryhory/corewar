@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 19:00:56 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/27 15:36:06 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 19:51:41 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	vm_del_proc(t_con **con, int i)
 	t_proc	*proc;
 	t_proc	*s_proc;
 
-//	printf("proc: %d\n", vm_count_proc((*con)->proc));
 	if (!(proc = (*con)->proc))
 		return ;
 	if (!i)

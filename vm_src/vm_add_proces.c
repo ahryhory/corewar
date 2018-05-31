@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 13:32:34 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/29 16:07:03 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 19:53:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned int	*s_init_r(int nbr)
 	return (r);
 }
 
-static t_proc	*s_init_proc(t_con *con, int index, int nbr)
+static t_proc		*s_init_proc(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
@@ -46,7 +46,7 @@ static t_proc	*s_init_proc(t_con *con, int index, int nbr)
 	return (proc);
 }
 
-void	vm_add_proces(t_con *con, int index, int nbr)
+void				vm_add_proces(t_con *con, int index, int nbr)
 {
 	t_proc	*proc;
 
@@ -54,4 +54,3 @@ void	vm_add_proces(t_con *con, int index, int nbr)
 	con->proc = s_init_proc(con, index, nbr);
 	con->proc->next = proc;
 }
-

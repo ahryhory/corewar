@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:32 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/29 13:44:09 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:07:26 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void			do_lfork(t_con *con, int index, t_proc *proc)
 	int		nbr;
 	t_proc	*new_proc;
 
-	//printf("COMMAND: lfork\n");
 	nbr = (short int)get_nbr(con, get_index(proc->index, 1), 2);
 	vm_add_proces(con, get_index(index, nbr), proc->r[0]);
 	new_proc = con->proc;

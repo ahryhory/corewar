@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/29 13:44:09 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:30:12 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static	void	s_cpy_proc(t_proc *proc, t_proc *new_proc)
 
 void			do_fork(t_con *con, int index, t_proc *proc)
 {
-	short int		nbr;
-	t_proc	*new_proc;
+	short int	nbr;
+	t_proc		*new_proc;
 
-	//printf("COMMAND: fork\n");
 	nbr = (short int)get_nbr(con, get_index(proc->index, 1), 2);
 	vm_add_proces(con, get_index(index, nbr % IDX_MOD), proc->r[0]);
 	new_proc = con->proc;

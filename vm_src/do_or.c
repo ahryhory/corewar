@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 16:23:48 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:35:23 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ static unsigned int	s_arg_ind(t_con *con, int index)
 	return (arg);
 }
 
+static void			s_init(unsigned int *num_1, unsigned int *num_2,
+		unsigned int *step)
+{
+	*num_1 = 0;
+	*num_2 = 0;
+	*step = 0;
+}
+
 void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	unsigned int	num_1;
@@ -29,10 +37,7 @@ void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 	unsigned int	step;
 	unsigned int	step2;
 
-	///printf("COMMAND: or\n");
-	num_1 = 0;
-	num_2 = 0;
-	step = 0;
+	s_init(&num_1, &num_2, &step);
 	step2 = 0;
 	if (n[0] == 1 && (step = 1))
 		num_1 = proc->r[con->mem[get_index(index, 2)].byte - 1];
@@ -51,5 +56,4 @@ void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
-	//printf("end com\n");
 }

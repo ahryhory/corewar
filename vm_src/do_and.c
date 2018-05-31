@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:01 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 16:24:55 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:06:48 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 static unsigned int	s_arg_ind(t_con *con, int index)
 {
-	unsigned int		arg;
-	int		step;
+	unsigned int	arg;
+	int				step;
 
 	step = (short int)get_nbr(con, index, 2) % IDX_MOD;
 	arg = get_nbr(con, get_index(index, step), 4);
 	return (arg);
+}
+
+static void			s_init(unsigned int *num_1, unsigned int *num_2)
+{
+	*num_1 = 0;
+	*num_2 = 0;
 }
 
 void				do_and(t_con *con, int index, unsigned int *n, t_proc *proc)
@@ -29,9 +35,7 @@ void				do_and(t_con *con, int index, unsigned int *n, t_proc *proc)
 	unsigned int	step;
 	unsigned int	step2;
 
-	//printf("COMMAND: and\n");
-	num_1 = 0;
-	num_2 = 0;
+	s_init(&num_1, &num_2);
 	step = 0;
 	step2 = 0;
 	if (n[0] == 1 && (step = 1))
@@ -51,5 +55,4 @@ void				do_and(t_con *con, int index, unsigned int *n, t_proc *proc)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
-	//printf("end com\n");
 }

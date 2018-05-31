@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:25:26 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:35:50 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,6 @@ int				main(int ac, char **av)
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
-	initscr();
-	cbreak();
-	keypad(stdscr, TRUE);
-	noecho();
-	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_CYAN);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_BLUE, COLOR_BLACK);
-	init_pair(4, COLOR_RED, COLOR_BLACK);
-	init_pair(5, COLOR_CYAN, COLOR_BLACK);
-	init_pair(6, COLOR_GREEN, COLOR_WHITE);
-	init_pair(7, COLOR_BLUE, COLOR_WHITE);
-	init_pair(8, COLOR_RED, COLOR_WHITE);
-	init_pair(9, COLOR_CYAN, COLOR_WHITE);
-//	vm_show_map(con);
-//	getch();
 	init_ncurses(&con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
@@ -116,8 +100,7 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-/*		vm_show_map(con);
-		timeout(0);
+/*		timeout(0);
 		c = getch();
 		if (c == 'p')
 		//vm_show_map_win(con);
@@ -152,8 +135,8 @@ int				main(int ac, char **av)
 		con.cycl_die_per++;
 	}
 	vm_show_map_win(con);
-	getch();
+	read(0, 0, 1);
 	endwin();
-//	vm_give_winer(con);
+	vm_give_winer(&con);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/05/31 17:23:00 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/05/31 19:16:15 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
 SRC_C = 
 
+SRC_C += vm_give_winer.c
 SRC_C += vm.c
 SRC_C += allocate_memory.c
 SRC_C += add_champions.c

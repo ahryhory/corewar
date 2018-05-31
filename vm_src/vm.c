@@ -82,12 +82,11 @@ int				main(int ac, char **av)
 	t_con		con;
 	t_chemp		*chemp;
 	int			k;
-	int			step;
-	int		c;
+	int			c;
 
 	init_optab();
 	k = 1;
-	step = 1;
+	con.step = 1;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
@@ -105,8 +104,8 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		// vm_show_map_win(con);
-		// timeout(100);
+		//vm_show_map_win(con);
+		//timeout(0);
 		// c = getch();
 		// if (c == 'p')
 		// {
@@ -114,15 +113,16 @@ int				main(int ac, char **av)
 		// 	getch();
 		// 	 timeout(10);
 		// }
-		if (con.cycl >= con.dump && !(con.cycl % step))
+		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
 			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
 			{
 				if (k == 'e')
-					step++;
-				if (k == 'q' && step > 1)
-					step--;
+					con.step++;
+				if (k == 'q' && con.step > 1)
+					con.step--;
+				vm_show_map_win(con);
 			}
 		}
 		con.cycl++;

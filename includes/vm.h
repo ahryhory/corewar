@@ -52,6 +52,7 @@ typedef struct      s_mem
 {
 	int				byte;
 	int				light;
+	int				proc;
 	t_chemp			*chemp;
 }					t_mem;
 
@@ -79,6 +80,7 @@ typedef struct      s_con
 	int				cycl_die_per;
 	int				cycl_to_die;
 	int				live;
+	int				step;
 	int				dump;
 	t_mem			*mem;
 	t_chemp			*chemp;

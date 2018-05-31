@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/29 15:59:41 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:52:39 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct      s_con
 	t_proc			*proc;
 }					t_con;
 
+void				vm_check_proc(t_con *con);
 int					vm_count_proc(t_proc *proc);
 t_mem			    *allocate_memory(t_chemp *zero);
 void				add_champions(t_con *con, int ac, char **av,

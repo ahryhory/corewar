@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 19:35:14 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/29 19:15:19 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 14:23:08 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,26 @@ static void	s_print_reg(t_proc *proc, int j)
 
 	i = -1;
 	if (j == -2)
-		while (proc && ++i <= 8)
+	{
+		while (proc && ++i <= 13)
 		{
 			printw("%10d", (char)proc->mem[proc->index].chemp->nbr[3]);
 			proc = proc->next;
 		}
+	}
 	else if (j == -1)
 	{
 		printw("     index:");
-		while (proc && ++i <= 8)
+		while (proc && ++i <= 13)
 		{
-			printw(" %-10d", proc->index);
+			printw(" %-9d", proc->index);
 			proc = proc->next;
 		}
 	}
-	else if (j >= 0 && j <= 15)
+	else if (j >= 0 && j <= 13)
 	{
 		printw("     r[%2d%-3s", j + 1, "]");
-		while (proc && ++i <= 8)
+		while (proc && ++i <= 13)
 		{
 			printw("%-10.8x", proc->r[j]);
 			proc = proc->next;
@@ -44,7 +46,7 @@ static void	s_print_reg(t_proc *proc, int j)
 	else if (j == 16)
 	{
 		printw("  cycl_create: ");
-		while (proc && ++i <= 8)
+		while (proc && ++i <= 13)
 		{
 			printw("%-10d", proc->cycl_create);
 			proc = proc->next;
@@ -53,7 +55,7 @@ static void	s_print_reg(t_proc *proc, int j)
 	else if (j == 17)
 	{
 		printw("  index_create: ");
-		while (proc && ++i <= 8)
+		while (proc && ++i <= 13)
 		{
 			printw("%-10d", proc->index_create);
 			proc = proc->next;

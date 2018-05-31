@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/30 18:20:17 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:54:33 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ int				main(int ac, char **av)
 	init_pair(7, COLOR_BLUE, COLOR_WHITE);
 	init_pair(8, COLOR_RED, COLOR_WHITE);
 	init_pair(9, COLOR_CYAN, COLOR_WHITE);
-	vm_show_map_win(con);
-	getch();
+//	vm_show_map(con);
+//	getch();
 	while (con.cycl_to_die > 0 && con.proc)
 	{
+		vm_check_proc(&con);
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
-		vm_hendl_proc(&con);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -121,18 +121,18 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		vm_show_map_win(con);
-		// timeout(10);
-		// c = getch();
-		// if (c == 'p')
-		// {
-		// 	 timeout(-1);
-		// 	getch();
-		// 	 timeout(10);
-		// }
-		if (con.cycl >= con.dump && !(con.cycl % step))
+/*		vm_show_map(con);
+		timeout(0);
+		c = getch();
+		if (c == 'p')
 		{
-			vm_show_map_win(con);
+			timeout(-1);
+			getch();
+		 	timeout(10);
+		}
+*/		if (con.cycl >= con.dump && !(con.cycl % step))
+		{
+			vm_show_map(con);
 			while (read(0, &k, 1) > 0 && k != 's')
 			{
 				if (k == 'e')
@@ -141,10 +141,11 @@ int				main(int ac, char **av)
 					step--;
 			}
 		}
+		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-	vm_show_map_win(con);
+	vm_show_map(con);
 	getch();
 	endwin();
 //	vm_give_winer(con);

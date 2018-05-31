@@ -137,6 +137,7 @@ int				main(int ac, char **av)
 		}
 */		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
+			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
 			{
 				if (k == 'e')

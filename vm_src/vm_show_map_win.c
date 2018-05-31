@@ -86,8 +86,7 @@ void	draw_info(t_con con)
 		{
 			if (chemp->champ_name[0] != '\0')
 			{
-
-				mvwprintw(con.info_win, row++, 2, "Player %x :", chemp->nbr[3]);
+				mvwprintw(con.info_win, row++, 2, "Player %d :", (char)chemp->nbr[3]);
 				wattron(con.info_win, COLOR_PAIR(chemp->color));
 				mvwprintw(con.info_win, row++, 4, "%s", chemp->champ_name);
 				wattroff(con.info_win, COLOR_PAIR(chemp->color)); 

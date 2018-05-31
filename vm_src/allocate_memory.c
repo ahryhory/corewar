@@ -24,6 +24,7 @@ t_mem			*allocate_memory(t_chemp *zero)
 		memory[i].byte = 0;
 		memory[i].chemp = zero;
 		memory[i].light = 0;
+		memory[i].proc = 0;
 		i++;
 	}
 	return (memory);

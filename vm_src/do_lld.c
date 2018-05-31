@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:34:44 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/27 19:29:14 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 17:20:30 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void		do_lld(t_con *con, int index, unsigned int *n, t_proc *proc)
 	index = get_index(index, 2);	
 	if (n[0] == 2)
 	{
-		val = get_nbr(con, index, 2);
+		val = get_nbr(con, index, 4);
 		proc->r[con->mem[get_index(index, 4)].byte - 1] = val;
 	}
 	else
 	{
 		tmp =  (short int)(get_nbr(con, index, 2));
-		val = get_nbr(con, get_index(proc->index, tmp), 2);
+		val = get_nbr(con, get_index(proc->index, tmp), 4);
 		proc->r[con->mem[get_index(index, 2)].byte - 1] = val;
 	}
 	if (val == 0)

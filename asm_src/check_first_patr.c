@@ -58,7 +58,11 @@ static char	*cut_name(char *line, char **p_line, t_info info)
 	while (trim_line[i] && trim_line[i] != ' ' && trim_line[i] != '\t')
 		i++;
 	if (trim_line[i] == '\0')
-		del_and_exit(&trim_line, p_line, info, 11);
+	{
+		ft_strdel(&trim_line);
+		ft_strdel(p_line);
+		return (NULL);
+	}
 	name = ft_strsub(trim_line, 0, i);
 	ft_strdel(&trim_line);
 	return (name);
@@ -82,6 +86,8 @@ static int	check_lable(char *line, char **p_line, t_info info)
 	ft_strdel(p_line);
 	*p_line = ft_strtrim(line);
 	name = cut_name(line, p_line, info);
+	if (name == NULL)
+		return (-3);
 	command = check_command_name(name, p_line, info);
 	return (command);
 }
@@ -103,7 +109,11 @@ int			check_first_patr(char **line, t_info info)
 	}
 	name = ft_strsub(*line, 0, i);
 	if ((*line)[i] == LABEL_CHAR)
+	{
 		command = check_lable(name, line, info);
+		if (command == -3)
+			return (command);
+	}
 	else
 		command = check_command_name(name, line, info);
 	return (command);

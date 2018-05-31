@@ -42,6 +42,11 @@ void			write_byte(t_data data, char *file)
 	write_header(fd, data, args.oct, args.line);
 	while (cmd)
 	{
+		if (cmd->command == NULL)
+		{
+			cmd = cmd->next;
+			continue ;
+		}
 		write_exec(args, cmd, data.command);
 		cmd = cmd->next;
 	}

@@ -6,12 +6,11 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/30 18:20:17 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/31 17:25:26 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-#include <curses.h>
 
 static void		init_optab(void)
 {
@@ -63,13 +62,9 @@ static int		s_check_cycl(t_con *con)
 		con->m_check++;
 		con->cycl_die_per = 0;
 		if (con->live >= 21)
-		{
-			//printf("live >= 21\n");
 			return (1);
-		}
 		if (con->m_check >= 10)
 		{
-			//printf("\nm_check >= 10\n");
 			con->m_check = 0;
 			return (1);
 		}
@@ -83,12 +78,11 @@ int				main(int ac, char **av)
 	t_con		con;
 	t_chemp		*chemp;
 	int			k;
-	int			step;
-	int		c;
+	int			c;
 
 	init_optab();
 	k = 1;
-	step = 1;
+	con.step = 1;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
@@ -108,12 +102,13 @@ int				main(int ac, char **av)
 	init_pair(7, COLOR_BLUE, COLOR_WHITE);
 	init_pair(8, COLOR_RED, COLOR_WHITE);
 	init_pair(9, COLOR_CYAN, COLOR_WHITE);
-	vm_show_map_win(con);
-	getch();
+//	vm_show_map(con);
+//	getch();
+	init_ncurses(&con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
+		vm_check_proc(&con);
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
-		vm_hendl_proc(&con);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -121,8 +116,12 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-		vm_show_map_win(con);
-		// timeout(10);
+/*		vm_show_map(con);
+		timeout(0);
+		c = getch();
+		if (c == 'p')
+		//vm_show_map_win(con);
+		//timeout(0);
 		// c = getch();
 		// if (c == 'p')
 		// {
@@ -130,17 +129,25 @@ int				main(int ac, char **av)
 		// 	getch();
 		// 	 timeout(10);
 		// }
-		if (con.cycl >= con.dump && !(con.cycl % step))
+		if (con.cycl >= con.dump && !(con.cycl % con.step))
+		{
+			timeout(-1);
+			getch();
+		 	timeout(10);
+		}
+*/		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
 			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
 			{
 				if (k == 'e')
-					step++;
-				if (k == 'q' && step > 1)
-					step--;
+					con.step++;
+				if (k == 'q' && con.step > 1)
+					con.step--;
+				vm_show_map_win(con);
 			}
 		}
+		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}

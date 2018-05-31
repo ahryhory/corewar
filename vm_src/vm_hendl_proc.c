@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 16:04:25 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/27 16:08:53 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:51:56 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int		vm_hendl_proc(t_con *con)
 	i = 0;
 	while (proc)
 	{
-		if (proc && !proc->live)
-		{
-			//printf("Proces died\n");
-			proc = proc->next;
-			vm_del_proc(&con, i);
-			continue;
-		}
 		i++;
 		vm_hendl_byte(proc, con);
 		proc = proc->next;

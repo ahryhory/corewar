@@ -26,12 +26,10 @@ ld	%13107, r3
 ld  %17476, r4
 ld	%21845, r5
 ld  %50327043, r6
-sti r4, %-600, %600
-sti	r5, -10, r6
-sti r3, %-6, r6
-st r6, r7
-sti	r7, 12345, %-123456
-live %42
+sti	r5, %210, r6
+#sti	r5, -111, r6
+sti	r5, 11, r6
+sti r3, r6, %505
 zjmp %-33
 #live %1324									
 # live %0

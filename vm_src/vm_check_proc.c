@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vm_check_proc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 17:28:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/31 16:57:08 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/05/30 18:47:59 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/05/30 18:51:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "vm.h"
 
-int	main(void)
+void	vm_check_proc(t_con *con)
 {
-	unsigned int	a;
-	unsigned int	b;
+	t_proc	*proc;
+	int		i;
 
-	a = 0xf909ffdf;
-	b = 0xf909ffdf;
-	printf("%d\n", (int)(a + 0x2ffee03) % 512);
-	printf("%d\n", (b + 0x2ffee03) % 512);
-	printf("%d | %d", a % 512, b % 512);
+	i = 0;
+	if (!(proc = 0) && con)
+		proc = con->proc;
+	while (proc)
+	{
+		if (proc && !proc->live)
+		{
+			proc = proc->next;
+			vm_del_proc(&con, i);
+			continue;
+		}
+		i++;
+		proc = proc->next;
+	}
 }

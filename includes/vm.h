@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/29 15:59:41 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:52:39 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct      s_mem
 {
 	int				byte;
 	int				light;
+	int				proc;
 	t_chemp			*chemp;
 }					t_mem;
 
@@ -79,12 +80,16 @@ typedef struct      s_con
 	int				cycl_die_per;
 	int				cycl_to_die;
 	int				live;
+	int				step;
 	int				dump;
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;
+	WINDOW			*bytes_win;
+	WINDOW			*info_win;
 }					t_con;
 
+void				vm_check_proc(t_con *con);
 int					vm_count_proc(t_proc *proc);
 t_mem			    *allocate_memory(t_chemp *zero);
 void				add_champions(t_con *con, int ac, char **av,
@@ -132,5 +137,6 @@ t_chemp				*vm_add_chemp(int nbr);
 void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
 void				vm_show_map_win(t_con con);
+void				init_ncurses(t_con *con);
 
 #endif

@@ -87,19 +87,13 @@ int				main(int ac, char **av)
 		exit(1);
 	s_init_con(&con, &chemp);
 	con.mem = allocate_memory(chemp);
-<<<<<<< HEAD
-	add_champions(&con, ac, av, chemp->next);
+	add_champions(&con, av, chemp->next);
 	if (g_flag.v)
 		init_ncurses(&con);
-=======
-	add_champions(&con, av, chemp->next);
-	init_ncurses(&con);
-//	system("afplay sound/1.mp3 &");
->>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
+	system("afplay sound/1.mp3 &");
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
-		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -107,31 +101,9 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
-<<<<<<< HEAD
 		if (g_flag.v)
-=======
-		vm_show_map_win(con);
-/*		timeout(0);
-		c = getch();
-		if (c == 'p')
-		vm_show_map_win(con);
-		//timeout(0);
-		// c = getch();
-		// if (c == 'p')
-		// {
-		// 	 timeout(-1);
-		// 	getch();
-		// 	 timeout(10);
-		// }
-		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
-			timeout(-1);
-			getch();
-		 	timeout(10);
-		}*/
-		if (!(con.cycl % con.step))
->>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
-		{
+			vm_show_map_win(con);
 			timeout(con.step);
 			vm_show_map_win(con);
 			c = getch();
@@ -152,29 +124,26 @@ int				main(int ac, char **av)
 				if ((char)c == 'q' && con.step > 1)
 					con.step--;
 			}
-			if (c == ' ')
+			if (c == ' ' || c == 's')
 				start = 0;
 		}
-		if (g_flag.dump && con.cycl == con.dump && !g_flag.v)
+		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
 			write_dump(con.mem);
 		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-<<<<<<< HEAD
 	if (g_flag.v)
 	{
 		vm_show_map_win(con);
 		read(0, 0, 1);
 		endwin();
 	}
-=======
 	vm_show_map_win(con);
 	read(0, 0, 1);
 	vm_show_map_win(con);
 	endwin();
 	system("pkill afplay");
->>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
 	vm_give_winer(&con);
 	return (0);
 }

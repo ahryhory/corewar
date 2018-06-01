@@ -139,5 +139,8 @@ void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
 void				vm_show_map_win(t_con con);
 void				init_ncurses(t_con *con);
+void				draw_color(t_con con, int i, int row, int *column);
+void				draw_info(t_con con);
+void				write_dump(t_mem *mem);
 
 #endif

@@ -109,6 +109,9 @@ SRC_C += vm_show_map_win.c
 SRC_C += vm_count_proc.c
 SRC_C += vm_check_proc.c
 SRC_C += init_ncurses.c
+SRC_C += draw_info.c
+SRC_C += draw_color.c
+SRC_C += write_dump.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

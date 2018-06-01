@@ -91,7 +91,7 @@ int				main(int ac, char **av)
 	init_ncurses(&con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
-		vm_check_proc(&con);
+		//vm_check_proc(&con);
 		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
@@ -100,10 +100,11 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
+		vm_show_map_win(con);
 /*		timeout(0);
 		c = getch();
 		if (c == 'p')
-		//vm_show_map_win(con);
+		vm_show_map_win(con);
 		//timeout(0);
 		// c = getch();
 		// if (c == 'p')
@@ -117,8 +118,8 @@ int				main(int ac, char **av)
 			timeout(-1);
 			getch();
 		 	timeout(10);
-		}
-*/		if (con.cycl >= con.dump && !(con.cycl % con.step))
+		}*/
+		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
 			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
@@ -136,6 +137,7 @@ int				main(int ac, char **av)
 	}
 	vm_show_map_win(con);
 	read(0, 0, 1);
+	vm_show_map_win(con);
 	endwin();
 	vm_give_winer(&con);
 	return (0);

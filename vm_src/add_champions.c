@@ -24,11 +24,39 @@ static int	calc_begin(int ac, int file, t_con *con)
 	return (0);
 }
 
+static void	validation(int fd)
+{
+	unsigned int	tmp;
+	unsigned int	size;
+	unsigned int	i;
+
+	i = 0;
+	read(fd, &tmp, 4);
+	if (tmp != reverse(COREWAR_EXEC_MAGIC))
+	{
+		ft_putendl("ERROR: Incorrect file extention");
+		exit(0);
+	}
+	lseek(fd, PROG_NAME_LENGTH, 1);
+	lseek(fd, 4, 1);
+	read(fd, &tmp, 4);
+	tmp = reverse(tmp);
+	size = 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + 4 + tmp;
+	lseek(fd, 0, 0);
+	while(read(fd, &tmp, 1))
+		i++;
+	if (i != size)
+	{
+		ft_putendl("Error: File Gagnant.cor has a code size that differ from what its header says");
+		exit(0);
+	}
+}
+
 static void	get_name(t_chemp *chemp, int fd)
 {
-	lseek(fd, 4, 0);
+	lseek(fd, 8, 0);
 	read(fd, &chemp->champ_name, PROG_NAME_LENGTH);
-	lseek(fd, 8, 1);
+	lseek(fd, 4, 1);
 }
 
 static void	get_comm(t_chemp *chemp, int fd)
@@ -49,6 +77,7 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 	{
 		i = 0;
 		fd = open(av[file], O_RDONLY);
+		validation(fd);
 		get_name(chemp, fd);
 		get_comm(chemp, fd);
 		j = calc_begin(ac, file, con);
@@ -61,6 +90,6 @@ void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
 		}
 		chemp = chemp->next;
 		file++;
+		close(fd);
 	}
-	close(fd);
 }

@@ -41,7 +41,7 @@ int				main(int argc, char **argv)
 		data = parse(argv[2], info);
 		check_commands(data.command);
 		flag_a(&data);
-		// system("leaks asm");
+		system("leaks asm");
 		return (0);
 	}
 	data = parse(argv[1], info);

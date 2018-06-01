@@ -6,11 +6,13 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/01 17:29:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 18:01:13 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	s_chack_flag(char *str)
+#include "vm.h"
+
+static int	s_check_flag(char *str)
 {
 	if (!ft_strcmp(str, "-v"))
 		return (1);
@@ -29,12 +31,12 @@ static void	s_init_gflag(void)
 	g_flag.nbr[0] = 1;
 	g_flag.nbr[1] = 2;
 	g_flag.nbr[2] = 3;
-	g_falg.nbr[3] = 4;
+	g_flag.nbr[3] = 4;
 	g_flag.a = 0;
 	g_flag.dump = -1;
 }
 
-static int	s_give_ngr(char *str)
+static int	s_give_nbr(char *str)
 {
 	int		nbr;
 	int		n;

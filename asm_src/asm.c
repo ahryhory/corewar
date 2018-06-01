@@ -28,7 +28,6 @@ static void		init_optab(void)
 int				main(int argc, char **argv)
 {
 	t_data		data;
-//	t_commands	*lst;
 	t_info		info;
 
 	argc++;
@@ -41,12 +40,13 @@ int				main(int argc, char **argv)
 		data = parse(argv[2], info);
 		check_commands(data.command);
 		flag_a(&data);
-		// system("leaks asm");
 		return (0);
 	}
 	data = parse(argv[1], info);
 	check_commands(data.command);
 	write_byte(data, argv[1]);
-	system("leaks asm");
+	ft_putstr("Writing output program to ");
+	ft_putstr(argv[1]);
+	ft_putendl("cor");
 	return (0);
 }

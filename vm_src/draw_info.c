@@ -89,7 +89,6 @@ static void	draw_lines_breakdown(t_con con, int *row)
 
 void	draw_info(t_con con)
 {
-		t_chemp		*chemp;
 		int			row;
 
 		row = 2;

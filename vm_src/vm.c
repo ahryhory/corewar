@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 18:03:03 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 16:05:14 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int				main(int ac, char **av)
 	t_chemp		*chemp;
 	int			k;
 
-	vm_init_flag(ac, av);
 	init_optab();
 	k = 1;
 	con.step = 1;
@@ -89,9 +88,11 @@ int				main(int ac, char **av)
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
 	init_ncurses(&con);
+	system("afplay sound/1.mp3 &");
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
+		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -138,6 +139,7 @@ int				main(int ac, char **av)
 	read(0, 0, 1);
 	vm_show_map_win(con);
 	endwin();
+	system("pkill afplay");
 	vm_give_winer(&con);
 	return (0);
 }

@@ -25,11 +25,23 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
+static	void	usage(int argc char **argv)
+{
+	if (argc != 2 && )
+	{
+		ft_putendl("usage: ./asm [-a] <sourcefile.s>");
+		ft_putstr("-a : Instead of creating a .cor file, outputs ");
+		ft_putendl("a stripped and annotated version of the code to the standard output");
+		exit(0);
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_data		data;
 	t_info		info;
 
+	usage(argc, argv);
 	argc++;
 	init_optab();
 	info.line = 0;

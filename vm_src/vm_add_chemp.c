@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/31 19:51:26 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:22:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_chemp	*s_create_chemp(int nbr, int color)
 	return (chemp);
 }
 
-t_chemp			*vm_add_chemp(int nbr)
+t_chemp			*vm_add_chemp(void)
 {
 	int		i;
 	int		color;
@@ -37,18 +37,18 @@ t_chemp			*vm_add_chemp(int nbr)
 
 	i = -1;
 	color = 0;
-	b_chemp = s_create_chemp(0, color++);
-	while (nbr--)
+	b_chemp = s_create_chemp(g_flag.zerro, color++);
+	while (++i < g_flag.nbr_ch)
 	{
 		chemp = b_chemp;
 		if (!b_chemp)
 		{
-			b_chemp = s_create_chemp(i--, color++);
+			b_chemp = s_create_chemp(g_flag.nbr[i], color++);
 			continue;
 		}
 		while (chemp->next)
 			chemp = chemp->next;
-		chemp->next = s_create_chemp(i--, color++);
+		chemp->next = s_create_chemp(g_flag.nbr[i], color++);
 	}
 	return (b_chemp);
 }

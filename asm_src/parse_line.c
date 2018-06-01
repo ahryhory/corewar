@@ -12,6 +12,20 @@
 
 #include "asm.h"
 
+static int			find_command_index(char *command)
+{
+	int				i;
+
+	i = 0;
+	while (i < COUNT_OP)
+	{
+		if (ft_strequ(g_optab[i].name, command))
+			break ;
+		i++;
+	}
+	return (i);
+}
+
 static void			add_args(t_commands **new, char **split)
 {
 	int				i;
@@ -36,14 +50,7 @@ static void			add_args(t_commands **new, char **split)
 		i++;
 		ft_strdel(&trim);
 	}
-	i = 0;
-	while (i < COUNT_OP)
-	{
-		if (ft_strequ(g_optab[i].name, (*new)->command))
-			break ;
-		i++;
-	}
-	if (g_optab[i].cod_octal)
+	if (g_optab[find_command_index((*new)->command)].cod_octal)
 		(*new)->size += 1;
 }
 
@@ -75,6 +82,7 @@ static int			check_curr_line(char **line, t_commands **new)
 		return (0);
 	}
 	split = ft_strsplit(*line, COMMENT_CHAR);
+	ft_strdel(line);
 	*line = ft_strtrim(split[0]);
 	ft_split_del(&split);
 	if (ft_strequ(*line, ""))
@@ -87,37 +95,42 @@ static int			check_curr_line(char **line, t_commands **new)
 	return (1);
 }
 
-static char			*add_command(t_commands **new, char *line)
+static void			get_command(t_commands **new, char *line, char **trim)
 {
 	int				size;
 	int				i;
 	char			*cmd;
-	char			*trim;
 	char			**split;
 
 	size = ft_strlen((*new)->label);
 	if (size > 0)
 		size++;
 	cmd = ft_strsub(line, size, ft_strlen(line) - ft_strlen((*new)->label));
-	trim = ft_strtrim(cmd);
+	*trim = ft_strtrim(cmd);
 	ft_strdel(&cmd);
 	split = 0;
 	i = 0;
-	while (trim[i])
+	while ((*trim)[i])
 	{
-		if (trim[i] == ' ')
-		{
-			split = ft_strsplit(trim, ' ');
+		if ((*trim)[i] == ' ')
+			split = ft_strsplit(*trim, ' ');
+		if ((*trim)[i] == '\t')
+			split = ft_strsplit(*trim, '\t');
+		if ((*trim)[i] == ' ' || (*trim)[i] == '\t')
 			break ;
-		}
-		if (trim[i] == '\t')
-		{
-			split = ft_strsplit(trim, '\t');
-			break ;
-		}
 		i++;
 	}
 	(*new)->command = ft_strdup(split[0]);
+	ft_split_del(&split);
+}
+
+static char			*add_command(t_commands **new, char *line)
+{
+	int				size;
+	char			*cmd;
+	char			*trim;
+
+	get_command(new, line, &trim);
 	cmd = ft_strsub(trim, ft_strlen((*new)->command),
 		ft_strlen(trim) - ft_strlen((*new)->command));
 	size = 0;
@@ -133,30 +146,39 @@ static char			*add_command(t_commands **new, char *line)
 		(*new)->command = ft_strdup(trim);
 	}
 	ft_strdel(&trim);
-	ft_split_del(&split);
 	return (cmd);
+}
+
+static void			add_new_to_list(t_commands **command, t_commands *new)
+{
+	t_commands		*lst;
+
+	lst = *command;
+	if (lst)
+	{
+		while (lst->next != NULL)
+			lst = lst->next;
+		lst->next = new;
+	}
+	else
+		*command = new;
 }
 
 void				parse_line(char *line, t_commands **command)
 {
 	t_commands		*new;
-	t_commands		*lst;
 	char			*cmd;
 	char			**split;
 
 	new = init_command();
-	if (line[ft_strlen(line) - 1] == ':')
+	split = ft_strsplit(line, COMMENT_CHAR);
+	line = ft_strdup(split[0]);
+	ft_split_del(&split);
+	if (line && line[ft_strlen(line) - 1] == ':')
 	{
 		new->label = ft_strsub(line, 0, ft_strlen(line) - 1);
-		lst = *command;
-		if (lst)
-		{
-			while (lst->next != NULL)
-				lst = lst->next;
-			lst->next = new;
-		}
-		else
-			*command = new;
+		add_new_to_list(command, new);
+		ft_strdel(&line);
 		return ;
 	}
 	if (!check_curr_line(&line, &new))
@@ -168,13 +190,5 @@ void				parse_line(char *line, t_commands **command)
 	add_args(&new, split);
 	ft_split_del(&split);
 	ft_strdel(&line);
-	lst = *command;
-	if (lst)
-	{
-		while (lst->next != NULL)
-			lst = lst->next;
-		lst->next = new;
-	}
-	else
-		*command = new;
+	add_new_to_list(command, new);
 }

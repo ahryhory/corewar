@@ -6,13 +6,14 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:32:37 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/28 19:51:59 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:39:54 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	s_add_to_mem(t_con *con, unsigned int value, int index, t_chemp *chemp)
+static void	s_add_to_mem(t_con *con, unsigned int value, int index,
+		t_chemp *chemp)
 {
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = (value >> 24) & 255;
@@ -31,13 +32,12 @@ static void	s_add_to_mem(t_con *con, unsigned int value, int index, t_chemp *che
 	con->mem[index].light = con->cycl;
 }
 
-void	do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
+void		do_st(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	int				indx;
 	unsigned int	tmp;
 	t_chemp			*chemp;
 
-	//printf("COMMAND: st\n");
 	chemp = proc->chemp;
 	index = get_index(index, 2);
 	if (n[1] == 3)

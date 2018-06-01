@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 16:08:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/28 16:08:10 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:55:32 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	draw_info(t_con con)
 void	vm_show_map_win(t_con con)
 {
 	int		i;
-	int		draw;
 	int		row;
 	int		column;
 

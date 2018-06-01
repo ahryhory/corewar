@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:20 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/31 16:59:54 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:42:01 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	s_add_to_mem(t_con *con, unsigned int value, int index,
 		t_chemp *chemp)
 {
-
 	con->mem[index].chemp = chemp;
 	con->mem[index].byte = (value >> 24) & 255;
 	con->mem[index].light = con->cycl;
@@ -39,20 +38,13 @@ static void	s_init(long long int *arg_1, long long int *arg_2, int *step)
 	*arg_2 = 0;
 	*step = 0;
 }
-/*
-static int	s_help_index(int index, unsigned int a1, long int a2, unsigned  int *n)
-{
-//	if ((n[1] == 1 && n[2] == 2) || (n[1] == 3 && n[2] == 1 && (short)a1 > 0))
-//		return (get_index(index, (a1 + a2) % IDX_MOD));
-	return (get_index(index, (a1 + a2) % IDX_MOD));
-}
-*/
-void	do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
+
+void		do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	long long int	arg_1;
 	long long int	arg_2;
 	unsigned int	value;
-	int			step;
+	int				step;
 
 	s_init(&arg_1, &arg_2, &step);
 	value = (unsigned int)proc->r[con->mem[get_index(index, 2)].byte - 1];
@@ -71,4 +63,3 @@ void	do_sti(t_con *con, int index, unsigned int *n, t_proc *proc)
 	s_add_to_mem(con, value, get_index(index, (int)(arg_1 + arg_2) % IDX_MOD)
 			, proc->chemp);
 }
-//s_add_to_mem(con, value, s_help_index(index, arg_1, arg_2, n), proc->chemp);

@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 14:19:12 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/13 14:19:13 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:53:30 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static char	*cut_name(char *line, char **p_line, t_info info)
 	char	*trim_line;
 	char	*name;
 
+	if (info.num)
+		i = 0;
 	trim_line = ft_strtrim(line);
 	ft_strdel(&line);
 	i = 0;

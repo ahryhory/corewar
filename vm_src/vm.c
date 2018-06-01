@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 18:03:03 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:25:26 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
-static void		s_init_con(t_con *con, t_chemp **chemp, int nbr, char **av)
+static void		s_init_con(t_con *con, t_chemp **chemp)
 {
-	*chemp = vm_add_chemp(nbr);
+	*chemp = vm_add_chemp();
 	con->cycl_to_die = CYCLE_TO_DIE;
 	con->cycl = 0;
 	con->m_check = 0;
-	con->dump = ft_strcmp(av[1], "-d") == 0 ? ft_atoi(av[2]) : 0;
 	con->cycl_die_per = 0;
 	con->mem = 0;
 	con->chemp = *chemp;
@@ -85,9 +84,9 @@ int				main(int ac, char **av)
 	con.step = 1;
 	if (ac == 1)
 		exit(1);
-	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
+	s_init_con(&con, &chemp);
 	con.mem = allocate_memory(chemp);
-	add_champions(&con, ac, av, chemp->next);
+	add_champions(&con, av, chemp->next);
 	init_ncurses(&con);
 	while (con.cycl_to_die > 0 && con.proc)
 	{
@@ -118,7 +117,7 @@ int				main(int ac, char **av)
 			getch();
 		 	timeout(10);
 		}*/
-		if (con.cycl >= con.dump && !(con.cycl % con.step))
+		if (!(con.cycl % con.step))
 		{
 			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')

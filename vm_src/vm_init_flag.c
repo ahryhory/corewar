@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/01 18:01:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 19:39:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,20 @@ static int	s_check_flag(char *str)
 
 static void	s_init_gflag(void)
 {
+	int	i;
+
+	i = -1;
 	g_flag.v = 0;
-	g_flag.nbr[0] = 1;
-	g_flag.nbr[1] = 2;
-	g_flag.nbr[2] = 3;
-	g_flag.nbr[3] = 4;
+	g_flag.nbr[0] = -1;
+	g_flag.nbr[1] = -2;
+	g_flag.nbr[2] = -3;
+	g_flag.nbr[3] = -4;
+	g_flag.zerro = 123;
 	g_flag.a = 0;
 	g_flag.dump = -1;
+	g_flag.nbr_ch = 0;
+	while (++i < 4)
+		g_flag.r_index[i] = 0;
 }
 
 static int	s_give_nbr(char *str)
@@ -70,7 +77,11 @@ void	vm_init_flag(int ac, char **av)
 	while (++i < ac)
 	{
 		if (!s_check_flag(av[i]))
+		{
+			g_flag.r_index[count_ch] = i;
+			g_flag.nbr_ch++;
 			count_ch++;
+		}
 		else if (s_check_flag(av[i]) == 1)
 			g_flag.v = 1;
 		else if (s_check_flag(av[i]) == 2)
@@ -80,4 +91,5 @@ void	vm_init_flag(int ac, char **av)
 		else if (s_check_flag(av[i]) == 4)
 			g_flag.a = 1;
 	}
+	g_flag.zerro = s_give_nbr("0");
 }

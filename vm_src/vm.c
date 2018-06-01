@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 16:05:14 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:29:50 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				main(int ac, char **av)
 	t_chemp		*chemp;
 	int			k;
 
+	vm_init_flag(ac, av);
 	init_optab();
 	k = 1;
 	con.step = 1;

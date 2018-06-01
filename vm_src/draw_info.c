@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 12:28:53 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/06/01 12:28:54 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/06/01 16:37:13 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static void	draw_lines_breakdown(t_con con, int *row)
 
 void	draw_info(t_con con)
 {
-		t_chemp		*chemp;
 		int			row;
 
 		row = 2;

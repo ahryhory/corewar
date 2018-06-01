@@ -93,7 +93,7 @@ void	draw_info(t_con con)
 
 		row = 2;
 		wattron(con.info_win, A_BOLD);
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "Cycles/step:", con.step);
+		mvwprintw(con.info_win, row, 2, "%-15s %d", "Timeout :", con.step);
 		row += 2;
 		mvwprintw(con.info_win, row, 2, "%-15s %d", "Cycle :", con.cycl);
 		row += 2;

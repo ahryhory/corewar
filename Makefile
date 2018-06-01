@@ -60,6 +60,7 @@ SRC_A += check_args.c
 SRC_A += check_arg.c
 SRC_A += flag_a.c
 SRC_A += check_commands.c
+SRC_A += modif_line.c
 
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))

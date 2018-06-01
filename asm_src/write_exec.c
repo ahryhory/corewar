@@ -43,7 +43,6 @@ static	void	write_args(t_args args, char *arg, int begin, t_commands *cmd)
 {
 	if (!arg)
 		return ;
-
 	if (arg[0] == DIRECT_CHAR)
 		write_direct(args, arg + 1, begin, cmd);
 	else if (arg[0] == 'r')

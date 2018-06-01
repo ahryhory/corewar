@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:34:50 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/31 20:36:32 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:38:06 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	s_init(long int *arg_1, long int *arg_2, int *step)
 	*step = 0;
 }
 
-void	do_lldi(t_con *con, int index, unsigned int *n, t_proc *proc)
+void		do_lldi(t_con *con, int index, unsigned int *n, t_proc *proc)
 {
 	long int		arg_1;
 	long int		arg_2;

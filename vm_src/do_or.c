@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:35:07 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/05/31 20:35:23 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:39:16 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static unsigned int	s_arg_ind(t_con *con, int index)
 {
-	unsigned int		arg;
-	int		step;
+	unsigned int	arg;
+	int				step;
 
 	step = (short int)get_nbr(con, index, 2) % IDX_MOD;
 	arg = get_nbr(con, get_index(index, step), 4);
@@ -52,7 +52,7 @@ void				do_or(t_con *con, int index, unsigned int *n, t_proc *proc)
 	else if (n[1] == 3 && (step2 = 2))
 		num_2 = s_arg_ind(con, get_index(index, 2 + step));
 	if ((proc->r[con->mem[get_index(index, 2 + step + step2)].byte - 1] =
-															num_1 | num_2) == 0)
+														num_1 | num_2) == 0)
 		proc->carry = 1;
 	else
 		proc->carry = 0;

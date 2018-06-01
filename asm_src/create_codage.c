@@ -39,7 +39,7 @@ static unsigned char		write_bits(char *arg, int b)
 
 unsigned char				create_codage(t_commands *cmd)
 {
-	int		i;
+	int				i;
 	unsigned char	arg1;
 	unsigned char	arg2;
 	unsigned char	arg3;

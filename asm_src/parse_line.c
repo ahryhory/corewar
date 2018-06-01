@@ -127,10 +127,8 @@ static void			get_command(t_commands **new, char *line, char **trim)
 static char			*add_command(t_commands **new, char *line)
 {
 	int				size;
-	int				i;
 	char			*cmd;
 	char			*trim;
-	char			**split;
 
 	get_command(new, line, &trim);
 	cmd = ft_strsub(trim, ft_strlen((*new)->command),

@@ -55,10 +55,7 @@ int				main(int argc, char **argv)
 		data = parse(argv[2], info);
 		check_commands(data.command);
 		flag_a(&data);
-<<<<<<< HEAD
 		system("leaks asm");
-=======
->>>>>>> 153443fc632145b127ad1d8711b74406e8d3b181
 		return (0);
 	}
 	data = parse(argv[1], info);

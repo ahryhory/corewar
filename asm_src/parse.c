@@ -207,10 +207,9 @@ static void			read_while_not_command(t_parse *parse,
 	}
 }
 
-static void			if_command(t_parse *parse, t_info info, t_data *data)
+static void			if_command(t_parse *parse, t_data *data)
 {
 	char			*trim;
-	char			*join;
 	char			**split;
 
 	split = ft_strsplit(parse->line, COMMENT_CHAR);
@@ -254,7 +253,7 @@ static void			check_and_change_input(t_parse *parse,
 		ft_strlen(COMMENT_CMD_STRING)))
 		if_cmd_line(&(parse->line), parse->fd, info, COMMENT_CMD_STRING);
 	else
-		if_command(parse, info, data);
+		if_command(parse, data);
 	parse->real_count += 1;
 }
 
@@ -270,7 +269,6 @@ static void			trim_line(t_parse *parse)
 
 t_data				parse(char *file, t_info info)
 {
-	char			*line;
 	t_data			data;
 	t_parse			parse;
 

@@ -113,10 +113,5 @@ unsigned char				create_codage(t_commands *cmd);
 void						check_args(char **line, int command, t_info info);
 int							check_arg(char *arg, int command, int arg_num);
 void						check_commands(t_commands *commands);
-<<<<<<< HEAD
 void						modif_line(char **p_line);
-=======
-void						modif_line(char **line);
->>>>>>> 153443fc632145b127ad1d8711b74406e8d3b181
-
 #endif

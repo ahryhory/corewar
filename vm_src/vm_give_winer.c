@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 18:36:21 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/31 19:24:51 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:56:43 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		vm_give_winer(t_con *con)
 	w_chemp = chemp->next;
 	while (chemp)
 	{
-		if (chemp->cycl_live > w_chemp->cycl_live)
+		if (chemp->cycl_live >= w_chemp->cycl_live)
 			w_chemp = chemp;
 		chemp = chemp->next;
 	}

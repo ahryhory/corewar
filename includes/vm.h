@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/31 19:15:55 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:29:26 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # include <ncurses.h>
 
 # define COUNT_OP 16
+
+typedef struct		s_flag
+{
+	int				v;
+	int				nbr[4];
+	int				a;
+	int				dump;
+}					t_flag;
+
+t_flag				g_flag;
 
 typedef struct      s_optab
 {
@@ -89,6 +99,7 @@ typedef struct      s_con
 	WINDOW			*info_win;
 }					t_con;
 
+void				vm_init_flag(int ac, char **cv);
 void				vm_give_winer(t_con *con);
 void				vm_check_proc(t_con *con);
 int					vm_count_proc(t_proc *proc);
@@ -139,5 +150,8 @@ void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
 void				vm_show_map_win(t_con con);
 void				init_ncurses(t_con *con);
+void				draw_color(t_con con, int i, int row, int *column);
+void				draw_info(t_con con);
+void				write_dump(t_mem *mem);
 
 #endif

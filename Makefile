@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/05/31 19:16:15 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/06/01 17:59:04 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME_C = corewar
 
 C = gcc
 
-#FLAGS += -Wall -Wextra -Werror
+FLAGS += -Wall -Wextra -Werror
 
 LIBFT = ./libft/
 LIB = ./libft/libft.a
@@ -67,6 +67,7 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
 SRC_C = 
 
+SRC_C += vm_init_flag.c
 SRC_C += vm_give_winer.c
 SRC_C += vm.c
 SRC_C += allocate_memory.c
@@ -110,6 +111,9 @@ SRC_C += vm_show_map_win.c
 SRC_C += vm_count_proc.c
 SRC_C += vm_check_proc.c
 SRC_C += init_ncurses.c
+SRC_C += draw_info.c
+SRC_C += draw_color.c
+SRC_C += write_dump.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

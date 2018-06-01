@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/05/31 20:35:50 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 16:05:14 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int				main(int ac, char **av)
 	t_con		con;
 	t_chemp		*chemp;
 	int			k;
-	int			c;
 
 	init_optab();
 	k = 1;
@@ -89,6 +88,7 @@ int				main(int ac, char **av)
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, ac, av, chemp->next);
 	init_ncurses(&con);
+	system("afplay sound/1.mp3 &");
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -100,10 +100,11 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
+		vm_show_map_win(con);
 /*		timeout(0);
 		c = getch();
 		if (c == 'p')
-		//vm_show_map_win(con);
+		vm_show_map_win(con);
 		//timeout(0);
 		// c = getch();
 		// if (c == 'p')
@@ -117,8 +118,8 @@ int				main(int ac, char **av)
 			timeout(-1);
 			getch();
 		 	timeout(10);
-		}
-*/		if (con.cycl >= con.dump && !(con.cycl % con.step))
+		}*/
+		if (con.cycl >= con.dump && !(con.cycl % con.step))
 		{
 			vm_show_map_win(con);
 			while (read(0, &k, 1) > 0 && k != 's')
@@ -136,7 +137,9 @@ int				main(int ac, char **av)
 	}
 	vm_show_map_win(con);
 	read(0, 0, 1);
+	vm_show_map_win(con);
 	endwin();
+	system("pkill afplay");
 	vm_give_winer(&con);
 	return (0);
 }

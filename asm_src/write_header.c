@@ -31,6 +31,7 @@ static	void	write_name(int fd, t_data data)
 		i++;
 	}
 }
+
 static	void	write_size(int fd, t_data data)
 {
 	write_4b(fd, (unsigned int)data.head.prog_size);
@@ -58,8 +59,9 @@ static	void	write_comm(int fd, t_data data)
 
 void			write_header(int fd, t_data data, int *oct, int *line)
 {
-	int		magic = 0xF383EA00;
+	int		magic;
 
+	magic = 0xF383EA00;
 	oct = 0;
 	line = 0;
 	write(fd, &magic, 4);

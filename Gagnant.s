@@ -1,4 +1,4 @@
-.name		"Celebration Funebre v0.99pdfbfxvkdfnkbbfzhbvjgxdzuzduvjhcxzvjhxchjhzvchjvzhjvhjxcvxcvxbcvcxvj"
+.name		"Celebration Funebre v0.99"
 .comment	"Jour J"
 
 		ld   %0,r3		

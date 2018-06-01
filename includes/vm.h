@@ -155,5 +155,6 @@ void				init_ncurses(t_con *con);
 void				draw_color(t_con con, int i, int row, int *column);
 void				draw_info(t_con con);
 void				write_dump(t_mem *mem);
+unsigned int		reverse(unsigned int size);
 
 #endif

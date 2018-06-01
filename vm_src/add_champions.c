@@ -50,8 +50,9 @@ static void	validation(int fd)
 
 static void	get_name(t_chemp *chemp, int fd)
 {
-	lseek(fd, 8, 0);
+	lseek(fd, 4, 0);
 	read(fd, &chemp->champ_name, PROG_NAME_LENGTH);
+	printf("%s\n", chemp->champ_name);
 	lseek(fd, 4, 1);
 }
 

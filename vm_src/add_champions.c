@@ -6,22 +6,18 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 17:16:44 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:47:13 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int	calc_begin(int ac, int file, t_con *con)
+static int	calc_begin(int nbr, int file)
 {
 	int		size;
-	int		cast;
 
-	cast = con->dump == 0 ? 0 : 2;
-	size = MEM_SIZE / (ac - cast - 1);
-	if (ac - cast > 2)
-		return ((file - cast - 1) * size);
-	return (0);
+	size = MEM_SIZE / (nbr);
+	return ((file) * size);
 }
 
 static void	get_name(t_chemp *chemp, int fd)
@@ -37,27 +33,26 @@ static void	get_comm(t_chemp *chemp, int fd)
 	lseek(fd, 4, 1);
 }
 
-void		add_champions(t_con *con, int ac, char **av, t_chemp *chemp)
+void		add_champions(t_con *con, char **av, t_chemp *chemp)
 {
 	int			fd;
 	int			i;
 	int			j;
 	int			file;
 
-	file = con->dump == 0 ? 1 : 3;
-	while (file < ac)
+	file = 0;
+	while (file < 4 && g_flag.r_index[file] && !(i = 0))
 	{
-		i = 0;
-		fd = open(av[file], O_RDONLY);
+		fd = open(av[g_flag.r_index[file]], O_RDONLY);
 		get_name(chemp, fd);
 		get_comm(chemp, fd);
-		j = calc_begin(ac, file, con);
+		j = calc_begin(g_flag.nbr_ch, file);
 		i = j;
 		while (read(fd, &((con->mem)[j].byte), 1) > 0)
 		{
 			((con->mem)[j]).chemp = chemp;
 			if (j++ == i)
-				vm_add_proces(con, j - 1, (con->dump == 0 ? -file : -file + 2));
+				vm_add_proces(con, j - 1, g_flag.nbr[file]);
 		}
 		chemp = chemp->next;
 		file++;

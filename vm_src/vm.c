@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 18:03:03 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/06/01 20:30:20 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/06/01 20:46:40 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
-static void		s_init_con(t_con *con, t_chemp **chemp, int nbr, char **av)
+static void		s_init_con(t_con *con, t_chemp **chemp)
 {
-	*chemp = vm_add_chemp(nbr);
+	*chemp = vm_add_chemp();
 	con->cycl_to_die = CYCLE_TO_DIE;
 	con->cycl = 0;
 	con->m_check = 0;
-	con->dump = ft_strcmp(av[1], "-d") == 0 ? ft_atoi(av[2]) : 0;
 	con->cycl_die_per = 0;
 	con->mem = 0;
 	con->chemp = *chemp;
@@ -86,14 +85,21 @@ int				main(int ac, char **av)
 	con.step = 100;
 	if (ac == 1)
 		exit(1);
-	s_init_con(&con, &chemp, ac, av); ///// nbr chemp!
+	s_init_con(&con, &chemp);
 	con.mem = allocate_memory(chemp);
+<<<<<<< HEAD
 	add_champions(&con, ac, av, chemp->next);
 	if (g_flag.v)
 		init_ncurses(&con);
+=======
+	add_champions(&con, av, chemp->next);
+	init_ncurses(&con);
+//	system("afplay sound/1.mp3 &");
+>>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
+		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -101,7 +107,30 @@ int				main(int ac, char **av)
 			con.m_check = 0;
 			s_null_chemp(&con);
 		}
+<<<<<<< HEAD
 		if (g_flag.v)
+=======
+		vm_show_map_win(con);
+/*		timeout(0);
+		c = getch();
+		if (c == 'p')
+		vm_show_map_win(con);
+		//timeout(0);
+		// c = getch();
+		// if (c == 'p')
+		// {
+		// 	 timeout(-1);
+		// 	getch();
+		// 	 timeout(10);
+		// }
+		if (con.cycl >= con.dump && !(con.cycl % con.step))
+		{
+			timeout(-1);
+			getch();
+		 	timeout(10);
+		}*/
+		if (!(con.cycl % con.step))
+>>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
 		{
 			timeout(con.step);
 			vm_show_map_win(con);
@@ -132,12 +161,20 @@ int				main(int ac, char **av)
 		con.cycl++;
 		con.cycl_die_per++;
 	}
+<<<<<<< HEAD
 	if (g_flag.v)
 	{
 		vm_show_map_win(con);
 		read(0, 0, 1);
 		endwin();
 	}
+=======
+	vm_show_map_win(con);
+	read(0, 0, 1);
+	vm_show_map_win(con);
+	endwin();
+	system("pkill afplay");
+>>>>>>> 7001a69fe5437a146ca47d800d67a3ca3afcf2dd
 	vm_give_winer(&con);
 	return (0);
 }

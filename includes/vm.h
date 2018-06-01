@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 17:29:26 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/01 19:40:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct		s_flag
 	int				nbr[4];
 	int				a;
 	int				dump;
+	int				zerro;
+	int				nbr_ch;
+	int				r_index[4];
 }					t_flag;
 
 t_flag				g_flag;
@@ -91,7 +94,6 @@ typedef struct      s_con
 	int				cycl_to_die;
 	int				live;
 	int				step;
-	int				dump;
 	t_mem			*mem;
 	t_chemp			*chemp;
 	t_proc			*proc;
@@ -104,7 +106,7 @@ void				vm_give_winer(t_con *con);
 void				vm_check_proc(t_con *con);
 int					vm_count_proc(t_proc *proc);
 t_mem			    *allocate_memory(t_chemp *zero);
-void				add_champions(t_con *con, int ac, char **av,
+void				add_champions(t_con *con, char **av,
 														t_chemp *chemp);
 void				do_add(t_con *con, int index, t_proc *proc);
 void				do_aff(t_con *con, int index, t_proc *proc);
@@ -145,7 +147,7 @@ void				vm_give_cord(t_proc *proc, int *codg);
 void				vm_del_proc(t_con **con, int i);
 void				vm_hendl_byte(t_proc *proc, t_con *con);
 int					vm_give_codg(t_proc *proc, unsigned int *codg);
-t_chemp				*vm_add_chemp(int nbr);
+t_chemp				*vm_add_chemp(void);
 void				vm_add_proces(t_con *con, int index, int nbr);
 void				vm_show_map(t_con con);
 void				vm_show_map_win(t_con con);

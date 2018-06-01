@@ -50,6 +50,15 @@ typedef struct 				s_commands
 	struct s_commands		*next;
 }							t_commands;
 
+typedef struct				s_parse
+{
+	int						fd;
+	int						count;
+	int						real_count;
+	int						gnl;
+	char					*line;
+}							t_parse;
+
 typedef struct 				s_info
 {
 	char					**line;
@@ -104,6 +113,5 @@ unsigned char				create_codage(t_commands *cmd);
 void						check_args(char **line, int command, t_info info);
 int							check_arg(char *arg, int command, int arg_num);
 void						check_commands(t_commands *commands);
-void						modif_line(char **line);
-
+void						modif_line(char **p_line);
 #endif

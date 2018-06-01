@@ -25,11 +25,26 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
+static	void	usage(int argc, char **argv)
+{
+	if (argc == 2 || (argc == 3 && !ft_strcmp(argv[1], "-a")))
+		return ;
+	else
+	{
+		ft_putendl("usage: ./asm [-a] <sourcefile.s>");
+		ft_putstr("-a : Instead of creating a .cor file, outputs ");
+		ft_putstr("a stripped and annotated version of the ");
+		ft_putendl("code to the standard output");
+		exit(0);
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_data		data;
 	t_info		info;
 
+	usage(argc, argv);
 	argc++;
 	init_optab();
 	info.line = 0;
@@ -40,6 +55,7 @@ int				main(int argc, char **argv)
 		data = parse(argv[2], info);
 		check_commands(data.command);
 		flag_a(&data);
+		system("leaks asm");
 		return (0);
 	}
 	data = parse(argv[1], info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 12:40:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 20:25:26 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/06/01 20:30:20 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/06/01 20:46:40 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ int				main(int ac, char **av)
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, av, chemp->next);
 	init_ncurses(&con);
+//	system("afplay sound/1.mp3 &");
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
+		//printf("cycl: %d, %d\n", con.cycl, con.cycl_to_die);
 		if (s_check_cycl(&con))
 		{
 			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
@@ -137,6 +139,7 @@ int				main(int ac, char **av)
 	read(0, 0, 1);
 	vm_show_map_win(con);
 	endwin();
+	system("pkill afplay");
 	vm_give_winer(&con);
 	return (0);
 }

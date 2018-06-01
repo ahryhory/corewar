@@ -104,5 +104,6 @@ unsigned char				create_codage(t_commands *cmd);
 void						check_args(char **line, int command, t_info info);
 int							check_arg(char *arg, int command, int arg_num);
 void						check_commands(t_commands *commands);
+void						modif_line(char **line);
 
 #endif

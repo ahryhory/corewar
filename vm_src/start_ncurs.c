@@ -47,9 +47,8 @@ void	start_ncurs(int *start, t_con *con)
 			break ;
 		if ((char)c == 'e')
 			con->step += 1000;
-		if ((char)c == 'q' && con->step > 1)
+		if ((char)c == 'q' && con->step - 1000 > 1)
 			con->step -= 1000;
 	}
-	// if(1 == system("ps aux | grep afplay | wc -l"))
-	// 	system("afplay sound/1.mp3 &");
+	system("./pidof");
 }

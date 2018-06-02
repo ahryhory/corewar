@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/01 20:22:28 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 10:51:55 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_chemp	*s_create_chemp(int nbr, int color)
 	chemp->cycl_live = 0;
 	chemp->live_icp = 0;
 	chemp->next = 0;
+	chemp->size = 0;
 	return (chemp);
 }
 

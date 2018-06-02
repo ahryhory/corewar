@@ -12,7 +12,11 @@
 
 #include "vm.h"
 
+<<<<<<< HEAD
 static void		sigfun(int sig)
+=======
+static void sigfun(int sig)
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
 {
 	system("killall afplay");
 	(void)signal(SIGINT, SIG_DFL);
@@ -20,7 +24,11 @@ static void		sigfun(int sig)
 	exit(0);
 }
 
+<<<<<<< HEAD
 void			start_ncurs(int *start, t_con *con)
+=======
+void	start_ncurs(int *start, t_con *con)
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
 {
 	int			c;
 

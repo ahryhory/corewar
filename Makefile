@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/06/02 11:58:36 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/06/02 14:31:37 by ahryhory         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,6 @@ SRC_C += vm_hendl_proc.c
 SRC_C += vm_hendl_command.c
 SRC_C += vm_add_chemp.c
 SRC_C += vm_add_proces.c
-SRC_C += vm_show_map.c
 SRC_C += vm_show_map_win.c
 SRC_C += vm_count_proc.c
 SRC_C += vm_check_proc.c

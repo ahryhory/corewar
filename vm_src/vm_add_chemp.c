@@ -14,8 +14,8 @@
 
 static t_chemp	*s_create_chemp(int nbr, int color)
 {
-	t_chemp	*chemp;
-	int	i;
+	t_chemp		*chemp;
+	int			i;
 
 	i = 0;
 	chemp = malloc(sizeof(t_chemp));
@@ -33,10 +33,10 @@ static t_chemp	*s_create_chemp(int nbr, int color)
 
 t_chemp			*vm_add_chemp(void)
 {
-	int		i;
-	int		color;
-	t_chemp	*chemp;
-	t_chemp	*b_chemp;
+	int			i;
+	int			color;
+	t_chemp		*chemp;
+	t_chemp		*b_chemp;
 
 	i = -1;
 	color = 0;

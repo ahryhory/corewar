@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <ncurses.h>
+# include <signal.h>
 
 # define COUNT_OP 16
 
@@ -160,6 +161,6 @@ void				draw_color(t_con con, int i, int row, int *column);
 void				draw_info(t_con con);
 void				write_dump(t_mem *mem);
 unsigned int		reverse(unsigned int size);
-void				start_ncurs(int *start, t_con con);
+void				start_ncurs(int *start, t_con *con);
 
 #endif

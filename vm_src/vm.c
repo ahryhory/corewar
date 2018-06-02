@@ -83,7 +83,11 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-	con.step = 100;
+<<<<<<< HEAD
+	con.step = 100000;
+=======
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
+	con.step = 10;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp);
@@ -91,8 +95,11 @@ int				main(int ac, char **av)
 	add_champions(&con, av, chemp->next);
 	vm_salution(con, av);
 	if (g_flag.v)
+	{	
+		system("afplay sound/1.mp3 &");
+		system("killall -STOP afplay");
 		init_ncurses(&con);
-	//system("afplay sound/1.mp3 &");
+	}
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -105,20 +112,13 @@ int				main(int ac, char **av)
 			s_null_chemp(&con);
 		}
 		if (g_flag.v)
-			start_ncurs(&start, con);
+			start_ncurs(&start, &con);
 		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
 			write_dump(con.mem);
 		vm_hendl_proc(&con);
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-	if (g_flag.v)
-	{
-		vm_show_map_win(con);
-		read(0, 0, 1);
-		endwin();
-	}
-	//system("pkill afplay");
 	vm_give_winer(&con);
 	return (0);
 }

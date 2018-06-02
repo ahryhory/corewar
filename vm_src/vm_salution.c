@@ -12,10 +12,10 @@
 
 #include "vm.h"
 
-static void	s_check_valid(t_chemp *chemp, char **av)
+static void		s_check_valid(t_chemp *chemp, char **av)
 {
-	int		i;
-	char	*str;
+	int			i;
+	char		*str;
 
 	i = 0;
 	while (chemp)
@@ -33,7 +33,7 @@ static void	s_check_valid(t_chemp *chemp, char **av)
 	}
 }
 
-static void	s_hello(t_chemp *chemp)
+static void		s_hello(t_chemp *chemp)
 {
 	char		*str;
 
@@ -51,9 +51,9 @@ static void	s_hello(t_chemp *chemp)
 	ft_putendl("\") !");
 }
 
-void	vm_salution(t_con con, char **av)
+void			vm_salution(t_con con, char **av)
 {
-	t_chemp	*chemp;
+	t_chemp		*chemp;
 
 	chemp = con.chemp->next;
 	if (!chemp)

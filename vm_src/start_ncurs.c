@@ -12,28 +12,54 @@
 
 #include "vm.h"
 
-void	start_ncurs(int *start, t_con con)
+<<<<<<< HEAD
+static void		sigfun(int sig)
+=======
+static void sigfun(int sig)
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
 {
-	int		c;
+	system("killall afplay");
+	(void)signal(SIGINT, SIG_DFL);
+	endwin();
+	exit(0);
+}
 
+<<<<<<< HEAD
+void			start_ncurs(int *start, t_con *con)
+=======
+void	start_ncurs(int *start, t_con *con)
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
+{
+	int			c;
+
+	(void)signal(SIGINT, sigfun);
 	timeout(0);
-	usleep(con.step);
 	c = getch();
 	if (c == ' ' || c == 's')
+	{
+		system("killall -STOP afplay");
 		*start = 0;
-	vm_show_map_win(con);
-	c = getch();
+	}
+	usleep(con->step);
+	vm_show_map_win(*con);
 	while (!*start)
 	{
-		vm_show_map_win(con);
+		vm_show_map_win(*con);
 		read(0, &c, 1);
 		if ((char)c == ' ')
+		{
+			system("killall -CONT afplay");
 			*start = 1;
+		}
 		if ((char)c == 's')
 			break ;
 		if ((char)c == 'e')
-			con.step++;
-		if ((char)c == 'q' && con.step > 1)
-			con.step--;
+			con->step += 1000;
+		if ((char)c == 'q' && con->step - 1000 > 1)
+			con->step -= 1000;
 	}
+<<<<<<< HEAD
+	system("./pidof");
+=======
+>>>>>>> 0215f8bb4129a35c5ef9a272d3167c39d1a54942
 }

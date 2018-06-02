@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static void	draw_chemps(t_con con, int *row)
+static void		draw_chemps(t_con con, int *row)
 {
 	t_chemp		*chemp;
 
@@ -25,7 +25,7 @@ static void	draw_chemps(t_con con, int *row)
 					vm_give_fbyte(chemp->nbr));
 			wattron(con.info_win, COLOR_PAIR(chemp->color));
 			mvwprintw(con.info_win, (*row)++, 4, "%.55s", chemp->champ_name);
-			wattroff(con.info_win, COLOR_PAIR(chemp->color)); 
+			wattroff(con.info_win, COLOR_PAIR(chemp->color));
 			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d", "Last live :",
 					chemp->cycl_live);
 			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d",
@@ -36,7 +36,7 @@ static void	draw_chemps(t_con con, int *row)
 	}
 }
 
-static int	find_count(t_chemp *chemp, int tot)
+static int		find_count(t_chemp *chemp, int tot)
 {
 	float	ch;
 
@@ -45,7 +45,7 @@ static int	find_count(t_chemp *chemp, int tot)
 	return ((int)ch);
 }
 
-static void	draw_line(t_chemp *chemp, t_con con, int *row, int tot)
+static void		draw_line(t_chemp *chemp, t_con con, int *row, int tot)
 {
 	int			col;
 	int			count;
@@ -72,7 +72,7 @@ static void	draw_line(t_chemp *chemp, t_con con, int *row, int tot)
 	}
 }
 
-static void	draw_lines_breakdown(t_con con, int *row)
+static void		draw_lines_breakdown(t_con con, int *row)
 {
 	int			tot;
 	t_chemp		*chemp;
@@ -90,26 +90,29 @@ static void	draw_lines_breakdown(t_con con, int *row)
 	*row += 2;
 }
 
-void	draw_info(t_con con)
+void			draw_info(t_con con)
 {
-		int			row;
+	int			row;
 
-		row = 2;
-		wattron(con.info_win, A_BOLD);
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "Timeout :", con.step);
-		row += 2;
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "Cycle :", con.cycl);
-		row += 2;
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "Processes :", vm_count_proc(con.proc));
-		row += 2;
-		draw_chemps(con, &row);
-		draw_lines_breakdown(con, &row);
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "CYCLE_TO_DIE :", con.cycl_to_die);
-		row += 2;
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "CYCLE_DELTA :", CYCLE_DELTA);
-		row += 2;
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "NBR_LIVE :", NBR_LIVE);
-		row += 2;
-		mvwprintw(con.info_win, row, 2, "%-15s %d", "MAX_CHECKS :", MAX_CHECKS);
-		wattroff(con.info_win, A_BOLD);
+	row = 2;
+	wattron(con.info_win, A_BOLD);
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "Timeout :", con.step);
+	row += 2;
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "Cycle :", con.cycl);
+	row += 2;
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "Processes :",
+		vm_count_proc(con.proc));
+	row += 2;
+	draw_chemps(con, &row);
+	draw_lines_breakdown(con, &row);
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "CYCLE_TO_DIE :",
+		con.cycl_to_die);
+	row += 2;
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "CYCLE_DELTA :",
+		CYCLE_DELTA);
+	row += 2;
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "NBR_LIVE :", NBR_LIVE);
+	row += 2;
+	mvwprintw(con.info_win, row, 2, "%-15s %d", "MAX_CHECKS :", MAX_CHECKS);
+	wattroff(con.info_win, A_BOLD);
 }

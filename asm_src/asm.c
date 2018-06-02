@@ -64,5 +64,6 @@ int				main(int argc, char **argv)
 	ft_putstr("Writing output program to ");
 	ft_putstr(argv[1]);
 	ft_putendl("cor");
+	system("leaks asm");
 	return (0);
 }

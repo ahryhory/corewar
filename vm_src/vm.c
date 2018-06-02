@@ -77,7 +77,6 @@ int				main(int ac, char **av)
 	t_con		con;
 	t_chemp		*chemp;
 	int			start;
-	int			c;
 
 	vm_init_flag(ac, av);
 	init_optab();
@@ -103,30 +102,7 @@ int				main(int ac, char **av)
 			s_null_chemp(&con);
 		}
 		if (g_flag.v)
-		{
-			timeout(0);
-			usleep(con.step);
-			c = getch();
-			if (c == ' ' || c == 's')
-				start = 0;
-			vm_show_map_win(con);
-			c = getch();
-			while (!start)
-			{
-				vm_show_map_win(con);
-				read(0, &c, 1);
-				if ((char)c == ' ')
-					start = 1;
-				if ((char)c == 's')
-					break ;
-				if ((char)c == 'e')
-					con.step++;
-				if ((char)c == 'q' && con.step > 1)
-					con.step--;
-			}
-			if (c == ' ' || c == 's')
-				start = 0;
-		}
+			start_ncurs(&start, con);
 		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
 			write_dump(con.mem);
 		vm_hendl_proc(&con);

@@ -12,14 +12,14 @@
 
 #include "asm.h"
 
-static void	check_text(char **p_line, t_info info)
+static void	check_text(char **p_line, t_info info, int comment)
 {
 	char	*line;
 	char	*trim_line;
 
 	line = *p_line;
 	trim_line = ft_strtrim(line + 1);
-	if (trim_line[0] == '\"')
+	if (trim_line[0] == '\"' && !comment)
 	{
 		ft_strdel(p_line);
 		ft_strdel(&trim_line);
@@ -28,7 +28,7 @@ static void	check_text(char **p_line, t_info info)
 	ft_strdel(&trim_line);
 }
 
-int			check_quotes(char *line, t_info info)
+int			check_quotes(char *line, t_info info, int comment)
 {
 	int		i;
 
@@ -37,7 +37,7 @@ int			check_quotes(char *line, t_info info)
 		ft_strdel(&line);
 		ft_exit(7, info);
 	}
-	check_text(&line, info);
+	check_text(&line, info, comment);
 	i = 1;
 	while (line[i])
 	{

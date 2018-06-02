@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 10:32:23 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 11:24:06 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:56:20 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ static void	s_check_valid(t_chemp *chemp, char **av)
 static void	s_hello(t_chemp *chemp)
 {
 	char		*str;
-	static int	i = 1;
 
 	str = "Player ";
 	write(1, str, ft_strlen(str));
-	ft_putnbr(i++);
+	ft_putnbr(vm_give_fbyte(chemp->nbr));
 	str = ", weighing ";
 	write(1, str, ft_strlen(str));
 	ft_putnbr(chemp->size);
@@ -59,7 +58,7 @@ void	vm_salution(t_con con, char **av)
 	chemp = con.chemp->next;
 	if (!chemp)
 	{
-//		vm_usage();
+		usage_vm();
 		exit(0);
 	}
 	s_check_valid(chemp, av);

@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/06/02 11:21:39 by iseletsk         ###   ########.fr        #
+#    Updated: 2018/06/02 11:58:36 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,17 @@ SRC_A += check_arg.c
 SRC_A += flag_a.c
 SRC_A += check_commands.c
 SRC_A += modif_line.c
-
+SRC_A += add_new_to_list.c
+SRC_A += pl_func.c
+SRC_A += re_read.c
+SRC_A += parse_func.c
 ASM_SRCS = $(addprefix $(ASM_SRC)/,$(SRC_A))
 ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
 SRC_C = 
 
+SRC_C += vm_give_fbyte.c
+SRC_C += usage_vm.c
 SRC_C += vm_salution.c
 SRC_C += vm_init_flag.c
 SRC_C += vm_give_winer.c

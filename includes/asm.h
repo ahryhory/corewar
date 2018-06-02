@@ -114,4 +114,22 @@ void						check_args(char **line, int command, t_info info);
 int							check_arg(char *arg, int command, int arg_num);
 void						check_commands(t_commands *commands);
 void						modif_line(char **p_line);
+void						add_new_to_list(t_commands **command, t_commands *new);
+void						get_command(t_commands **new, char *line, char **trim);
+char						*add_command(t_commands **new, char *line);
+void						if_cmd_line(char **line, int fd, t_info info,
+	char *define_cmd_string);
+int							if_label(char **join, t_parse *parse,
+	t_data *data, char **trim);
+void						read_while_not_command(t_parse *parse,
+	t_data *data, char **trim);
+void						if_command(t_parse *parse, t_data *data);
+void						init_and_check(t_data *data, t_info *info,
+	t_parse *parse, char *file);
+int							is_all_quotes(char *begin, char *line);
+int							processing(char **line, int real_count, int count,
+	t_data *data);
+void						add_size(t_data *data);
+char						*get_content_in_quotation(char *line);
+
 #endif

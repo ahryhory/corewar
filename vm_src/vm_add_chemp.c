@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 10:51:55 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 12:07:47 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static t_chemp	*s_create_chemp(int nbr, int color)
 {
 	t_chemp	*chemp;
+	int	i;
 
+	i = 0;
 	chemp = malloc(sizeof(t_chemp));
 	chemp->nbr[0] = (nbr >> 24) & 255;
 	chemp->nbr[1] = ((nbr << 8) >> 24) & 255;

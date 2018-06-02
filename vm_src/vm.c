@@ -91,10 +91,7 @@ int				main(int ac, char **av)
 	vm_salution(con, av);
 	if (g_flag.v)
 		init_ncurses(&con);
-<<<<<<< HEAD
 	//system("afplay sound/1.mp3 &");
-=======
->>>>>>> 2ba76553c381de870185f55bd0aaae637347b986
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -107,12 +104,8 @@ int				main(int ac, char **av)
 		}
 		if (g_flag.v)
 		{
-<<<<<<< HEAD
 			timeout(0);
 			usleep(con.step);
-=======
-			timeout(con.step);
->>>>>>> 2ba76553c381de870185f55bd0aaae637347b986
 			c = getch();
 			if (c == ' ' || c == 's')
 				start = 0;
@@ -143,16 +136,8 @@ int				main(int ac, char **av)
 		read(0, 0, 1);
 		endwin();
 	}
-<<<<<<< HEAD
-	vm_show_map_win(con);
-	read(0, 0, 1);
-	vm_show_map_win(con);
-	endwin();
-	//system("pkill afplay");
-=======
 	if (g_flag.v)
 		endwin();
->>>>>>> 2ba76553c381de870185f55bd0aaae637347b986
 	vm_give_winer(&con);
 	return (0);
 }

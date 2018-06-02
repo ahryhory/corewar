@@ -12,14 +12,18 @@
 
 #include "vm.h"
 
-static int		s_check_flag(char *str)
+static int		s_check_flag(char *str, int i, int ac)
 {
 	if (!ft_strcmp(str, "-v"))
 		return (1);
 	if (!ft_strcmp(str, "-dump"))
 		return (2);
 	if (!ft_strcmp(str, "-n"))
+	{
+		if (i >= ac - 2)
+			usage_vm();
 		return (3);
+	}
 	if (!ft_strcmp(str, "-a"))
 		return (4);
 	return (0);
@@ -85,19 +89,19 @@ void			vm_init_flag(int ac, char **av)
 	i = 0;
 	while (++i < ac)
 	{
-		if (!s_check_flag(av[i]))
+		if (!s_check_flag(av[i], i, ac))
 		{
 			g_flag.r_index[count_ch] = i;
 			g_flag.nbr_ch++;
 			count_ch++;
 		}
-		else if (s_check_flag(av[i]) == 1)
+		else if (s_check_flag(av[i], i, ac) == 1)
 			g_flag.v = 1;
-		else if (s_check_flag(av[i]) == 2)
+		else if (s_check_flag(av[i], i, ac) == 2)
 			g_flag.dump = ft_atoi(av[++i]);
-		else if (s_check_flag(av[i]) == 3)
+		else if (s_check_flag(av[i], i, ac) == 3)
 			g_flag.nbr[count_ch] = s_give_nbr(av[++i]);
-		else if (s_check_flag(av[i]) == 4)
+		else if (s_check_flag(av[i], i, ac) == 4)
 			g_flag.a = 1;
 	}
 	s_validation();

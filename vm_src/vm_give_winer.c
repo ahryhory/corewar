@@ -17,6 +17,7 @@ static void	end_drow(t_con con)
 	vm_show_map_win(con);
 	read(0, 0, 1);
 	endwin();
+	system("./end_proc");
 }
 
 void		vm_give_winer(t_con *con)

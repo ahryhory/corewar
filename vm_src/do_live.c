@@ -20,7 +20,7 @@ static void	s_init(int *nbr, int index, t_con *con)
 	nbr[3] = con->mem[get_index(index, 4)].byte;
 }
 
-void	do_live(t_con *con, int index, t_proc *proc)
+void		do_live(t_con *con, int index, t_proc *proc)
 {
 	int		nbr[4];
 	int		i;

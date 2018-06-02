@@ -38,7 +38,7 @@ static void		s_init_con(t_con *con, t_chemp **chemp)
 	con->live = 0;
 }
 
-static void		s_null_chemp(t_con *con)
+void			s_null_chemp(t_con *con)
 {
 	t_chemp	*chemp;
 
@@ -51,7 +51,7 @@ static void		s_null_chemp(t_con *con)
 	}
 }
 
-static int		s_check_cycl(t_con *con)
+int				s_check_cycl(t_con *con)
 {
 	t_chemp	*chemp;
 
@@ -91,30 +91,12 @@ int				main(int ac, char **av)
 	add_champions(&con, av, chemp->next);
 	vm_salution(con, av);
 	if (g_flag.v)
-	{	
+	{
 		system("afplay sound/1.mp3 &");
 		system("killall -STOP afplay");
 		init_ncurses(&con);
 	}
-	while (con.cycl_to_die > 0 && con.proc)
-	{
-		vm_check_proc(&con);
-		if (s_check_cycl(&con))
-		{
-			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0 ||
-					!vm_count_proc(con.proc))
-				break ;
-			con.m_check = 0;
-			s_null_chemp(&con);
-		}
-		if (g_flag.v)
-			start_ncurs(&start, &con);
-		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
-			write_dump(con.mem);
-		vm_hendl_proc(&con);
-		con.cycl++;
-		con.cycl_die_per++;
-	}
+	general_cycle(&con, &start);
 	vm_give_winer(&con);
 	return (0);
 }

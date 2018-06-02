@@ -98,6 +98,5 @@ void	ft_exit(int error, t_info info)
 		ft_putendl_fd(*(info.line), 2);
 		ft_strdel(info.line);
 	}
-	system("leaks asm");
 	exit(0);
 }

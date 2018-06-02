@@ -35,21 +35,21 @@ typedef struct		s_flag
 
 t_flag				g_flag;
 
-typedef struct      s_optab
+typedef struct		s_optab
 {
-    char            name[10];
-    int             args_number;
-    int             args[3][3];
-    char            opcode[5];
-    int             code;
-    int             cycles;
-    char            description[50];
-    int             carry;
-    int             cod_octal;
-    int             lable_size;
-}                   t_optab;
+	char			name[10];
+	int				args_number;
+	int				args[3][3];
+	char			opcode[5];
+	int				code;
+	int				cycles;
+	char			description[50];
+	int				carry;
+	int				cod_octal;
+	int				lable_size;
+}					t_optab;
 
-t_optab             g_optab[COUNT_OP];
+t_optab				g_optab[COUNT_OP];
 
 typedef struct		s_chemp
 {
@@ -63,7 +63,7 @@ typedef struct		s_chemp
 	int				size;
 }					t_chemp;
 
-typedef struct      s_mem
+typedef struct		s_mem
 {
 	int				byte;
 	int				light;
@@ -71,24 +71,24 @@ typedef struct      s_mem
 	t_chemp			*chemp;
 }					t_mem;
 
-typedef struct    s_proc
+typedef struct		s_proc
 {
-    unsigned int	*r;
-    int             cp;
-    int             carry;
+	unsigned int	*r;
+	int				cp;
+	int				carry;
 	int				cycl;
 	int				live;
 	int				do_byte;
 	int				index;
-    int				work;
+	int				work;
 	int				index_create;
 	int				cycl_create;
 	t_chemp			*chemp;
-    t_mem			*mem;
-    struct s_proc	*next;
+	t_mem			*mem;
+	struct s_proc	*next;
 }					t_proc;
 
-typedef struct      s_con
+typedef struct		s_con
 {
 	int				m_check;
 	int				cycl;
@@ -110,7 +110,7 @@ void				vm_init_flag(int ac, char **cv);
 void				vm_give_winer(t_con *con);
 void				vm_check_proc(t_con *con);
 int					vm_count_proc(t_proc *proc);
-t_mem			    *allocate_memory(t_chemp *zero);
+t_mem				*allocate_memory(t_chemp *zero);
 void				add_champions(t_con *con, char **av,
 														t_chemp *chemp);
 void				do_add(t_con *con, int index, t_proc *proc);
@@ -135,17 +135,17 @@ void				do_sub(t_con *con, int index, t_proc *proc);
 void				do_xor(t_con *con, int index, unsigned int *n,
 															t_proc *proc);
 void				do_zjmp(t_con *con, int index, t_proc *proc);
-void                init_name(void);
-void                init_args_number(void);
-void                init_args(void);
-void                init_opcode(void);
-void                init_cycles(void);
-void                init_description(void);
-void                init_carry(void);
-void                init_cod_octal(void);
-void                init_lable_size(void);
-int                 get_index(int index, int step);
-unsigned int        get_nbr(t_con *con, int index, int size);
+void				init_name(void);
+void				init_args_number(void);
+void				init_args(void);
+void				init_opcode(void);
+void				init_cycles(void);
+void				init_description(void);
+void				init_carry(void);
+void				init_cod_octal(void);
+void				init_lable_size(void);
+int					get_index(int index, int step);
+unsigned int		get_nbr(t_con *con, int index, int size);
 int					vm_hendl_proc(t_con *con);
 void				vm_hendl_command(t_proc *proc, t_con *con);
 void				vm_give_cord(t_proc *proc, int *codg);
@@ -162,5 +162,8 @@ void				draw_info(t_con con);
 void				write_dump(t_mem *mem);
 unsigned int		reverse(unsigned int size);
 void				start_ncurs(int *start, t_con *con);
+void				general_cycle(t_con *con, int *start);
+int					s_check_cycl(t_con *con);
+void				s_null_chemp(t_con *con);
 
 #endif

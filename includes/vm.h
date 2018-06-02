@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <ncurses.h>
+# include <signal.h>
 
 # define COUNT_OP 16
 

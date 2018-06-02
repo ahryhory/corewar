@@ -17,7 +17,7 @@ NAME_C = corewar
 
 C = gcc
 
-#FLAGS += -Wall -Wextra -Werror
+FLAGS += -Wall -Wextra -Werror
 
 LIBFT = ./libft/
 LIB = ./libft/libft.a

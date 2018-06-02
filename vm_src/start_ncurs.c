@@ -14,7 +14,8 @@
 
 static void	sigfun(int sig)
 {
-	system("killall afplay");
+	(void)sig;
+	system("./end_proc");
 	(void)signal(SIGINT, SIG_DFL);
 	endwin();
 	exit(0);

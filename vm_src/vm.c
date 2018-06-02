@@ -82,7 +82,7 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-	con.step = 100;
+	con.step = 1;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp);
@@ -105,8 +105,8 @@ int				main(int ac, char **av)
 		{
 			vm_show_map_win(con);
 			timeout(con.step);
-			vm_show_map_win(con);
 			c = getch();
+			vm_show_map_win(con);
 			if (c == 'e')
 				con.step++;
 			if (c == 'q' && con.step > 1)

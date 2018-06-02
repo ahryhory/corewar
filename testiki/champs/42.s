@@ -14,18 +14,18 @@ tir:	sti	r1,%:tirb,%1
 	ld	%4,r3
 tirf:	live	%42
 	fork	%:tirop
-	live	%742
-	sub	r3,r5,r3
-	zjmp	%:top
-	ld	%0,r11
-	fork	%:tirvd
-	live	%42
-	sti	r10,%-510,%0
-	sti	r10,%-404,%0
-	sti	r10,%-303,%0
-	sti	r10,%-202,%0
-	ld	%0,r11
-	zjmp	%:tirf
+	# live	%742
+	# sub	r3,r5,r3
+	# zjmp	%:top
+	# ld	%0,r11
+	# fork	%:tirvd
+	# live	%42
+	# sti	r10,%-510,%0
+	# sti	r10,%-404,%0
+	# sti	r10,%-303,%0
+	# sti	r10,%-202,%0
+	# ld	%0,r11
+	# zjmp	%:tirf
 
 tirop:	ld	%368,r2
 	ld	%0,r3
@@ -44,23 +44,23 @@ tirb:	live	%1
 
 p32deb:	zjmp	%0
 	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
 p32:	sub	r6,r4,r6
 	add	r6,r6,r11
@@ -115,14 +115,14 @@ top:	live	%42
 
 infi:	sti	r1,%:l0,%1
 	sti	r1,%:l1,%1
-	sti	r1,%:l2,%1
-	sti	r1,%:l3,%1
-	sti	r1,%:l4,%1
-	sti	r1,%:l5,%1
-	sti	r1,%:l6,%1
-	sti	r1,%:l7,%1
-	sti	r1,%:l8,%1
-	sti	r1,%:l9,%1
+	# sti	r1,%:l2,%1
+	# sti	r1,%:l3,%1
+	# sti	r1,%:l4,%1
+	# sti	r1,%:l5,%1
+	# sti	r1,%:l6,%1
+	# sti	r1,%:l7,%1
+	# sti	r1,%:l8,%1
+	# sti	r1,%:l9,%1
 	sti	r1,%:l10,%1
 
 l0:	live	%1
@@ -164,48 +164,48 @@ topd:	ld	%9,r3
 	zjmp	%:infi
 
 p64deb:	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
-	zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
+	# zjmp	%0
 
 p64:	ld	%10,r8
 	sub	r6,r8,r6

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 20:47:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 10:52:37 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,15 @@ static void	validation(int fd)
 		i++;
 	if (i != size)
 	{
-		ft_putendl("Error: File Gagnant.cor has a code size that differ from what its header says");
+		ft_putendl("Error: File has a code size that differ from what its header says");
 		exit(0);
 	}
 }
 
 static void	get_name(t_chemp *chemp, int fd)
 {
-	lseek(fd, 4, 0);
+	lseek(fd, 8, 0);
 	read(fd, &chemp->champ_name, PROG_NAME_LENGTH);
-	printf("%s\n", chemp->champ_name);
 	lseek(fd, 4, 1);
 }
 
@@ -79,7 +78,7 @@ void		add_champions(t_con *con, char **av, t_chemp *chemp)
 		get_comm(chemp, fd);
 		j = calc_begin(g_flag.nbr_ch, file);
 		i = j;
-		while (read(fd, &((con->mem)[j].byte), 1) > 0)
+		while (read(fd, &((con->mem)[j].byte), 1) > 0 && (chemp->size += 1))
 		{
 			((con->mem)[j]).chemp = chemp;
 			if (j++ == i)

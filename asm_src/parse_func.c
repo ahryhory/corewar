@@ -12,10 +12,10 @@
 
 #include "asm.h"
 
-char			*get_content_in_quotation(char *line)
+char				*get_content_in_quotation(char *line)
 {
-	int			begin;
-	int			end;
+	int				begin;
+	int				end;
 
 	begin = 0;
 	while (line[begin])
@@ -25,7 +25,7 @@ char			*get_content_in_quotation(char *line)
 		begin++;
 	}
 	begin++;
-	end = begin + 1;
+	end = begin;
 	while (line[end])
 	{
 		if (line[end] == '\\' && line[end + 1] == '\"')

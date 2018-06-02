@@ -25,26 +25,26 @@ static int	ft_str_find_chr(const char *s, int c)
 
 void		modif_line(char **p_line)
 {
-	char	*line;
+	char	*l;
 	char	*tmp_1;
 	char	*tmp_2;
 
-	line = *p_line;
-	if (ft_str_find_chr(line, ';') != -1)
+	l = *p_line;
+	if (ft_str_find_chr(l, ';') != -1)
 	{
-		while (*line)
+		while (*l)
 		{
-			if (*line == ';')
-				*line = '#';
-			line++;
+			if (*l == ';')
+				*l = COMMENT_CHAR;
+			l++;
 		}
 	}
-	if (ft_str_find_chr(line, '%') != -1)
+	if (ft_str_find_chr(l, DIRECT_CHAR) != -1)
 	{
-		tmp_1 = ft_strsub(line, ft_str_find_chr(line, '%'), ft_strlen(line));
+		tmp_1 = ft_strsub(l, ft_str_find_chr(l, DIRECT_CHAR), ft_strlen(l));
 		tmp_2 = ft_strjoin(" ", tmp_1);
 		ft_strdel(&tmp_1);
-		tmp_1 = ft_strsub(line, 0, ft_str_find_chr(line, '%'));
+		tmp_1 = ft_strsub(l, 0, ft_str_find_chr(l, DIRECT_CHAR));
 		ft_strdel(p_line);
 		*p_line = ft_strjoin(tmp_1, tmp_2);
 		ft_strdel(&tmp_1);

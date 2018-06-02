@@ -27,11 +27,13 @@ void		check_start_line(t_info info)
 {
 	char	*trim_line;
 	int		index;
+	int		comment;
 
+	comment = 0;
 	trim_line = ft_strtrim(*(info.line));
-	index = check_cmd(trim_line, info);
+	index = check_cmd(trim_line, info, &comment);
 	trim_line = next_part(trim_line, index);
-	index = check_quotes(trim_line, info);
+	index = check_quotes(trim_line, info, comment);
 	trim_line = next_part(trim_line, index);
 	check_comment(trim_line, info);
 	ft_strdel(&trim_line);

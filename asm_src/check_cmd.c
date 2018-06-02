@@ -23,12 +23,13 @@ static int	equ_name(char *name_str, int *error, int name)
 	return (0);
 }
 
-static int	equ_comment(char *name_str, int *error, int comment)
+static int	equ_comment(char *name_str, int *error, int comment, int *flag)
 {
 	if (ft_strequ(name_str, COMMENT_CMD_STRING))
 	{
 		if (comment)
 			*error = 3;
+		*flag = 1;
 		return (1);
 	}
 	return (0);
@@ -63,7 +64,7 @@ static int	get_index(char *line, t_info info)
 	return (i);
 }
 
-int			check_cmd(char *line, t_info info)
+int			check_cmd(char *line, t_info info, int *flag)
 {
 	char			*str;
 	int				index;
@@ -79,7 +80,7 @@ int			check_cmd(char *line, t_info info)
 	else
 	{
 		name = equ_name(str, &error, name);
-		comment = equ_comment(str, &error, comment);
+		comment = equ_comment(str, &error, comment, flag);
 		if (!name && !comment)
 			error = 1;
 	}

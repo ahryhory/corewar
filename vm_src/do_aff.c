@@ -19,6 +19,7 @@ void	do_aff(t_con *con, int index, t_proc *proc)
 	c = proc->r[con->mem[get_index(index, 2)].byte - 1] % 256;
 	if (g_flag.a)
 	{
+		ft_putstr("Aff: ");
 		ft_putchar(c);
 		ft_putchar('\n');
 	}

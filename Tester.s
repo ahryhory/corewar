@@ -1,5 +1,5 @@
 .name           "Tester"
-.comment        "Just a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a testJust a tes"
+.comment        "Just a test"
 
 start:
 #defens

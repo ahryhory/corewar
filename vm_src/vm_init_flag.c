@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static int	s_check_flag(char *str)
+static int		s_check_flag(char *str)
 {
 	if (!ft_strcmp(str, "-v"))
 		return (1);
@@ -25,9 +25,9 @@ static int	s_check_flag(char *str)
 	return (0);
 }
 
-static void	s_init_gflag(void)
+static void		s_init_gflag(void)
 {
-	int	i;
+	int			i;
 
 	i = -1;
 	g_flag.v = 0;
@@ -43,11 +43,11 @@ static void	s_init_gflag(void)
 		g_flag.r_index[i] = 0;
 }
 
-static int	s_give_nbr(char *str)
+static int		s_give_nbr(char *str)
 {
-	int		nbr;
-	int		n;
-	int		i;
+	int			nbr;
+	int			n;
+	int			i;
 
 	nbr = ft_atoi(str);
 	n = 0;
@@ -66,7 +66,7 @@ static int	s_give_nbr(char *str)
 	return (nbr);
 }
 
-static void	s_validation(void)
+static void		s_validation(void)
 {
 	if (g_flag.v)
 	{
@@ -75,7 +75,7 @@ static void	s_validation(void)
 	}
 }
 
-void	vm_init_flag(int ac, char **av)
+void			vm_init_flag(int ac, char **av)
 {
 	int	count_ch;
 	int	i;

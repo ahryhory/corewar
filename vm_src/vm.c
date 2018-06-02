@@ -83,6 +83,10 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
+<<<<<<< HEAD
+	con.step = 100000;
+=======
+>>>>>>> 9a88221528099d0f7b1503a5789988804b1b86f7
 	con.step = 10;
 	if (ac == 1)
 		exit(1);

@@ -79,7 +79,6 @@ int				main(int ac, char **av)
 	t_con		con;
 	t_chemp		*chemp;
 	int			start;
-	int			c;
 
 	vm_init_flag(ac, av);
 	init_optab();
@@ -93,6 +92,7 @@ int				main(int ac, char **av)
 	vm_salution(con, av);
 	if (g_flag.v)
 		init_ncurses(&con);
+	//system("afplay sound/1.mp3 &");
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -105,30 +105,7 @@ int				main(int ac, char **av)
 			s_null_chemp(&con);
 		}
 		if (g_flag.v)
-		{
-			timeout(con.step);
-			vm_show_map_win(con);
-			c = getch();
-			if (c == 'e')
-				con.step++;
-			if (c == 'q' && con.step > 1)
-				con.step--;
-			while (!start)
-			{
-				vm_show_map_win(con);
-				read(0, &c, 1);
-				if ((char)c == ' ')
-					start = 1;
-				if ((char)c == 's')
-					break ;
-				if ((char)c == 'e')
-					con.step++;
-				if ((char)c == 'q' && con.step > 1)
-					con.step--;
-			}
-			if (c == ' ' || c == 's')
-				start = 0;
-		}
+			start_ncurs(&start, con);
 		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
 			write_dump(con.mem);
 		vm_hendl_proc(&con);
@@ -141,6 +118,7 @@ int				main(int ac, char **av)
 		read(0, 0, 1);
 		endwin();
 	}
+	//system("pkill afplay");
 	vm_give_winer(&con);
 	return (0);
 }

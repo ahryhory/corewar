@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usage_vm.c                                         :+:      :+:    :+:   */
+/*   get_count_bytes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/02 10:46:12 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/06/02 10:46:13 by ahryhory         ###   ########.fr       */
+/*   Created: 2018/02/18 14:09:30 by ahryhory          #+#    #+#             */
+/*   Updated: 2018/02/21 14:38:11 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-void	usage_vm(void)
+int		get_count_bytes(unsigned int c)
 {
-	ft_putstr("Usage: ./corewar [-n N] [-v | [-a] [-dump N]]");
-	ft_putendl(" <champion1.cor> <...>");
-	ft_putendl("-a      : Prints output from \"aff\" (Default is to hide it)");
-	ft_putendl("-v      : Ncurses output mode");
-	ft_putendl("-dump N : Dumps memory after N cycles then exits");
-	ft_putendl("-n N    : Sets the number(N) of the next player");
-	exit(0);
+	char	*num_s;
+	int		size;
+
+	num_s = ft_itoa_base(c, 2);
+	size = ft_strlen(num_s);
+	if (size <= 7)
+		size = 1;
+	else if (size <= 11)
+		size = 2;
+	else if (size <= 16)
+		size = 3;
+	else
+		size = 4;
+	return (size);
 }

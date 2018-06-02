@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/01 20:46:45 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 12:28:44 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ static int	s_give_nbr(char *str)
 	return (nbr);
 }
 
+static void	s_validation(void)
+{
+	if (g_flag.v)
+	{
+		g_flag.a = 0;
+		g_flag.dump = 0;
+	}
+}
+
 void	vm_init_flag(int ac, char **av)
 {
 	int	count_ch;
@@ -91,5 +100,6 @@ void	vm_init_flag(int ac, char **av)
 		else if (s_check_flag(av[i]) == 4)
 			g_flag.a = 1;
 	}
+	s_validation();
 	g_flag.zerro = s_give_nbr("0");
 }

@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 12:28:53 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/06/01 16:37:13 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 12:16:49 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ static void	draw_chemps(t_con con, int *row)
 	{
 		if (chemp->champ_name[0] != '\0')
 		{
-			mvwprintw(con.info_win, (*row)++, 2, "Player %d :", (char)chemp->nbr[3]);
+			mvwprintw(con.info_win, (*row)++, 2, "Player %d :",
+					vm_give_fbyte(chemp->nbr));
 			wattron(con.info_win, COLOR_PAIR(chemp->color));
 			mvwprintw(con.info_win, (*row)++, 4, "%.55s", chemp->champ_name);
 			wattroff(con.info_win, COLOR_PAIR(chemp->color)); 
-			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d", "Last live :", chemp->cycl_live);
-			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d", "Lives in current period :", chemp->live_icp);
+			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d", "Last live :",
+					chemp->cycl_live);
+			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d",
+					"Lives in current period :", chemp->live_icp);
 		}
 		*row += 1;
 		chemp = chemp->next;

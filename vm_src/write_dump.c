@@ -7,7 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:02:10 by ahryhory          #+#    #+#             */
 /*   Updated: 2018/06/01 16:02:11 by ahryhory         ###   ########.fr       */
-/*                      0x0000 :                                                       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
@@ -26,7 +26,7 @@ static void	write_begin(int i)
 	write(1, " : ", 3);
 }
 
-void	write_dump(t_mem *mem)
+void		write_dump(t_mem *mem)
 {
 	int		i;
 	char	*byte;

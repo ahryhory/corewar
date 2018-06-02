@@ -39,10 +39,10 @@ static void	del_proc(t_con *con)
 static void	draw_proc(t_con con, int i, int row, int *column)
 {
 	wattron(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color + 5));
-	mvwprintw(con.bytes_win , row, *column, "%2.2x", con.mem[i].byte);
+	mvwprintw(con.bytes_win, row, *column, "%2.2x", con.mem[i].byte);
 	*column += 2;
 	wattroff(con.bytes_win, COLOR_PAIR(con.mem[i].chemp->color + 5));
-	mvwprintw(con.bytes_win , row, (*column)++, " ");
+	mvwprintw(con.bytes_win, row, (*column)++, " ");
 }
 
 static void	start(t_con *con, int *i, int *row, int *column)

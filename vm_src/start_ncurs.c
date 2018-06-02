@@ -12,28 +12,31 @@
 
 #include "vm.h"
 
-void	start_ncurs(int *start, t_con con)
+void	start_ncurs(int *start, t_con *con)
 {
 	int		c;
 
 	timeout(0);
-	usleep(con.step);
 	c = getch();
 	if (c == ' ' || c == 's')
 		*start = 0;
-	vm_show_map_win(con);
+	usleep(con->step);
+	c = getch();
+	if (c == ' ' || c == 's')
+		*start = 0;
+	vm_show_map_win(*con);
 	c = getch();
 	while (!*start)
 	{
-		vm_show_map_win(con);
+		vm_show_map_win(*con);
 		read(0, &c, 1);
 		if ((char)c == ' ')
 			*start = 1;
 		if ((char)c == 's')
 			break ;
 		if ((char)c == 'e')
-			con.step++;
-		if ((char)c == 'q' && con.step > 1)
-			con.step--;
+			con->step += 1000;
+		if ((char)c == 'q' && con->step > 1)
+			con->step -= 1000;
 	}
 }

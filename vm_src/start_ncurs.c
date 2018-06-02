@@ -46,10 +46,10 @@ void	start_ncurs(int *start, t_con *con)
 		}
 		if ((char)c == 's')
 			break ;
-		if ((char)c == 'e')
-			con->step += 1000;
-		if ((char)c == 'q' && con->step - 1000 > 1)
-			con->step -= 1000;
+		if ((char)c == 'e' &&  con->step + 1000 <= 100000)
+			con->step += 10000;
+		if ((char)c == 'q' && con->step - 1000 >= 0)
+			con->step -= 10000;
 	}
 	system("./pidof");
 }

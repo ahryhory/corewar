@@ -83,7 +83,7 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-	con.step = 10;
+	con.step = 0;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp);

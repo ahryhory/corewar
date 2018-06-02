@@ -23,22 +23,12 @@ static int	ft_str_find_chr(const char *s, int c)
 	return (-1);
 }
 
-void		modif_line(char **p_line)
+void		check_param(char **p_line)
 {
 	char	*l;
 	char	*tmp_1;
 	char	*tmp_2;
 
-	l = *p_line;
-	if (ft_str_find_chr(l, ';') != -1)
-	{
-		while (*l)
-		{
-			if (*l == ';')
-				*l = COMMENT_CHAR;
-			l++;
-		}
-	}
 	if (ft_str_find_chr(l, DIRECT_CHAR) != -1)
 	{
 		tmp_1 = ft_strsub(l, ft_str_find_chr(l, DIRECT_CHAR), ft_strlen(l));
@@ -50,4 +40,25 @@ void		modif_line(char **p_line)
 		ft_strdel(&tmp_1);
 		ft_strdel(&tmp_2);
 	}
+}
+
+void		modif_line(char **p_line)
+{
+	char	*l;
+
+	if (ft_strnequ(*p_line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))
+		|| ft_strnequ(*p_line, COMMENT_CMD_STRING,
+			ft_strlen(COMMENT_CMD_STRING)))
+		return ;
+	l = *p_line;
+	if (ft_str_find_chr(l, ';') != -1)
+	{
+		while (*l)
+		{
+			if (*l == ';')
+				*l = COMMENT_CHAR;
+			l++;
+		}
+	}
+	check_param(p_line);
 }

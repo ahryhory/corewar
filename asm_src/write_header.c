@@ -21,7 +21,7 @@ static	void	write_name(int fd, t_data data)
 	while (i < PROG_NAME_LENGTH + 4)
 	{
 		ch = '\0';
-		if (i < ft_strlen(data.head.prog_name))
+		if (i < PROG_NAME_LENGTH)
 		{
 			ch = data.head.prog_name[i];
 			write(fd, &ch, 1);
@@ -46,7 +46,7 @@ static	void	write_comm(int fd, t_data data)
 	while (i < COMMENT_LENGTH + 4)
 	{
 		ch = '\0';
-		if (i < ft_strlen(data.head.comment))
+		if (i < COMMENT_LENGTH)
 		{
 			ch = data.head.comment[i];
 			write(fd, &ch, 1);

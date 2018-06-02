@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/02 11:58:21 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 16:27:27 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "op.h"
 # include "libft.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <ncurses.h>
 # include <signal.h>
 

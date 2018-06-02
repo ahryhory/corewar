@@ -37,29 +37,39 @@ char				*get_content_in_quotation(char *line)
 	return (ft_strsub(line, begin, end - begin));
 }
 
+static void			init_this_please(t_info *info, char **line, int count,
+	int real_count)
+{
+	info->line = NULL;
+	info->line = line;
+	info->num = count;
+	info->real_num = real_count;
+	check_line(*info);
+}
+
 int					processing(char **line, int real_count, int count,
 	t_data *data)
 {
 	t_info			info;
 	char			*content;
 
-	info.line = NULL;
-	info.line = line;
-	info.num = count;
-	info.real_num = real_count;
-	check_line(info);
+	init_this_please(&info, line, count, real_count);
 	count++;
 	if (ft_strnequ(*line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 	{
 		content = get_content_in_quotation(*line);
-		ft_strcpy(data->head.prog_name, content);
+		if (ft_strlen(content) > PROG_NAME_LENGTH)
+			ft_exit(21, info);
+		ft_strncpy(data->head.prog_name, content, PROG_NAME_LENGTH);
 		ft_strdel(&content);
 	}
 	else if (ft_strnequ(*line, COMMENT_CMD_STRING,
 		ft_strlen(COMMENT_CMD_STRING)))
 	{
 		content = get_content_in_quotation(*line);
-		ft_strcpy(data->head.comment, content);
+		if (ft_strlen(content) > COMMENT_LENGTH)
+			ft_exit(22, info);
+		ft_strncpy(data->head.comment, content, COMMENT_LENGTH);
 		ft_strdel(&content);
 	}
 	else

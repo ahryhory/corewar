@@ -6,7 +6,7 @@
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 11:12:56 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/05/10 11:12:57 by ybohusev         ###   ########.fr       */
+/*   Updated: 2018/06/02 16:27:10 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "op.h"
 # include "libft.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 

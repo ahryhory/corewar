@@ -82,6 +82,10 @@ void	part_2(int error)
 		ft_putendl_fd("ERROR: no this lable", 2);
 	if (error == 20)
 		ft_putendl_fd("ERROR: wrong filename extension", 2);
+	if (error == 21)
+		ft_putendl_fd("ERROR: champion name too long", 2);
+	if (error == 22)
+		ft_putendl_fd("ERROR: champion comment too long", 2);
 }
 
 void	ft_exit(int error, t_info info)

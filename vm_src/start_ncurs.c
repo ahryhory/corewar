@@ -33,11 +33,7 @@ void	start_ncurs(int *start, t_con *con)
 		*start = 0;
 	}
 	usleep(con->step);
-	c = getch();
-	if (c == ' ' || c == 's')
-		*start = 0;
 	vm_show_map_win(*con);
-	c = getch();
 	while (!*start)
 	{
 		vm_show_map_win(*con);

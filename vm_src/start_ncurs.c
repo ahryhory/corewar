@@ -12,11 +12,7 @@
 
 #include "vm.h"
 
-<<<<<<< HEAD
-void	start_ncurs(int *start, t_con *con)
-=======
 static void sigfun(int sig)
->>>>>>> fea54ee39874e4565229089d70a80c84b9efeb62
 {
 	system("killall afplay");
 	(void)signal(SIGINT, SIG_DFL);
@@ -24,7 +20,7 @@ static void sigfun(int sig)
 	exit(0);
 }
 
-void	start_ncurs(int *start, t_con con)
+void	start_ncurs(int *start, t_con *con)
 {
 	int			c;
 	
@@ -35,16 +31,12 @@ void	start_ncurs(int *start, t_con con)
 	{
 		system("killall -STOP afplay");
 		*start = 0;
-<<<<<<< HEAD
+	}
 	usleep(con->step);
 	c = getch();
 	if (c == ' ' || c == 's')
 		*start = 0;
 	vm_show_map_win(*con);
-=======
-	}
-	vm_show_map_win(con);
->>>>>>> fea54ee39874e4565229089d70a80c84b9efeb62
 	c = getch();
 	while (!*start)
 	{

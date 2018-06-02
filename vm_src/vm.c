@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:30:20 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 11:25:06 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:31:14 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-	con.step = 100000;
+	con.step = 100;
 	if (ac == 1)
 		exit(1);
 	s_init_con(&con, &chemp);
@@ -106,11 +106,11 @@ int				main(int ac, char **av)
 		{
 			timeout(0);
 			usleep(con.step);
-			timeout(con.step);
 			c = getch();
 			if (c == ' ' || c == 's')
 				start = 0;
 			vm_show_map_win(con);
+			c = getch();
 			while (!start)
 			{
 				vm_show_map_win(con);
@@ -120,10 +120,12 @@ int				main(int ac, char **av)
 				if ((char)c == 's')
 					break ;
 				if ((char)c == 'e')
-					con.step += 1000;
+					con.step++;
 				if ((char)c == 'q' && con.step > 1)
-					con.step -= 1000;
+					con.step--;
 			}
+			if (c == ' ' || c == 's')
+				start = 0;
 		}
 		if (g_flag.dump != 0 && con.cycl == g_flag.dump && !g_flag.v)
 			write_dump(con.mem);
@@ -137,13 +139,7 @@ int				main(int ac, char **av)
 		read(0, 0, 1);
 		endwin();
 	}
-	vm_show_map_win(con);
-	read(0, 0, 1);
-	vm_show_map_win(con);
-	endwin();
 	//system("pkill afplay");
-	if (g_flag.v)
-		endwin();
 	vm_give_winer(&con);
 	return (0);
 }

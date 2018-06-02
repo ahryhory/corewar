@@ -39,61 +39,63 @@
 void	part_1(int error)
 {
 	if (error == 1)
-		printf("ERROR: %s\n", "wrong CMD_STRING");
+		ft_putendl_fd("ERROR: wrong CMD_STRING", 2);
 	if (error == 2)
-		printf("ERROR: %s\n", "2 name str");
+		ft_putendl_fd("ERROR: 2 name str", 2);
 	if (error == 3)
-		printf("ERROR: %s\n", "2 comment str");
+		ft_putendl_fd("ERROR: 2 comment str", 2);
 	if (error == 4)
-		printf("ERROR: %s\n", "no name var");
+		ft_putendl_fd("ERROR: no name var", 2);
 	if (error == 5)
-		printf("ERROR: %s\n", "no comment var");
+		ft_putendl_fd("ERROR: no comment var", 2);
 	if (error == 6)
-		printf("ERROR: %s\n", "no name && no comment vars");
+		ft_putendl_fd("ERROR: no name && no comment vars", 2);
 	if (error == 7)
-		printf("ERROR: %s\n", "no start quote");
+		ft_putendl_fd("ERROR: no start quote", 2);
 	if (error == 8)
-		printf("ERROR: %s\n", "no end quote");
+		ft_putendl_fd("ERROR: no end quote", 2);
 	if (error == 9)
-		printf("ERROR: %s\n", "shit after command (no comment)");
+		ft_putendl_fd("ERROR: shit after command (no comment)", 2);
 	if (error == 10)
-		printf("ERROR: %s\n", "no text (comment or name vars)");
+		ft_putendl_fd("ERROR: no text (comment or name vars)", 2);
 }
 
 void	part_2(int error)
 {
 	if (error == 11)
-		printf("ERROR: %s\n", "wrong line");
+		ft_putendl_fd("ERROR: wrong line", 2);
 	if (error == 12)
-		printf("ERROR: %s\n", "wrong LABEL_CHARS");
+		ft_putendl_fd("ERROR: wrong LABEL_CHARS", 2);
 	if (error == 13)
-		printf("ERROR: %s\n", "wrong command name");
+		ft_putendl_fd("ERROR: wrong command name", 2);
 	if (error == 14)
-		printf("ERROR: %s\n", "file not exist");
+		ft_putendl_fd("ERROR: file not exist", 2);
 	if (error == 15)
-		printf("ERROR: %s\n", "wrong srgs count");
+		ft_putendl_fd("ERROR: wrong srgs count", 2);
 	if (error == 16)
-		printf("ERROR: %s\n", "wrong 1 arg");
+		ft_putendl_fd("ERROR: wrong 1 arg", 2);
 	if (error == 17)
-		printf("ERROR: %s\n", "wrong 2 arg");
+		ft_putendl_fd("ERROR: wrong 2 arg", 2);
 	if (error == 18)
-		printf("ERROR: %s\n", "wrong 3 arg");
+		ft_putendl_fd("ERROR: wrong 3 arg", 2);
 	if (error == 19)
-		printf("ERROR: %s\n", "no this lable");
+		ft_putendl_fd("ERROR: no this lable", 2);
 	if (error == 20)
-		printf("ERROR: %s\n", "wrong filename extension");
+		ft_putendl_fd("ERROR: wrong filename extension", 2);
 }
 
 void	ft_exit(int error, t_info info)
 {
-	printf("%d\n", error);
 	if (error >= 1 && error <= 10)
 		part_1(error);
 	else
 		part_2(error);
 	if (info.line != NULL)
 	{
-		printf("LINE: %d\n%s\n", info.real_num, *(info.line));
+		ft_putstr_fd("LINE: ", 2);
+		ft_putnbr_fd(info.real_num, 2);
+		ft_putstr_fd("\n", 2);
+		ft_putendl_fd(*(info.line), 2);
 		ft_strdel(info.line);
 	}
 	// system("leaks asm");

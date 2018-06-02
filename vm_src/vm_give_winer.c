@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 18:36:21 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/01 15:56:43 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:34:26 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		vm_give_winer(t_con *con)
 			w_chemp = chemp;
 		chemp = chemp->next;
 	}
-	str = "Player n ";
+	str = "Player ";
 	write(1, str, ft_strlen(str));
 	ft_putnbr(s_give_nbr(w_chemp->nbr));
 	str = ", \"";

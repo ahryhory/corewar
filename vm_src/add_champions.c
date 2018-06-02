@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/02 10:52:37 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:30:22 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	get_name(t_chemp *chemp, int fd)
 {
 	lseek(fd, 4, 0);
 	read(fd, &chemp->champ_name, PROG_NAME_LENGTH);
-	lseek(fd, 4, 1);
+	lseek(fd, 8, 1);
 }
 
 static void	get_comm(t_chemp *chemp, int fd)

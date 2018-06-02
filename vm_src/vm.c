@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:30:20 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 11:31:14 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 12:53:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static int		s_check_cycl(t_con *con)
 	t_chemp	*chemp;
 
 	chemp = con->chemp;
+	if (!vm_count_proc(con->proc))
+		return (1);
 	if (con->cycl_die_per >= con->cycl_to_die)
 	{
 		con->m_check++;
@@ -96,7 +98,8 @@ int				main(int ac, char **av)
 		vm_check_proc(&con);
 		if (s_check_cycl(&con))
 		{
-			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0)
+			if ((con.cycl_to_die -= CYCLE_DELTA) <= 0 ||
+					!vm_count_proc(con.proc))
 				break ;
 			con.m_check = 0;
 			s_null_chemp(&con);

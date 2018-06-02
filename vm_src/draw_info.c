@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static void	draw_chemps(t_con con, int *row)
+static void		draw_chemps(t_con con, int *row)
 {
 	t_chemp		*chemp;
 
@@ -25,7 +25,7 @@ static void	draw_chemps(t_con con, int *row)
 					vm_give_fbyte(chemp->nbr));
 			wattron(con.info_win, COLOR_PAIR(chemp->color));
 			mvwprintw(con.info_win, (*row)++, 4, "%.55s", chemp->champ_name);
-			wattroff(con.info_win, COLOR_PAIR(chemp->color)); 
+			wattroff(con.info_win, COLOR_PAIR(chemp->color));
 			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d", "Last live :",
 					chemp->cycl_live);
 			mvwprintw(con.info_win, (*row)++, 4, "%-35s %d",
@@ -36,7 +36,7 @@ static void	draw_chemps(t_con con, int *row)
 	}
 }
 
-static int	find_count(t_chemp *chemp, int tot)
+static int		find_count(t_chemp *chemp, int tot)
 {
 	float	ch;
 
@@ -45,7 +45,7 @@ static int	find_count(t_chemp *chemp, int tot)
 	return ((int)ch);
 }
 
-static void	draw_line(t_chemp *chemp, t_con con, int *row, int tot)
+static void		draw_line(t_chemp *chemp, t_con con, int *row, int tot)
 {
 	int			col;
 	int			count;
@@ -72,7 +72,7 @@ static void	draw_line(t_chemp *chemp, t_con con, int *row, int tot)
 	}
 }
 
-static void	draw_lines_breakdown(t_con con, int *row)
+static void		draw_lines_breakdown(t_con con, int *row)
 {
 	int			tot;
 	t_chemp		*chemp;
@@ -90,7 +90,7 @@ static void	draw_lines_breakdown(t_con con, int *row)
 	*row += 2;
 }
 
-void	draw_info(t_con con)
+void			draw_info(t_con con)
 {
 	int			row;
 

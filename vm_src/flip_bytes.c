@@ -23,5 +23,5 @@ unsigned int	reverse(unsigned int size)
 	a2 = ((size >> 8) << 24) >> 8;
 	a3 = ((size >> 16) << 24) >> 16;
 	a4 = (size >> 24);
-	return(a4 + a3 + a2 + a1);
+	return (a4 + a3 + a2 + a1);
 }

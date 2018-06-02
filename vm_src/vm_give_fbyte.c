@@ -21,4 +21,3 @@ int	vm_give_fbyte(int *nbr)
 	res += (nbr[3] & 255);
 	return (res);
 }
-

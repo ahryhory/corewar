@@ -83,11 +83,8 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-<<<<<<< HEAD
 	con.step = 100000;
-=======
 	con.step = 10;
->>>>>>> fea54ee39874e4565229089d70a80c84b9efeb62
 	if (ac == 1)
 		exit(1);
 	// system("ps aux | grep afplay | wc -l");
@@ -101,10 +98,7 @@ int				main(int ac, char **av)
 		system("afplay sound/1.mp3 &");
 		system("killall -STOP afplay");
 		init_ncurses(&con);
-<<<<<<< HEAD
-=======
 	}
->>>>>>> fea54ee39874e4565229089d70a80c84b9efeb62
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -124,17 +118,6 @@ int				main(int ac, char **av)
 		con.cycl++;
 		con.cycl_die_per++;
 	}
-<<<<<<< HEAD
-=======
-	if (g_flag.v)
-	{
-		vm_show_map_win(con);
-		read(0, 0, 1);
-		endwin();
-	}
-	if (g_flag.v)
-		system("killall afplay");
->>>>>>> fea54ee39874e4565229089d70a80c84b9efeb62
 	vm_give_winer(&con);
 	return (0);
 }

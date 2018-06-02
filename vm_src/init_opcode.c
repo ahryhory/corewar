@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static void	init_code()
+static void	init_code(void)
 {
 	g_optab[0].code = 0x01;
 	g_optab[2].code = 0x02;

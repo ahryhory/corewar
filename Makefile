@@ -112,7 +112,6 @@ SRC_C += vm_hendl_proc.c
 SRC_C += vm_hendl_command.c
 SRC_C += vm_add_chemp.c
 SRC_C += vm_add_proces.c
-SRC_C += vm_show_map.c
 SRC_C += vm_show_map_win.c
 SRC_C += vm_count_proc.c
 SRC_C += vm_check_proc.c

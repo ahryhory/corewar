@@ -39,11 +39,12 @@ static void	validation(int fd)
 	tmp = reverse(tmp);
 	size = 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + 4 + tmp;
 	lseek(fd, 0, 0);
-	while(read(fd, &tmp, 1))
+	while (read(fd, &tmp, 1))
 		i++;
 	if (i != size)
 	{
-		ft_putendl("Error: File has a code size that differ from what its header says");
+		ft_putstr("Error: File has a code size that differ from what its");
+		ft_putendl("header says");
 		exit(0);
 	}
 }

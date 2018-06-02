@@ -12,10 +12,10 @@
 
 #include "asm.h"
 
-char			*get_content_in_quotation(char *line)
+char				*get_content_in_quotation(char *line)
 {
-	int			begin;
-	int			end;
+	int				begin;
+	int				end;
 
 	begin = 0;
 	while (line[begin])

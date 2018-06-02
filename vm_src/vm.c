@@ -81,16 +81,21 @@ int				main(int ac, char **av)
 	vm_init_flag(ac, av);
 	init_optab();
 	start = 0;
-	con.step = 100;
+	con.step = 10;
 	if (ac == 1)
 		exit(1);
+	// system("ps aux | grep afplay | wc -l");
+	// printf("%d", system("ps aux | grep afplay | wc -l"));
 	s_init_con(&con, &chemp);
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, av, chemp->next);
 	vm_salution(con, av);
 	if (g_flag.v)
+	{	
+		system("afplay sound/1.mp3 &");
+		system("killall -STOP afplay");
 		init_ncurses(&con);
-	//system("afplay sound/1.mp3 &");
+	}
 	while (con.cycl_to_die > 0 && con.proc)
 	{
 		vm_check_proc(&con);
@@ -115,7 +120,8 @@ int				main(int ac, char **av)
 		read(0, 0, 1);
 		endwin();
 	}
-	//system("pkill afplay");
+	if (g_flag.v)
+		system("killall afplay");
 	vm_give_winer(&con);
 	return (0);
 }

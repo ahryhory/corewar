@@ -12,15 +12,27 @@
 
 #include "vm.h"
 
+static void sigfun(int sig)
+{
+	system("killall afplay");
+	(void)signal(SIGINT, SIG_DFL);
+	endwin();
+	exit(0);
+}
+
 void	start_ncurs(int *start, t_con con)
 {
-	int		c;
-
+	int			c;
+	
+	(void) signal(SIGINT, sigfun);
 	timeout(0);
 	usleep(con.step);
 	c = getch();
 	if (c == ' ' || c == 's')
+	{
+		system("killall -STOP afplay");
 		*start = 0;
+	}
 	vm_show_map_win(con);
 	c = getch();
 	while (!*start)
@@ -28,7 +40,10 @@ void	start_ncurs(int *start, t_con con)
 		vm_show_map_win(con);
 		read(0, &c, 1);
 		if ((char)c == ' ')
+		{
+			system("killall -CONT afplay");
 			*start = 1;
+		}
 		if ((char)c == 's')
 			break ;
 		if ((char)c == 'e')
@@ -36,4 +51,6 @@ void	start_ncurs(int *start, t_con con)
 		if ((char)c == 'q' && con.step > 1)
 			con.step--;
 	}
+	// if(1 == system("ps aux | grep afplay | wc -l"))
+	// 	system("afplay sound/1.mp3 &");
 }

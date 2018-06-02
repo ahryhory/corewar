@@ -1,0 +1,8 @@
+#!/bin/bash
+PROCESS=afplay
+number=$(ps aux | grep $PROCESS | wc -l)
+
+if [ $number == 1 ]
+    then
+    	$PROCESS ./sound/2.mp3 &
+fi

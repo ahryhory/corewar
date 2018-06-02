@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct		s_list
 {
@@ -25,7 +26,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-void				ft_clr(char ***str);
+void				ft_split_del(char ***str);
 int					ft_get_next_line(const int fd, char **line);
 char				*ft_itoa_base(uintmax_t num, int base);
 void				ft_bzero(void *s, size_t n);
@@ -87,5 +88,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int					ft_putwchar(unsigned int c);
+int					get_count_bytes(unsigned int c);
 
 #endif

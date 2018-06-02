@@ -10,23 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	check_start_line(char *line, int number_line)
-{
-	
-}
+#include "asm.h"
 
-int			check_line(char *line, int number_line)
+void			check_line(t_info info)
 {
-	int		error;
-
-	error = 0;
-	if (number_line == 0 || number_line == 1)
-	{
-		if ((error = check_start_line(line)) != 0)
-			return (error);
-	}
+	if (info.num == 0 || info.num == 1)
+		check_start_line(info);
 	else
-	{
-
-	}
+		check_other_line(info);
 }

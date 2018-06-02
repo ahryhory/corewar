@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/01 19:40:28 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:22:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_chemp
 	char			champ_name[PROG_NAME_LENGTH + 1];
 	char			champ_comm[COMMENT_LENGTH + 1];
 	struct s_chemp	*next;
+	int				size;
 }					t_chemp;
 
 typedef struct      s_mem
@@ -101,6 +102,7 @@ typedef struct      s_con
 	WINDOW			*info_win;
 }					t_con;
 
+void				vm_salution(t_con con, char **av);
 void				vm_init_flag(int ac, char **cv);
 void				vm_give_winer(t_con *con);
 void				vm_check_proc(t_con *con);

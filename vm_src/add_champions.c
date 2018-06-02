@@ -43,7 +43,7 @@ static void	validation(int fd)
 		i++;
 	if (i != size)
 	{
-		ft_putstr("Error: File has a code size that differ from what its");
+		ft_putstr("Error: File has a code size that differ from what its ");
 		ft_putendl("header says");
 		exit(0);
 	}

@@ -25,18 +25,23 @@ static void		init_optab(void)
 	init_lable_size();
 }
 
-static	void	usage(int argc, char **argv)
+static void		print_usage(void)
 {
-	if (argc == 2 || (argc == 3 && !ft_strcmp(argv[1], "-a")))
+	ft_putendl("usage: ./asm [-a] <sourcefile.s>");
+	ft_putstr("-a : Instead of creating a .cor file, outputs ");
+	ft_putstr("a stripped and annotated version of the ");
+	ft_putendl("code to the standard output");
+	exit(0);
+}
+
+static void		usage(int argc, char **argv)
+{
+	if (argc > 1 && !ft_strequ(argv[1], "-a") && argv[1][0] == '-')
+		print_usage();
+	if (((argc == 2 && !ft_strequ(argv[1], "-a")) || (argc == 3 && ft_strequ(argv[1], "-a")))) 
 		return ;
 	else
-	{
-		ft_putendl("usage: ./asm [-a] <sourcefile.s>");
-		ft_putstr("-a : Instead of creating a .cor file, outputs ");
-		ft_putstr("a stripped and annotated version of the ");
-		ft_putendl("code to the standard output");
-		exit(0);
-	}
+		print_usage();
 }
 
 int				main(int argc, char **argv)

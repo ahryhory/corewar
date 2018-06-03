@@ -17,7 +17,7 @@ void	usage_info(t_con con, int *row)
 	*row += 5;
 	mvwprintw(con.info_win, (*row), 1, "                 CONTROL PANEL");
 	*row += 2;
-	mvwprintw(con.info_win, (*row)++, 2, "SPACE - pause or start");
+	mvwprintw(con.info_win, (*row)++, 2, "SPACE -     pause or start");
 	mvwprintw(con.info_win, (*row)++, 2,
 		"q     -     decreases timeout (only on the pause)");
 	mvwprintw(con.info_win, (*row)++, 2,

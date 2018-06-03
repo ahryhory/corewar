@@ -12,15 +12,6 @@
 
 #include "vm.h"
 
-static void	sigfun(int sig)
-{
-	(void)sig;
-	system("./end_proc");
-	(void)signal(SIGINT, SIG_DFL);
-	endwin();
-	exit(0);
-}
-
 static void	cycle_pause(int *start, t_con *con, int music, int c)
 {
 	while (!*start)
@@ -62,7 +53,6 @@ void		start_ncurs(int *start, t_con *con)
 	static int	flag = 0;
 	static int	music = 0;
 
-	(void)signal(SIGINT, sigfun);
 	timeout(0);
 	c = getch();
 	if (c == ' ' || c == 's')
@@ -74,6 +64,6 @@ void		start_ncurs(int *start, t_con *con)
 	usleep(con->step);
 	vm_show_map_win(*con);
 	cycle_pause(start, con, music, c);
-	if (flag++ % 100 == 0)
+	if (flag++ % 1000 == 0)
 		system("./pidof");
 }

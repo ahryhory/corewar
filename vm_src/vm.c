@@ -82,6 +82,8 @@ int				main(int ac, char **av)
 
 	vm_init_flag(ac, av);
 	init_optab();
+	(void)signal(SIGTSTP, sigtstp);
+	(void)signal(SIGINT, sigint);
 	start = 0;
 	con.step = 0;
 	if (ac == 1)

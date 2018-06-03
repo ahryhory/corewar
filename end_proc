@@ -4,5 +4,5 @@ number=$(ps aux | grep $PROCESS | wc -l)
 
 if [ $number == 2 ]
     then
-    	killall $PROCESS
+    	killall $PROCESS 
 fi

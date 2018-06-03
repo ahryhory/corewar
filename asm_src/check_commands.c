@@ -48,7 +48,13 @@ static void	cut_lable(char *arg, t_commands *head)
 void		check_commands(t_commands *commands)
 {
 	t_commands	*head;
+	t_info		info;
 
+	info.line = 0;
+	info.num = 0;
+	info.real_num = 0;
+	if (commands == NULL)
+		ft_exit(23, info);
 	head = commands;
 	while (commands)
 	{

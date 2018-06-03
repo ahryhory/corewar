@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/02 16:27:27 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/06/03 13:22:51 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct		s_con
 	WINDOW			*info_win;
 }					t_con;
 
+int					vm_valid_nbr(char *str, int n);
 int					vm_give_fbyte(int *nbr);
 void				usage_vm(void);
 void				vm_salution(t_con con, char **av);

@@ -123,6 +123,7 @@ SRC_C += write_dump.c
 SRC_C += flip_bytes.c
 SRC_C += start_ncurs.c
 SRC_C += general_cycle.c
+SRC_C += sginls.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))

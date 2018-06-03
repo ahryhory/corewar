@@ -165,5 +165,7 @@ void				start_ncurs(int *start, t_con *con);
 void				general_cycle(t_con *con, int *start);
 int					s_check_cycl(t_con *con);
 void				s_null_chemp(t_con *con);
+void				sigtstp(int sig);
+void				sigint(int sig);
 
 #endif

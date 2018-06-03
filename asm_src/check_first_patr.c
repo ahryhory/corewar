@@ -63,7 +63,10 @@ static char	*cut_name(char *line, char **p_line, t_info info)
 	{
 		ft_strdel(&trim_line);
 		ft_strdel(p_line);
-		return (NULL);
+		if (i == 0)
+			return (NULL);
+		else
+			ft_exit(11, info);
 	}
 	name = ft_strsub(trim_line, 0, i);
 	ft_strdel(&trim_line);
@@ -83,6 +86,8 @@ static int	check_lable(char *line, char **p_line, t_info info)
 			del_and_exit(&line, p_line, info, 12);
 		i++;
 	}
+	if (i == 0)
+		ft_exit(12, info);
 	ft_strdel(&line);
 	line = ft_strsub(*p_line, i + 1, ft_strlen(*p_line));
 	ft_strdel(p_line);

@@ -166,5 +166,6 @@ int					s_check_cycl(t_con *con);
 void				s_null_chemp(t_con *con);
 void				sigtstp(int sig);
 void				sigint(int sig);
+void				if_v(t_con *con);
 
 #endif

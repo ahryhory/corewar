@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 10:32:23 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 11:56:20 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/03 11:00:44 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void		s_check_valid(t_chemp *chemp, char **av)
 	char		*str;
 
 	i = 0;
+	if (g_flag.nbr_ch > 4)
+	{
+		ft_putstr_fd("Error: too many champions\n", 2);
+		exit(0);
+	}
 	while (chemp)
 	{
 		if (chemp->size > CHAMP_MAX_SIZE)

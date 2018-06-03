@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 12:28:44 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/03 13:38:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ static int		s_check_flag(char *str, int i, int ac)
 	if (!ft_strcmp(str, "-v"))
 		return (1);
 	if (!ft_strcmp(str, "-dump"))
+	{
+		if (i >= ac - 2)
+			usage_vm();
 		return (2);
+	}
 	if (!ft_strcmp(str, "-n"))
 	{
 		if (i >= ac - 2)
@@ -39,7 +43,7 @@ static void		s_init_gflag(void)
 	g_flag.nbr[1] = -2;
 	g_flag.nbr[2] = -3;
 	g_flag.nbr[3] = -4;
-	g_flag.zerro = 123;
+	g_flag.zerro = 0;
 	g_flag.a = 0;
 	g_flag.dump = -1;
 	g_flag.nbr_ch = 0;
@@ -47,22 +51,22 @@ static void		s_init_gflag(void)
 		g_flag.r_index[i] = 0;
 }
 
-static int		s_give_nbr(char *str)
+static int		s_give_nbr(char *str, int ch)
 {
 	int			nbr;
 	int			n;
 	int			i;
 
-	nbr = ft_atoi(str);
+	nbr = vm_valid_nbr(str, 1);
 	n = 0;
 	while (!n)
 	{
 		i = -1;
 		n = 1;
 		while (++i < 4)
-			if (nbr == g_flag.nbr[i])
+			if (nbr == g_flag.nbr[i] && ch != i)
 			{
-				nbr++;
+				nbr--;
 				n = 0;
 				break ;
 			}
@@ -98,12 +102,11 @@ void			vm_init_flag(int ac, char **av)
 		else if (s_check_flag(av[i], i, ac) == 1)
 			g_flag.v = 1;
 		else if (s_check_flag(av[i], i, ac) == 2)
-			g_flag.dump = ft_atoi(av[++i]);
+			g_flag.dump = vm_valid_nbr(av[++i], 2);
 		else if (s_check_flag(av[i], i, ac) == 3)
-			g_flag.nbr[count_ch] = s_give_nbr(av[++i]);
+			g_flag.nbr[count_ch] = s_give_nbr(av[++i], count_ch);
 		else if (s_check_flag(av[i], i, ac) == 4)
 			g_flag.a = 1;
 	}
 	s_validation();
-	g_flag.zerro = s_give_nbr("0");
 }

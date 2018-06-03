@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sginls.c                                           :+:      :+:    :+:   */
+/*   if_v.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 13:14:19 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/06/03 13:14:20 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/06/03 16:35:43 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/06/03 16:35:45 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	sigtstp(int sig)
+void	if_v(t_con *con)
 {
-	(void)sig;
-	system("killall afplay");
-	endwin();
-	system("killall -STOP corewar");
-	exit(0);
-}
-
-void	sigint(int sig)
-{
-	(void)sig;
-	system("killall afplay");
-	endwin();
-	system("killall corewar");
+	if (g_flag.v)
+	{
+		(void)signal(SIGTSTP, sigtstp);
+		(void)signal(SIGINT, sigint);
+		system("resize -s 66 256");
+		system("afplay sound/1.mp3 &");
+		system("killall -STOP afplay");
+		init_ncurses(con);
+	}
 }

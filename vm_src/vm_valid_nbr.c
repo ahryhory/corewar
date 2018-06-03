@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_give_fbyte.c                                    :+:      :+:    :+:   */
+/*   vm_valid_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/02 11:55:39 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/03 13:05:41 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/06/03 13:09:29 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/06/03 13:38:47 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	vm_give_fbyte(int *nbr)
-{
-	int		res;
+#include "vm.h"
 
-	res = 0;
-	res += ((nbr[0] << 24) & 4278190080);
-	res += ((nbr[1] << 16) & 16711680);
-	res += ((nbr[2] << 8) & 65280);
-	res += (nbr[3] & 255);
-	return (-res);
+int		vm_valid_nbr(char *str, int	n)
+{
+	char	*del;
+	int		nbr;
+	char	*error;
+
+	nbr = ft_atoi(str);
+	del = ft_itoa(nbr);
+	error = n == 1 ? "Error: invalid number in the flag [n N]" :
+		"Error: invalid number in the flag [dump N]";
+	if (ft_strcmp(del, str))
+	{
+		ft_putendl_fd(error, 2);
+		exit(0);
+	}
+	ft_strdel(&del);
+	if (n == 1 && (nbr > 4 || nbr < 1))
+		return (-1);
+	return (-nbr);
 }

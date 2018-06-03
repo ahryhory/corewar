@@ -18,7 +18,7 @@ void	if_v(t_con *con)
 	{
 		(void)signal(SIGTSTP, sigtstp);
 		(void)signal(SIGINT, sigint);
-		system("resize -s 66 256");
+		system("printf \"\e[8;66;256;t\"");
 		system("afplay sound/1.mp3 &");
 		system("killall -STOP afplay");
 		init_ncurses(con);

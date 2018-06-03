@@ -18,7 +18,6 @@ void	sigtstp(int sig)
 	system("killall afplay");
 	endwin();
 	system("killall -STOP corewar");
-	exit(0);
 }
 
 void	sigint(int sig)

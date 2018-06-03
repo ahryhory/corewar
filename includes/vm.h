@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/03 13:22:51 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/03 16:55:55 by ahryhory         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,6 @@ void				s_null_chemp(t_con *con);
 void				sigtstp(int sig);
 void				sigint(int sig);
 void				if_v(t_con *con);
+void				usage_info(t_con con, int *row);
 
 #endif

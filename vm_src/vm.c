@@ -82,8 +82,6 @@ int				main(int ac, char **av)
 
 	vm_init_flag(ac, av);
 	init_optab();
-	(void)signal(SIGTSTP, sigtstp);
-	(void)signal(SIGINT, sigint);
 	start = 0;
 	con.step = 0;
 	if (ac == 1)
@@ -94,6 +92,9 @@ int				main(int ac, char **av)
 	vm_salution(con, av);
 	if (g_flag.v)
 	{
+		(void)signal(SIGTSTP, sigtstp);
+		(void)signal(SIGINT, sigint);
+		system("resize -s 66 256");
 		system("afplay sound/1.mp3 &");
 		system("killall -STOP afplay");
 		init_ncurses(&con);

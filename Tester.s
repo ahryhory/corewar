@@ -10,7 +10,12 @@ ld	%1879310592, r5
 ld  %1879113980, r6
 fork %:gogo
 ld	%0, r7
-def: 
+def: #cc
+#fdds
+def1:
+#fdds
+#ddv
+def2:
 st r1,-511
 st	r1, -511
 st	r1, -511

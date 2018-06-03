@@ -15,15 +15,16 @@
 void	sigtstp(int sig)
 {
 	(void)sig;
-	system("./end_proc &");
+	system("killall afplay");
 	endwin();
 	system("killall -STOP corewar");
+	exit(0);
 }
 
 void	sigint(int sig)
 {
 	(void)sig;
-	system("./end_proc &");
+	system("killall afplay");
 	endwin();
 	system("killall corewar");
 }

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:42:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/02 12:32:59 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:39:28 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	validation(int fd)
 	read(fd, &tmp, 4);
 	if (tmp != reverse(COREWAR_EXEC_MAGIC))
 	{
-		ft_putendl("ERROR: Incorrect file extention");
+		ft_putendl_fd("ERROR: Incorrect file extention", 2);
 		exit(0);
 	}
 	lseek(fd, PROG_NAME_LENGTH, 1);
@@ -43,8 +43,8 @@ static void	validation(int fd)
 		i++;
 	if (i != size)
 	{
-		ft_putstr("Error: File has a code size that differ from what its ");
-		ft_putendl("header says");
+		ft_putstr_fd("Error: File has a code size that differ from what ", 2);
+		ft_putendl_fd("its header says", 2);
 		exit(0);
 	}
 }
@@ -83,7 +83,7 @@ void		add_champions(t_con *con, char **av, t_chemp *chemp)
 		{
 			((con->mem)[j]).chemp = chemp;
 			if (j++ == i)
-				vm_add_proces(con, j - 1, g_flag.nbr[file]);
+				vm_start_proc_init(con, j - 1, g_flag.nbr[file]);
 		}
 		chemp = chemp->next;
 		file++;

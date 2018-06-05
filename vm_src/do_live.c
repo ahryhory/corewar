@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:33:49 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/06/02 15:04:56 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:17:19 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ static void	s_init(int *nbr, int index, t_con *con)
 	nbr[1] = con->mem[get_index(index, 2)].byte;
 	nbr[2] = con->mem[get_index(index, 3)].byte;
 	nbr[3] = con->mem[get_index(index, 4)].byte;
+}
+
+static void	s_alive(t_con *con, t_chemp *chemp)
+{
+	con->winer = chemp;
+	if (g_flag.v)
+		return ;
+	ft_putstr("A process shows that player ");
+	ft_putnbr(-(char)chemp->nbr[3]);
+	write(1, " (", 2);
+	ft_putstr(chemp->champ_name);
+	ft_putstr(") is alive\n");
 }
 
 void		do_live(t_con *con, int index, t_proc *proc)
@@ -42,6 +54,7 @@ void		do_live(t_con *con, int index, t_proc *proc)
 				continue;
 			chemp->cycl_live = con->cycl + 1;
 			chemp->live_icp++;
+			s_alive(con, chemp);
 			return ;
 		}
 		chemp = chemp->next;

@@ -6,7 +6,7 @@
 #    By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/20 16:19:53 by ybohusev          #+#    #+#              #
-#    Updated: 2018/06/02 14:31:37 by ahryhory         ###   ########.fr        #
+#    Updated: 2018/06/05 16:53:07 by iseletsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 
 SRC_C = 
 
+SRC_C += vm_start_proc_init.c
+SRC_C += vm_hendl_nbr_ch.c
 SRC_C += vm_give_fbyte.c
 SRC_C += usage_vm.c
 SRC_C += vm_salution.c

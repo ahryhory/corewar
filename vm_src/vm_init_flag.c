@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/05 18:27:02 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/09 21:50:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		s_check_flag(char *str, int i, int ac)
 	}
 	else if (!ft_strcmp(str, "-dump"))
 	{
-		if (i >= ac -2 || g_flag.nbr_ch)
+		if (i >= ac -2 || g_flag.nbr_ch || g_flag.dump > -1)
 			usage_vm();
 		return (2);
 	}
@@ -34,7 +34,7 @@ static int		s_check_flag(char *str, int i, int ac)
 	}
 	else if (!ft_strcmp(str, "-a"))
 	{
-		if (g_flag.nbr_ch)
+		if (g_flag.nbr_ch || g_flag.a)
 			usage_vm();
 		return (4);
 	}

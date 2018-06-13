@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 18:03:43 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/31 20:00:50 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:32:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int			vm_give_codg(t_proc *proc, unsigned int *codg)
 	s_add_cp(proc, codg);
 	if (!(i = 0) && !s_check_valid(codg, proc, -1))
 		return (0);
-	while (i < 3)
+	while (i < 3 && s_helpa(proc, i))
 	{
 		if (!codg[i] && (j = -1))
 		{
@@ -94,7 +94,7 @@ int			vm_give_codg(t_proc *proc, unsigned int *codg)
 			continue;
 		}
 		if ((codg[i] && g_optab[proc->do_byte - 1].args[i][codg[i] - 1])
-				&& (++i || !i))
+						&& (++i || !i))
 			continue;
 		return (0);
 	}

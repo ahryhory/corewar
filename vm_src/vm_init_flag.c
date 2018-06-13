@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/09 21:50:24 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/12 14:27:16 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		s_check_flag(char *str, int i, int ac)
 	}
 	else if (!ft_strcmp(str, "-dump"))
 	{
-		if (i >= ac -2 || g_flag.nbr_ch || g_flag.dump > -1)
+		if (i >= ac - 2 || g_flag.nbr_ch || g_flag.dump > -1)
 			usage_vm();
 		return (2);
 	}
@@ -111,20 +111,6 @@ static int		s_give_nbr(char *str, int ch)
 	return (nbr);
 }
 
-static void		s_validation(void)
-{
-	if (g_flag.v > 1)
-		ft_putendl_fd("Error: too many flag [-v]", 2);
-	if (g_flag.nbr_ch > 4)
-	{
-		ft_putendl_fd("Error: too many champions", 2);
-		exit(0);
-	}
-	if (g_flag.v && (g_flag.dump >= 0 || g_flag.a))
-		usage_vm();
-	vm_hendl_nbr_ch();
-}
-
 void			vm_init_flag(int ac, char **av)
 {
 	int	i;
@@ -151,5 +137,5 @@ void			vm_init_flag(int ac, char **av)
 			if ((g_flag.a = 1) && g_flag.nbr[g_flag.nbr_ch])
 				usage_vm();
 	}
-	s_validation();
+	vm_validation();
 }

@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 18:36:21 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/05 16:19:08 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:46:37 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void		vm_give_winer(t_con *con)
 	char	*str;
 
 	w_chemp = con->winer;
+	if (!w_chemp)
+	{
+		w_chemp = con->chemp;
+		while (w_chemp->next)
+			w_chemp = w_chemp->next;
+	}
 	if (g_flag.v)
 		end_drow(*con);
 	str = "Player ";

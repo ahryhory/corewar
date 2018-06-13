@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 15:24:21 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/05 15:47:53 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/12 14:26:55 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	s_print_error(void)
 	exit(0);
 }
 
-void	vm_hendl_nbr_ch(void)
+void		vm_hendl_nbr_ch(void)
 {
 	int		i;
 

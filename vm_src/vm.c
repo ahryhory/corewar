@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:30:20 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 12:53:28 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/12 14:20:15 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void		s_init_con(t_con *con, t_chemp **chemp)
 	con->chemp = *chemp;
 	con->proc = 0;
 	con->live = 0;
+	con->winer = 0;
 }
 
 void			s_null_chemp(t_con *con)

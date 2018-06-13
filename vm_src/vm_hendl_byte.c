@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 13:09:50 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/05/31 19:52:25 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:43:50 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	s_init_proc(t_proc *proc)
 
 void		vm_hendl_byte(t_proc *proc, t_con *con)
 {
+	if (con->cycl_die_per == con->cycl_to_die - 1)
+		proc->live--;
 	if (!proc->work)
 		s_init_proc(proc);
 	if (proc->cycl > 0)
@@ -52,6 +54,4 @@ void		vm_hendl_byte(t_proc *proc, t_con *con)
 	}
 	else if (!proc->cycl)
 		proc->index = get_index(proc->index, 1);
-	if (con->cycl_die_per == con->cycl_to_die - 1)
-		proc->live--;
 }

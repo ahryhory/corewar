@@ -4,7 +4,8 @@
 start:
 
 #defens
-st  r1, 7
+
+st r1, 7
 ld  %0, r1
 ld  %16777216, r5
 st  r5, -18

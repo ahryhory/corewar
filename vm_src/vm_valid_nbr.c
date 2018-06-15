@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		vm_valid_nbr(char *str, int	n)
+int		vm_valid_nbr(char *str, int n)
 {
 	char	*del;
 	int		nbr;

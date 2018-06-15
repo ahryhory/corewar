@@ -71,6 +71,7 @@ void		read_while_not_command(t_parse *parse,
 
 	while ((parse->gnl = ft_get_next_line(parse->fd, &(parse->line))))
 	{
+		parse->real_count += 1;
 		modif_line(&(parse->line));
 		if (parse->line && parse->line[0] == COMMENT_CHAR)
 		{

@@ -37,16 +37,6 @@ char			*add_command(t_commands **new, char *line)
 	return (cmd);
 }
 
-static	void	check_split(char **split, char *trim)
-{
-	if (split == NULL)
-	{
-		ft_putstr_fd("ERROR: wrong CMD_STRING\n", 2);
-		ft_putendl_fd(trim, 2);
-		exit(0);
-	}
-}
-
 void			get_command(t_commands **new, char *line, char **trim)
 {
 	int			i;
@@ -71,7 +61,6 @@ void			get_command(t_commands **new, char *line, char **trim)
 			break ;
 		i++;
 	}
-	check_split(split, *trim);
 	(*new)->command = ft_strdup(split[0]);
 	ft_split_del(&split);
 }

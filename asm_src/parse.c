@@ -41,7 +41,6 @@ static void			check_and_change_input(t_parse *parse,
 		if_cmd_line(&(parse->line), parse->fd, info, COMMENT_CMD_STRING);
 	else
 		if_command(parse, data);
-	parse->real_count += 1;
 }
 
 static void			trim_line(t_parse *parse)
@@ -62,6 +61,7 @@ t_data				parse(char *file, t_info info)
 	init_and_check(&data, &info, &parse, file);
 	while ((parse.gnl = ft_get_next_line(parse.fd, &(parse.line))))
 	{
+		parse.real_count++;
 		modif_line(&(parse.line));
 		trim_line(&parse);
 		if (parse.line && parse.line[0] == COMMENT_CHAR)

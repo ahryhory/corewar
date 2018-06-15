@@ -61,7 +61,7 @@ void			write_header(int fd, t_data data, int *oct, int *line)
 {
 	int		magic;
 
-	magic = 0xF383EA00;
+	magic = reverse(COREWAR_EXEC_MAGIC);
 	oct = 0;
 	line = 0;
 	write(fd, &magic, 4);

@@ -10,16 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "asm.h"
 
-static void	cut_args(char **line)
+static void	cut_args(char **line, t_info info)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
 	while ((*line)[i] && (*line)[i] != COMMENT_CHAR)
+	{
+		if ((*line)[i] == SEPARATOR_CHAR &&
+			(*line)[i + 1] == SEPARATOR_CHAR)
+		{
+			ft_strdel(line);
+			ft_exit(15, info);
+		}
 		i++;
+	}
 	tmp = ft_strsub(*line, 0, i);
 	ft_strdel(line);
 	*line = ft_strtrim(tmp);
@@ -50,7 +59,7 @@ void		check_args(char **line, int command, t_info info)
 	int		err;
 	int		count;
 
-	cut_args(line);
+	cut_args(line, info);
 	args = ft_strsplit(*line, SEPARATOR_CHAR);
 	ft_args_trim(&args);
 	ft_strdel(line);

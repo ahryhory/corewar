@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:48:01 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/12 14:27:16 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/03 13:38:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int		s_check_flag(char *str, int i, int ac)
 		if (g_flag.nbr_ch)
 			usage_vm();
 		return (1);
+
 	}
 	else if (!ft_strcmp(str, "-dump"))
 	{
@@ -103,7 +104,7 @@ static int		s_give_nbr(char *str, int ch)
 		while (++i < 4)
 			if (nbr == g_flag.nbr[i] && i != ch)
 			{
-				nbr++;
+				nbr--;
 				n = 0;
 				break ;
 			}
@@ -133,6 +134,16 @@ void			vm_init_flag(int ac, char **av)
 				usage_vm();
 			g_flag.nbr[g_flag.nbr_ch] = s_give_nbr(av[++i], g_flag.nbr_ch);
 		}
+		else if (s_check_flag(av[i], i, ac) == 1)
+			g_flag.v = 1;
+		else if (s_check_flag(av[i], i, ac) == 2)
+			g_flag.dump = vm_valid_nbr(av[++i], 2);
+		else if (s_check_flag(av[i], i, ac) == 3)
+			g_flag.nbr[count_ch] = s_give_nbr(av[++i], count_ch);
+		else if (s_check_flag(av[i], i, ac) == 4)
+			g_flag.a = 1;
+	}
+	s_validation();
 		if (s_check_flag(av[i], i, ac) == 4)
 			if ((g_flag.a = 1) && g_flag.nbr[g_flag.nbr_ch])
 				usage_vm();

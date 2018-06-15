@@ -114,5 +114,6 @@ void			draw_info(t_con con)
 	mvwprintw(con.info_win, row, 2, "%-15s %d", "NBR_LIVE :", NBR_LIVE);
 	row += 2;
 	mvwprintw(con.info_win, row, 2, "%-15s %d", "MAX_CHECKS :", MAX_CHECKS);
+	usage_info(con, &row);
 	wattroff(con.info_win, A_BOLD);
 }

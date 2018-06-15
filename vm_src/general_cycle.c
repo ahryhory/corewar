@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include <stdio.h>
 
 void	general_cycle(t_con *con, int *start)
 {

@@ -103,6 +103,7 @@ typedef struct		s_con
 	t_chemp			*winer;
 }					t_con;
 
+int					vm_valid_nbr(char *str, int n);
 void				vm_start_proc_init(t_con *con, int index, int nbr);
 void				vm_hendl_nbr_ch(void);
 int					vm_give_fbyte(int *nbr);
@@ -167,6 +168,10 @@ void				start_ncurs(int *start, t_con *con);
 void				general_cycle(t_con *con, int *start);
 int					s_check_cycl(t_con *con);
 void				s_null_chemp(t_con *con);
+void				sigtstp(int sig);
+void				sigint(int sig);
+void				if_v(t_con *con);
+void				usage_info(t_con con, int *row);
 void				vm_validation(void);
 
 #endif

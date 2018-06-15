@@ -91,13 +91,9 @@ int				main(int ac, char **av)
 	con.mem = allocate_memory(chemp);
 	add_champions(&con, av, chemp->next);
 	vm_salution(con, av);
-	if (g_flag.v)
-	{
-		system("afplay sound/1.mp3 &");
-		system("killall -STOP afplay");
-		init_ncurses(&con);
-	}
+	if_v(&con);
 	general_cycle(&con, &start);
+	system("./end_proc");
 	vm_give_winer(&con);
 	return (0);
 }

@@ -34,6 +34,9 @@
 **	18 - wrong 3 arg
 **	19 - no this lable
 **	20 - wrong filename extension
+**	21 - champion name too long
+**	22 - champion comment too long
+**	23 - there are no commands
 */
 
 void	part_1(int error)
@@ -94,6 +97,8 @@ void	ft_exit(int error, t_info info)
 		part_1(error);
 	else
 		part_2(error);
+	if (error == 23)
+		ft_putendl_fd("ERROR: there are no commands", 2);
 	if (info.line != NULL)
 	{
 		ft_putstr_fd("LINE: ", 2);

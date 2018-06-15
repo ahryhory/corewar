@@ -6,7 +6,7 @@
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 18:06:37 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/02 12:07:47 by iseletsk         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:11:55 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ t_chemp			*vm_add_chemp(void)
 		chemp = b_chemp;
 		if (!b_chemp)
 		{
-			b_chemp = s_create_chemp(g_flag.nbr[i], color++);
+			b_chemp = s_create_chemp(-g_flag.nbr[i], color++);
 			continue;
 		}
 		while (chemp->next)
 			chemp = chemp->next;
-		chemp->next = s_create_chemp(g_flag.nbr[i], color++);
+		chemp->next = s_create_chemp(-g_flag.nbr[i], color++);
 	}
 	return (b_chemp);
 }

@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_check_proc.c                                    :+:      :+:    :+:   */
+/*   vm_validation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iseletsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/30 18:47:59 by iseletsk          #+#    #+#             */
-/*   Updated: 2018/06/13 19:28:21 by iseletsk         ###   ########.fr       */
+/*   Created: 2018/06/12 14:26:29 by iseletsk          #+#    #+#             */
+/*   Updated: 2018/06/13 19:35:31 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_check_proc(t_con *con)
+void		vm_validation(void)
 {
-	t_proc	*proc;
-	int		i;
-
-	i = 0;
-	if (!(proc = 0) && con)
-		proc = con->proc;
-	while (proc)
+	if (g_flag.v > 1)
+		ft_putendl_fd("Error: too many flag [-v]", 2);
+	if (g_flag.nbr_ch > 4)
 	{
-		if (con->cycl_die_per == con->cycl_to_die)
-			proc->live--;
-		if (proc && proc->live <= 0)
-		{
-			proc = proc->next;
-			vm_del_proc(&con, i);
-			continue;
-		}
-		i++;
-		proc = proc->next;
+		ft_putendl_fd("Error: too many champions", 2);
+		exit(0);
 	}
+	if (g_flag.v && (g_flag.dump >= 0 || g_flag.a))
+		usage_vm();
+	vm_hendl_nbr_ch();
 }

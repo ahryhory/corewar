@@ -27,7 +27,7 @@ static void		s_check_valid(t_chemp *chemp, char **av)
 	{
 		if (chemp->size > CHAMP_MAX_SIZE)
 		{
-			str = "Error: File";
+			str = "Error: file ";
 			write(2, str, ft_strlen(str));
 			ft_putstr(av[g_flag.r_index[i]]);
 			str = " has too large a code\n";
@@ -35,6 +35,7 @@ static void		s_check_valid(t_chemp *chemp, char **av)
 			exit(0);
 		}
 		chemp = chemp->next;
+		i++;
 	}
 }
 

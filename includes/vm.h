@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:41:25 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/06/03 16:55:55 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:52:49 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,12 @@ typedef struct		s_con
 	t_proc			*proc;
 	WINDOW			*bytes_win;
 	WINDOW			*info_win;
+	t_chemp			*winer;
 }					t_con;
 
 int					vm_valid_nbr(char *str, int n);
+void				vm_start_proc_init(t_con *con, int index, int nbr);
+void				vm_hendl_nbr_ch(void);
 int					vm_give_fbyte(int *nbr);
 void				usage_vm(void);
 void				vm_salution(t_con con, char **av);
@@ -169,5 +172,6 @@ void				sigtstp(int sig);
 void				sigint(int sig);
 void				if_v(t_con *con);
 void				usage_info(t_con con, int *row);
+void				vm_validation(void);
 
 #endif

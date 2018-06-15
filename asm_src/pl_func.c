@@ -37,17 +37,26 @@ char			*add_command(t_commands **new, char *line)
 	return (cmd);
 }
 
+static	void	check_split(char **split, char *trim)
+{
+	if (split == NULL)
+	{
+		ft_putstr_fd("ERROR: wrong CMD_STRING\n", 2);
+		ft_putendl_fd(trim, 2);
+		exit(0);
+	}
+}
+
 void			get_command(t_commands **new, char *line, char **trim)
 {
-	int			size;
 	int			i;
 	char		*cmd;
 	char		**split;
 
-	size = ft_strlen((*new)->label);
-	if (size > 0)
-		size++;
-	cmd = ft_strsub(line, size, ft_strlen(line) - ft_strlen((*new)->label));
+	i = ft_strlen((*new)->label);
+	if (i > 0)
+		i++;
+	cmd = ft_strsub(line, i, ft_strlen(line) - ft_strlen((*new)->label));
 	*trim = ft_strtrim(cmd);
 	ft_strdel(&cmd);
 	split = 0;
@@ -62,6 +71,7 @@ void			get_command(t_commands **new, char *line, char **trim)
 			break ;
 		i++;
 	}
+	check_split(split, *trim);
 	(*new)->command = ft_strdup(split[0]);
 	ft_split_del(&split);
 }

@@ -6,7 +6,7 @@
 /*   By: ahryhory <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 15:58:24 by ahryhory          #+#    #+#             */
-/*   Updated: 2018/06/02 15:58:25 by ahryhory         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:35:24 by iseletsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	general_cycle(t_con *con, int *start)
 			con->m_check = 0;
 			s_null_chemp(con);
 		}
+		if (g_flag.dump != -1 && con->cycl == g_flag.dump && !g_flag.v)
+			write_dump(con->mem);
 		if (g_flag.v)
 			start_ncurs(start, con);
-		if (g_flag.dump != 0 && con->cycl == g_flag.dump && !g_flag.v)
-			write_dump(con->mem);
 		vm_hendl_proc(con);
 		con->cycl++;
 		con->cycl_die_per++;

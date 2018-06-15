@@ -71,6 +71,8 @@ ASM_OBJS = $(addprefix $(ASM_OBJ)/,$(SRC_A:.c=.o))
 SRC_C = 
 
 SRC_C += vm_valid_nbr.c
+SRC_C += vm_start_proc_init.c
+SRC_C += vm_hendl_nbr_ch.c
 SRC_C += vm_give_fbyte.c
 SRC_C += usage_vm.c
 SRC_C += vm_salution.c
@@ -126,6 +128,7 @@ SRC_C += general_cycle.c
 SRC_C += sginls.c
 SRC_C += if_v.c
 SRC_C += usage_info.c
+SRC_C += vm_validation.c
 
 COR_SRCS = $(addprefix $(COR_SRC)/,$(SRC_C))
 COR_OBJS = $(addprefix $(COR_OBJ)/,$(SRC_C:.c=.o))
